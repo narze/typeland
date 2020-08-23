@@ -1,17 +1,18 @@
 import React from 'react'
-import { render, fireEvent } from '../testUtils'
+import { render } from '../testUtils'
 import { Home } from '../../pages/index'
 
 describe('Home page', () => {
-  it('matches snapshot', () => {
-    const { asFragment } = render(<Home />, {})
+  it('renders title', () => {
+    const { asFragment, getByText } = render(<Home />, {})
+    getByText(/Typeland/i)
+
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('clicking button triggers alert', () => {
+  it('renders text to type', () => {
     const { getByText } = render(<Home />, {})
-    window.alert = jest.fn()
-    fireEvent.click(getByText('Test Button'))
-    expect(window.alert).toHaveBeenCalledWith('With typescript and Jest')
+
+    getByText(/The quick brown fox jumps over the lazy dog/i)
   })
 })
