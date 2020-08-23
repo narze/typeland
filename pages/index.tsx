@@ -1,8 +1,23 @@
-import { css } from '@emotion/css'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import ButtonCss from '../components/ButtonCss'
 import ButtonReact from '../components/ButtonReact'
-import ButtonStyled from '../components/ButtonStyled'
+
+const styles = {
+  subtitle: tw`
+    my-3
+    text-lg
+  `,
+  highlight: tw`
+    mx-1
+    py-2 px-4
+    bg-teal-400
+    border border-transparent
+    text-sm leading-5 font-medium
+    rounded-md
+  `,
+}
 
 export const Home = (): JSX.Element => (
   <div className="container">
@@ -10,6 +25,17 @@ export const Home = (): JSX.Element => (
       <h1 className="title">
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
+
+      <p css={styles.subtitle} data-testid="subtitle">
+        with
+        <span css={styles.highlight}>TypeScript</span>
+        <span css={styles.highlight}>ESLint</span>
+        <span css={styles.highlight}>Jest</span>
+        <span css={styles.highlight}>TailwindCSS</span>
+        <span css={styles.highlight}>Emotion</span>
+        and
+        <span css={styles.highlight}>Cypress</span>
+      </p>
 
       <p className="description">
         Get started by editing <code>pages/index.tsx</code>
@@ -23,10 +49,9 @@ export const Home = (): JSX.Element => (
         Test Button
       </button>
 
-      <div className={css(tw`mt-8 grid gap-4 grid-cols-3 justify-center items-center`)}>
-        <ButtonCss>@emotion/css</ButtonCss>
-        <ButtonReact>@emotion/react</ButtonReact>
-        <ButtonStyled>@emotion/styled</ButtonStyled>
+      <div css={tw`mt-8 grid gap-4 grid-cols-1 justify-center items-center`}>
+        <ButtonCss>Emotion CSS</ButtonCss>
+        <ButtonReact>Emotion React</ButtonReact>
       </div>
 
       <div className="grid">
