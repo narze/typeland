@@ -57,8 +57,29 @@ export const Home = (): JSX.Element => {
   const textToType = 'the quick brown fox jumps over the lazy dog'
   const [userTypeInput, setUserTypeInput] = useState([''])
 
+  const handleDelete = () => {
+    let newUserTypeInput = [...userTypeInput]
+
+    newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
+      newUserTypeInput.length - 1
+    ].slice(0, -1)
+
+    if (
+      newUserTypeInput[newUserTypeInput.length - 1].length == 0 &&
+      userTypeInput.length > 1
+    ) {
+      newUserTypeInput = newUserTypeInput.slice(0, -1)
+    }
+
+    setUserTypeInput(newUserTypeInput)
+  }
+
   const handleType = (e) => {
-    const { key } = e
+    const { key, keyCode } = e
+
+    if (keyCode == 8) {
+      return handleDelete()
+    }
 
     // Filter out modifiers
     if (key.length != 1) {

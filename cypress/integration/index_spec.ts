@@ -21,4 +21,28 @@ describe('index', () => {
     cy.findByTestId('correct').contains('th')
     cy.findByTestId('wrong').contains('x')
   })
+
+  it('can delete typed text with backspace', () => {
+    cy.visit('/')
+    cy.focused().type('t')
+    cy.findByTestId('correct').contains('t')
+
+    cy.focused().type('h')
+    cy.findByTestId('correct').contains('th')
+
+    cy.focused().type('{backspace}')
+    cy.findByTestId('correct').contains('t')
+
+    cy.focused().type('o')
+    cy.findByTestId('correct').contains('t')
+    cy.findByTestId('wrong').contains('o')
+
+    cy.focused().type('{backspace}')
+    cy.findByTestId('correct').contains('t')
+    cy.findByTestId('wrong').should('not.exist')
+
+    cy.focused().type('h')
+    cy.findByTestId('correct').contains('th')
+    cy.findByTestId('wrong').should('not.exist')
+  })
 })

@@ -1,5 +1,163 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Home page can delete typed text with backspace 1`] = `
+<DocumentFragment>
+  .emotion-4 {
+  height: 100vh;
+  min-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  font-size: 2.25rem;
+  color: #1c64f2;
+  color: rgba(28,100,242,var(--text-opacity));
+}
+
+.emotion-2 {
+  font-size: 1.125rem;
+}
+
+.emotion-1 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-3 {
+  height: 0;
+  width: 0;
+}
+
+<div
+    class="emotion-4"
+  >
+    <main>
+      <h1
+        class="emotion-0"
+      >
+        Typeland
+      </h1>
+      <p
+        class="emotion-2"
+      >
+        the quick brown fox jumps over the lazy dog
+        <br />
+        <span
+          class="correct emotion-1"
+          data-testid="correct"
+        >
+          th
+        </span>
+      </p>
+      <input
+        class="emotion-3"
+        data-testid="typingInput"
+        tabindex="0"
+        type="text"
+      />
+    </main>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Home page highlights text which is typed 1`] = `
+<DocumentFragment>
+  .emotion-5 {
+  height: 100vh;
+  min-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  font-size: 2.25rem;
+  color: #1c64f2;
+  color: rgba(28,100,242,var(--text-opacity));
+}
+
+.emotion-3 {
+  font-size: 1.125rem;
+}
+
+.emotion-1 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-4 {
+  height: 0;
+  width: 0;
+}
+
+.emotion-2 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+<div
+    class="emotion-5"
+  >
+    <main>
+      <h1
+        class="emotion-0"
+      >
+        Typeland
+      </h1>
+      <p
+        class="emotion-3"
+      >
+        the quick brown fox jumps over the lazy dog
+        <br />
+        <span
+          class="correct emotion-1"
+          data-testid="correct"
+        >
+          th
+        </span>
+        <span
+          class="wrong emotion-2"
+          data-testid="wrong"
+        >
+          x
+        </span>
+      </p>
+      <input
+        class="emotion-4"
+        data-testid="typingInput"
+        tabindex="0"
+        type="text"
+      />
+    </main>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Home page renders title 1`] = `
 <DocumentFragment>
   .emotion-4 {
