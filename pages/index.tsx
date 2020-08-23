@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { useState } from 'react'
 
@@ -26,9 +26,18 @@ const s = {
   wrong: tw`
     text-red-400
   `,
+  caret: [
+    tw`
+    h-4
+      border border-blue-500
+    `,
+    css`
+      width: 1px;
+    `,
+  ],
 }
 
-const TypingArea = ({ text, userText }): JSX.Element => {
+const TypingArea = ({ text, userText, showCaret }): JSX.Element => {
   return (
     <p css={s.typingArea}>
       {text}
@@ -49,6 +58,7 @@ const TypingArea = ({ text, userText }): JSX.Element => {
           </span>
         )
       })}
+      {showCaret ? <span css={s.caret} data-testid="caret"></span> : null}
     </p>
   )
 }
@@ -56,6 +66,7 @@ const TypingArea = ({ text, userText }): JSX.Element => {
 export const Home = (): JSX.Element => {
   const textToType = 'the quick brown fox jumps over the lazy dog'
   const [userTypeInput, setUserTypeInput] = useState([''])
+  const [inputIsFocused, setInputIsFocused] = useState(true)
 
   const handleDelete = () => {
     let newUserTypeInput = [...userTypeInput]
@@ -107,19 +118,32 @@ export const Home = (): JSX.Element => {
   }
 
   return (
-    <div css={s.container}>
+    <div
+      css={s.container}
+      onClick={() => document.getElementById('typingInput').focus()}
+    >
       <main>
         <h1 css={s.title}>Typeland</h1>
 
-        <TypingArea text={textToType} userText={userTypeInput} />
+        <TypingArea
+          text={textToType}
+          userText={userTypeInput}
+          showCaret={inputIsFocused}
+        />
 
         <input
+          id="typingInput"
           data-testid="typingInput"
           css={s.typingInput}
           type="text"
-          autoFocus
-          ref={(i) => i && i.focus()}
+          ref={(i) => i && i.focus()} // Autofocus
           onKeyDown={handleType}
+          onBlur={() => {
+            setInputIsFocused(false)
+          }}
+          onFocus={() => {
+            setInputIsFocused(true)
+          }}
           tabIndex={0}
         />
       </main>

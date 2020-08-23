@@ -45,4 +45,18 @@ describe('index', () => {
     cy.findByTestId('correct').contains('th')
     cy.findByTestId('wrong').should('not.exist')
   })
+
+  it('always focus input & show caret', () => {
+    cy.visit('/')
+
+    cy.focused().type('t')
+    cy.findByTestId('correct').contains('t')
+
+    cy.findByTestId('caret').should('exist')
+
+    cy.focused().blur()
+
+    cy.focused().type('h')
+    cy.findByTestId('correct').contains('th')
+  })
 })
