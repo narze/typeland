@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
+import { useState } from 'react'
 
 const s = {
   container: tw`
@@ -14,18 +15,95 @@ const s = {
   `,
   typingArea: tw`
     text-lg
+  `,
+  typingInput: tw`
+    h-0
+    w-0
+  `,
+  correct: tw`
     text-green-600
+  `,
+  wrong: tw`
+    text-red-400
   `,
 }
 
-export const Home = (): JSX.Element => (
-  <div css={s.container}>
-    <main>
-      <h1 css={s.title}>Typeland</h1>
+const TypingArea = ({ text, userText }): JSX.Element => {
+  return (
+    <p css={s.typingArea}>
+      {text}
+      <br />
+      {userText.map((text, i) => {
+        return i % 2 == 0 ? (
+          <span
+            css={s.correct}
+            key={i}
+            className="correct"
+            data-testid="correct"
+          >
+            {text}
+          </span>
+        ) : (
+          <span css={s.wrong} key={i} className="wrong" data-testid="wrong">
+            {text}
+          </span>
+        )
+      })}
+    </p>
+  )
+}
 
-      <p css={s.typingArea}>The quick brown fox jumps over the lazy dog</p>
-    </main>
-  </div>
-)
+export const Home = (): JSX.Element => {
+  const textToType = 'the quick brown fox jumps over the lazy dog'
+  const [userTypeInput, setUserTypeInput] = useState([''])
+
+  const handleType = (e) => {
+    const { key } = e
+
+    // Filter out modifiers
+    if (key.length != 1) {
+      return
+    }
+
+    const userTypeLength = userTypeInput.reduce((p, c) => p + c.length, 0)
+
+    let newUserTypeInput = [...userTypeInput]
+
+    if (textToType[userTypeLength] == key && newUserTypeInput.length % 2 == 0) {
+      newUserTypeInput = newUserTypeInput.concat('')
+    } else if (
+      textToType[userTypeLength] != key &&
+      newUserTypeInput.length % 2 == 1
+    ) {
+      newUserTypeInput = newUserTypeInput.concat('')
+    }
+
+    newUserTypeInput[newUserTypeInput.length - 1] = `${
+      newUserTypeInput[newUserTypeInput.length - 1]
+    }${key}`
+
+    setUserTypeInput(newUserTypeInput)
+  }
+
+  return (
+    <div css={s.container}>
+      <main>
+        <h1 css={s.title}>Typeland</h1>
+
+        <TypingArea text={textToType} userText={userTypeInput} />
+
+        <input
+          data-testid="typingInput"
+          css={s.typingInput}
+          type="text"
+          autoFocus
+          ref={(i) => i && i.focus()}
+          onKeyDown={handleType}
+          tabIndex={0}
+        />
+      </main>
+    </div>
+  )
+}
 
 export default Home

@@ -2,7 +2,7 @@
 
 exports[`Home page renders title 1`] = `
 <DocumentFragment>
-  .emotion-2 {
+  .emotion-4 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -26,15 +26,23 @@ exports[`Home page renders title 1`] = `
   color: rgba(28,100,242,var(--text-opacity));
 }
 
+.emotion-2 {
+  font-size: 1.125rem;
+}
+
 .emotion-1 {
   --text-opacity: 1;
-  font-size: 1.125rem;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
 }
 
+.emotion-3 {
+  height: 0;
+  width: 0;
+}
+
 <div
-    class="emotion-2"
+    class="emotion-4"
   >
     <main>
       <h1
@@ -43,10 +51,21 @@ exports[`Home page renders title 1`] = `
         Typeland
       </h1>
       <p
-        class="emotion-1"
+        class="emotion-2"
       >
-        The quick brown fox jumps over the lazy dog
+        the quick brown fox jumps over the lazy dog
+        <br />
+        <span
+          class="correct emotion-1"
+          data-testid="correct"
+        />
       </p>
+      <input
+        class="emotion-3"
+        data-testid="typingInput"
+        tabindex="0"
+        type="text"
+      />
     </main>
   </div>
 </DocumentFragment>
