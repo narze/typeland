@@ -12,51 +12,51 @@ describe('index', () => {
     cy.visit('/')
 
     cy.focused().type('t')
-    cy.findByTestId('correct').contains('t')
+    cy.findAllByTestId('correct').contains('t')
 
     cy.focused().type('h')
-    cy.findByTestId('correct').contains('th')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
 
     cy.focused().type('x')
-    cy.findByTestId('correct').contains('th')
-    cy.findByTestId('wrong').contains('x')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
+    cy.findAllByTestId('wrong').contains('x')
   })
 
   it('can delete typed text with backspace', () => {
     cy.visit('/')
     cy.focused().type('t')
-    cy.findByTestId('correct').contains('t')
+    cy.findAllByTestId('correct').contains('t')
 
     cy.focused().type('h')
-    cy.findByTestId('correct').contains('th')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
 
     cy.focused().type('{backspace}')
-    cy.findByTestId('correct').contains('t')
+    cy.findAllByTestId('correct').contains('t')
 
     cy.focused().type('o')
-    cy.findByTestId('correct').contains('t')
-    cy.findByTestId('wrong').contains('o')
+    cy.findAllByTestId('correct').contains('t')
+    cy.findAllByTestId('wrong').contains('o')
 
     cy.focused().type('{backspace}')
-    cy.findByTestId('correct').contains('t')
-    cy.findByTestId('wrong').should('not.exist')
+    cy.findAllByTestId('correct').contains('t')
+    cy.findAllByTestId('wrong').should('not.exist')
 
     cy.focused().type('h')
-    cy.findByTestId('correct').contains('th')
-    cy.findByTestId('wrong').should('not.exist')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
+    cy.findAllByTestId('wrong').should('not.exist')
   })
 
   it('always focus input & show caret', () => {
     cy.visit('/')
 
     cy.focused().type('t')
-    cy.findByTestId('correct').contains('t')
+    cy.findAllByTestId('correct').contains('t')
 
-    cy.findByTestId('caret').should('exist')
+    cy.findAllByTestId('caret').should('exist')
 
     cy.focused().blur()
 
     cy.focused().type('h')
-    cy.findByTestId('correct').contains('th')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
   })
 })

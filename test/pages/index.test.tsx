@@ -18,7 +18,7 @@ describe('Home page', () => {
   })
 
   it('highlights text which is typed', () => {
-    const { asFragment, getByTestId } = render(<Home />, {})
+    const { asFragment, getByTestId, getAllByTestId } = render(<Home />, {})
 
     const typingInput = getByTestId('typingInput')
 
@@ -26,17 +26,23 @@ describe('Home page', () => {
     expect(getByTestId('correct')).toHaveTextContent('t')
 
     fireEvent.keyDown(typingInput, { key: 'h' })
-    expect(getByTestId('correct')).toHaveTextContent('th')
+    expect(getAllByTestId('correct')[0]).toHaveTextContent('t')
+    expect(getAllByTestId('correct')[1]).toHaveTextContent('h')
 
     fireEvent.keyDown(typingInput, { key: 'x' })
-    expect(getByTestId('correct')).toHaveTextContent('th')
+
+    expect(getAllByTestId('correct')[0]).toHaveTextContent('t')
+    expect(getAllByTestId('correct')[1]).toHaveTextContent('h')
     expect(getByTestId('wrong')).toHaveTextContent('x')
 
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('can delete typed text with backspace', () => {
-    const { asFragment, getByTestId, queryByTestId } = render(<Home />, {})
+    const { asFragment, getByTestId, getAllByTestId, queryByTestId } = render(
+      <Home />,
+      {}
+    )
 
     const typingInput = getByTestId('typingInput')
 
@@ -44,7 +50,8 @@ describe('Home page', () => {
     expect(getByTestId('correct')).toHaveTextContent('t')
 
     fireEvent.keyDown(typingInput, { key: 'h' })
-    expect(getByTestId('correct')).toHaveTextContent('th')
+    expect(getAllByTestId('correct')[0]).toHaveTextContent('t')
+    expect(getAllByTestId('correct')[1]).toHaveTextContent('h')
 
     userEvent.type(typingInput, '{backspace}')
     expect(getByTestId('correct')).toHaveTextContent('t')
@@ -58,7 +65,8 @@ describe('Home page', () => {
     expect(queryByTestId('wrong')).not.toBeInTheDocument()
 
     fireEvent.keyDown(typingInput, { key: 'h' })
-    expect(getByTestId('correct')).toHaveTextContent('th')
+    expect(getAllByTestId('correct')[0]).toHaveTextContent('t')
+    expect(getAllByTestId('correct')[1]).toHaveTextContent('h')
     expect(queryByTestId('wrong')).not.toBeInTheDocument()
 
     expect(asFragment()).toMatchSnapshot()
