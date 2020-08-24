@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const s = {
   container: tw`
@@ -37,50 +37,107 @@ const s = {
   ],
 }
 
-const TypingArea = ({ text, userText, showCaret }): JSX.Element => {
+const Word = ({
+  template,
+  userInput,
+  showCaret,
+}: {
+  template: string
+  userInput: string
+  showCaret: boolean
+}): JSX.Element => {
   return (
-    <p css={s.typingArea}>
-      {text}
-      <br />
-      {userText.map((text, i) => {
-        return i % 2 == 0 ? (
-          <span
-            css={s.correct}
-            key={i}
-            className="correct"
-            data-testid="correct"
-          >
-            {text}
-          </span>
-        ) : (
-          <span css={s.wrong} key={i} className="wrong" data-testid="wrong">
-            {text}
-          </span>
+    <span>
+      {showCaret && userInput.length == 0 ? (
+        <span css={s.caret} data-testid="caret"></span>
+      ) : null}
+
+      {Array.from(
+        Array(Math.min(template.length, userInput.length)).keys()
+      ).map((i) => {
+        const templateChar = template[i]
+        const userInputChar = userInput[i]
+        const displayChar = userInputChar || templateChar
+
+        return (
+          <React.Fragment key={i}>
+            {templateChar == userInputChar ? (
+              <span css={s.correct} className="correct" data-testid="correct">
+                {displayChar}
+              </span>
+            ) : (
+              <span css={s.wrong} className="wrong" data-testid="wrong">
+                {displayChar}
+              </span>
+            )}
+          </React.Fragment>
         )
       })}
-      {showCaret ? <span css={s.caret} data-testid="caret"></span> : null}
+
+      {showCaret && userInput.length != 0 ? (
+        <span css={s.caret} data-testid="caret"></span>
+      ) : null}
+    </span>
+  )
+}
+
+const TypingArea = ({
+  words,
+  userWords,
+  showCaret,
+}: {
+  words: Array<string>
+  userWords: Array<string>
+  showCaret: boolean
+}): JSX.Element => {
+  return (
+    <p css={s.typingArea}>
+      {words.join(' ')}
+      <br />
+      {userWords.map((text, i) => {
+        return (
+          <React.Fragment key={i}>
+            <Word
+              template={words[i]}
+              userInput={text}
+              showCaret={showCaret && i == userWords.length - 1}
+            />
+            <span>&nbsp;</span>
+          </React.Fragment>
+        )
+      })}
     </p>
   )
 }
 
 export const Home = (): JSX.Element => {
-  const textToType = 'the quick brown fox jumps over the lazy dog'
+  const words: Array<string> = 'the quick brown fox jumps over the lazy dog'.split(
+    ' '
+  )
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
 
   const handleDelete = () => {
-    let newUserTypeInput = [...userTypeInput]
+    const newUserTypeInput = [...userTypeInput]
 
     newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
       newUserTypeInput.length - 1
     ].slice(0, -1)
 
-    if (
-      newUserTypeInput[newUserTypeInput.length - 1].length == 0 &&
-      userTypeInput.length > 1
-    ) {
-      newUserTypeInput = newUserTypeInput.slice(0, -1)
+    setUserTypeInput(newUserTypeInput)
+  }
+
+  const handleSpace = () => {
+    if (!userTypeInput[userTypeInput.length - 1].length) {
+      return
     }
+    if (userTypeInput.length == words.length) {
+      return
+    }
+
+    const newUserTypeInput = [...userTypeInput]
+
+    newUserTypeInput[newUserTypeInput.length] = ''
 
     setUserTypeInput(newUserTypeInput)
   }
@@ -92,28 +149,19 @@ export const Home = (): JSX.Element => {
       return handleDelete()
     }
 
+    if (keyCode == 32) {
+      return handleSpace()
+    }
+
     // Filter out modifiers
     if (key.length != 1) {
       return
     }
 
-    const userTypeLength = userTypeInput.reduce((p, c) => p + c.length, 0)
-
-    let newUserTypeInput = [...userTypeInput]
-
-    if (textToType[userTypeLength] == key && newUserTypeInput.length % 2 == 0) {
-      newUserTypeInput = newUserTypeInput.concat('')
-    } else if (
-      textToType[userTypeLength] != key &&
-      newUserTypeInput.length % 2 == 1
-    ) {
-      newUserTypeInput = newUserTypeInput.concat('')
-    }
-
-    newUserTypeInput[newUserTypeInput.length - 1] = `${
-      newUserTypeInput[newUserTypeInput.length - 1]
-    }${key}`
-
+    const newUserTypeInput = [...userTypeInput]
+    newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
+      newUserTypeInput.length - 1
+    ].concat(key)
     setUserTypeInput(newUserTypeInput)
   }
 
@@ -126,8 +174,8 @@ export const Home = (): JSX.Element => {
         <h1 css={s.title}>Typeland</h1>
 
         <TypingArea
-          text={textToType}
-          userText={userTypeInput}
+          words={words}
+          userWords={userTypeInput}
           showCaret={inputIsFocused}
         />
 
