@@ -2,7 +2,7 @@
 
 exports[`Home page can delete typed text with backspace 1`] = `
 <DocumentFragment>
-  .emotion-6 {
+  .emotion-8 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -44,6 +44,17 @@ exports[`Home page can delete typed text with backspace 1`] = `
   width: 0;
 }
 
+.emotion-7 {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.emotion-6 {
+  font-size: 0.875rem;
+}
+
 .emotion-1 {
   --text-opacity: 1;
   color: #057a55;
@@ -51,7 +62,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
 }
 
 <div
-    class="emotion-6"
+    class="emotion-8"
   >
     <main>
       <h1
@@ -94,13 +105,25 @@ exports[`Home page can delete typed text with backspace 1`] = `
         type="text"
       />
     </main>
+    <div
+      class="emotion-7"
+    >
+      <a
+        class="emotion-6"
+        href="https://github.com/narze/typeland"
+        rel="noreferrer"
+        target="_blank"
+      >
+        GitHub
+      </a>
+    </div>
   </div>
 </DocumentFragment>
 `;
 
 exports[`Home page highlights text which is typed 1`] = `
 <DocumentFragment>
-  .emotion-7 {
+  .emotion-9 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -142,6 +165,17 @@ exports[`Home page highlights text which is typed 1`] = `
   width: 0;
 }
 
+.emotion-8 {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.emotion-7 {
+  font-size: 0.875rem;
+}
+
 .emotion-1 {
   --text-opacity: 1;
   color: #057a55;
@@ -155,7 +189,7 @@ exports[`Home page highlights text which is typed 1`] = `
 }
 
 <div
-    class="emotion-7"
+    class="emotion-9"
   >
     <main>
       <h1
@@ -204,13 +238,25 @@ exports[`Home page highlights text which is typed 1`] = `
         type="text"
       />
     </main>
+    <div
+      class="emotion-8"
+    >
+      <a
+        class="emotion-7"
+        href="https://github.com/narze/typeland"
+        rel="noreferrer"
+        target="_blank"
+      >
+        GitHub
+      </a>
+    </div>
   </div>
 </DocumentFragment>
 `;
 
 exports[`Home page renders title 1`] = `
 <DocumentFragment>
-  .emotion-4 {
+  .emotion-6 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -252,8 +298,19 @@ exports[`Home page renders title 1`] = `
   width: 0;
 }
 
+.emotion-5 {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.emotion-4 {
+  font-size: 0.875rem;
+}
+
 <div
-    class="emotion-4"
+    class="emotion-6"
   >
     <main>
       <h1
@@ -284,6 +341,18 @@ exports[`Home page renders title 1`] = `
         type="text"
       />
     </main>
+    <div
+      class="emotion-5"
+    >
+      <a
+        class="emotion-4"
+        href="https://github.com/narze/typeland"
+        rel="noreferrer"
+        target="_blank"
+      >
+        GitHub
+      </a>
+    </div>
   </div>
 </DocumentFragment>
 `;

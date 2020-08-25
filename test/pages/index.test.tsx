@@ -71,4 +71,12 @@ describe('Home page', () => {
 
     expect(asFragment()).toMatchSnapshot()
   })
+
+  it('can delete whole incomplete word with option/ctrl/meta backspace', () => {
+    pending()
+  })
+
+  it('blocks all modifiers except shift', () => {
+    pending()
+  })
 })

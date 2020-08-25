@@ -28,13 +28,22 @@ const s = {
   `,
   caret: [
     tw`
-    h-4
+      h-4
       border border-blue-500
     `,
     css`
       width: 1px;
     `,
   ],
+  footer: tw`
+    fixed
+    bottom-0
+    pb-8
+    text-center
+  `,
+  githubLink: tw`
+    text-sm
+  `,
 }
 
 const Word = ({
@@ -117,12 +126,16 @@ export const Home = (): JSX.Element => {
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
 
-  const handleDelete = () => {
+  const handleDelete = ({ word = false }) => {
     const newUserTypeInput = [...userTypeInput]
 
-    newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
-      newUserTypeInput.length - 1
-    ].slice(0, -1)
+    if (word) {
+      newUserTypeInput[newUserTypeInput.length - 1] = ''
+    } else {
+      newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
+        newUserTypeInput.length - 1
+      ].slice(0, -1)
+    }
 
     setUserTypeInput(newUserTypeInput)
   }
@@ -143,18 +156,18 @@ export const Home = (): JSX.Element => {
   }
 
   const handleType = (e) => {
-    const { key, keyCode } = e
+    const { key, altKey, ctrlKey, metaKey } = e
 
-    if (keyCode == 8) {
-      return handleDelete()
+    if (key == 'Backspace') {
+      return handleDelete({ word: altKey || ctrlKey || metaKey })
     }
 
-    if (keyCode == 32) {
+    if (key == ' ') {
       return handleSpace()
     }
 
     // Filter out modifiers
-    if (key.length != 1) {
+    if (key.length != 1 || altKey || ctrlKey || metaKey) {
       return
     }
 
@@ -195,6 +208,17 @@ export const Home = (): JSX.Element => {
           tabIndex={0}
         />
       </main>
+
+      <div css={s.footer}>
+        <a
+          css={s.githubLink}
+          href="https://github.com/narze/typeland"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
     </div>
   )
 }
