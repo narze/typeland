@@ -28,13 +28,22 @@ const s = {
   `,
   caret: [
     tw`
-    h-4
+      h-4
       border border-blue-500
     `,
     css`
       width: 1px;
     `,
   ],
+  footer: tw`
+    fixed
+    bottom-0
+    pb-8
+    text-center
+  `,
+  githubLink: tw`
+    text-sm
+  `,
 }
 
 const Word = ({
@@ -199,6 +208,17 @@ export const Home = (): JSX.Element => {
           tabIndex={0}
         />
       </main>
+
+      <div css={s.footer}>
+        <a
+          css={s.githubLink}
+          href="https://github.com/narze/typeland"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
     </div>
   )
 }

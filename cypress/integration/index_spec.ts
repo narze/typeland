@@ -2,10 +2,13 @@ describe('index', () => {
   it('renders home page', () => {
     cy.visit('/')
 
-    cy.findByText(/Typeland/i).should('exist')
+    cy.findAllByText(/Typeland/i).should('exist')
     cy.findByText(/the quick brown fox jumps over the lazy dog/i).should(
       'exist'
     )
+    cy.findByText(/GitHub/i)
+      .should('have.prop', 'href')
+      .and('equal', 'https://github.com/narze/typeland')
   })
 
   it('highlight typed text', () => {
