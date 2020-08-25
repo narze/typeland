@@ -46,6 +46,31 @@ describe('index', () => {
     cy.findAllByTestId('wrong').should('not.exist')
   })
 
+  it('can delete whole incomplete word with option/ctrl/meta backspace', () => {
+    cy.visit('/')
+
+    cy.focused().type('t')
+    cy.focused().type('h')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
+
+    cy.focused().type('{option}{backspace}')
+    cy.findAllByTestId('correct').should('not.exist')
+
+    cy.focused().type('t')
+    cy.focused().type('h')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
+
+    cy.focused().type('{ctrl}{backspace}')
+    cy.findAllByTestId('correct').should('not.exist')
+
+    cy.focused().type('t')
+    cy.focused().type('h')
+    cy.findAllByTestId('correct').contains('t').next().contains('h')
+
+    cy.focused().type('{meta}{backspace}')
+    cy.findAllByTestId('correct').should('not.exist')
+  })
+
   it('always focus input & show caret', () => {
     cy.visit('/')
 

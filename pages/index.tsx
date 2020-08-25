@@ -117,12 +117,16 @@ export const Home = (): JSX.Element => {
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
 
-  const handleDelete = () => {
+  const handleDelete = ({ word = false }) => {
     const newUserTypeInput = [...userTypeInput]
 
-    newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
-      newUserTypeInput.length - 1
-    ].slice(0, -1)
+    if (word) {
+      newUserTypeInput[newUserTypeInput.length - 1] = ''
+    } else {
+      newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
+        newUserTypeInput.length - 1
+      ].slice(0, -1)
+    }
 
     setUserTypeInput(newUserTypeInput)
   }
@@ -146,7 +150,7 @@ export const Home = (): JSX.Element => {
     const { key, altKey, ctrlKey, metaKey } = e
 
     if (key == 'Backspace') {
-      return handleDelete()
+      return handleDelete({ word: altKey || ctrlKey || metaKey })
     }
 
     if (key == ' ') {
