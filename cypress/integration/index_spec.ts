@@ -59,4 +59,18 @@ describe('index', () => {
     cy.focused().type('h')
     cy.findAllByTestId('correct').contains('t').next().contains('h')
   })
+
+  it('blocks all modifiers except shift', () => {
+    cy.visit('/')
+
+    cy.focused().type('{backspace}')
+    cy.focused().type('T')
+    cy.findAllByTestId('wrong').contains('T')
+
+    cy.focused().type('{backspace}')
+    cy.focused().type('{alt}{shift}a')
+    cy.focused().type('{ctrl}{shift}b')
+    cy.focused().type('{meta}{shift}c')
+    cy.findAllByTestId('wrong').should('not.exist')
+  })
 })

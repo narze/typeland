@@ -143,18 +143,18 @@ export const Home = (): JSX.Element => {
   }
 
   const handleType = (e) => {
-    const { key, keyCode } = e
+    const { key, altKey, ctrlKey, metaKey } = e
 
-    if (keyCode == 8) {
+    if (key == 'Backspace') {
       return handleDelete()
     }
 
-    if (keyCode == 32) {
+    if (key == ' ') {
       return handleSpace()
     }
 
     // Filter out modifiers
-    if (key.length != 1) {
+    if (key.length != 1 || altKey || ctrlKey || metaKey) {
       return
     }
 
