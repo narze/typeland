@@ -26,3 +26,4 @@ yarn dev
 - [Monkey Type](https://monkey-type.com)
 - [Type Fu](http://type-fu.com)
 - [TypeRacer](https://typeracer.com)
+- [Typings](https://typings.gg)
