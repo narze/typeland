@@ -117,4 +117,16 @@ describe('index', () => {
 
     cy.findByText(/Good job!/i).should('exist')
   })
+
+  it('shows wpm when finished typing', () => {
+    cy.visit('/')
+    cy.clock(new Date())
+
+    cy.focused().type('the quick brown fox ')
+    cy.tick(10 * 1000)
+    cy.focused().type('jumps over txe lazy d ')
+
+    cy.findByText(/Good job!/i).should('exist')
+    cy.findByText(/54 wpm/i).should('exist') // 9 * 60 / 10
+  })
 })

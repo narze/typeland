@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const s = {
   container: tw`
@@ -43,6 +43,11 @@ const s = {
   `,
   githubLink: tw`
     text-sm
+  `,
+  result: tw`
+    mt-4
+    text-center
+    text-xl
   `,
 }
 
@@ -126,6 +131,10 @@ export const Home = (): JSX.Element => {
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
   const [finished, setFinished] = useState(false)
+  const [started, setStarted] = useState(false)
+  const [startTime, setStartTime] = useState(0)
+  const [finishTime, setFinishTime] = useState(0)
+  const [wpm, setWpm] = useState(0)
 
   const handleDelete = ({ word = false }) => {
     const newUserTypeInput = [...userTypeInput]
@@ -173,6 +182,10 @@ export const Home = (): JSX.Element => {
       return
     }
 
+    if (!started) {
+      setStarted(true)
+    }
+
     const newUserTypeInput = [...userTypeInput]
     newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
       newUserTypeInput.length - 1
@@ -188,6 +201,24 @@ export const Home = (): JSX.Element => {
     }
   }
 
+  useEffect(() => {
+    if (started && !finished) {
+      setStartTime(+new Date())
+    }
+
+    if (started && finished) {
+      setFinishTime(+new Date())
+    }
+  }, [started, finished])
+
+  useEffect(() => {
+    if (startTime && finishTime && !wpm) {
+      setWpm(
+        Math.round((words.length * 60) / ((finishTime - startTime) / 1000.0))
+      )
+    }
+  }, [startTime, finishTime, wpm])
+
   return (
     <div
       css={s.container}
@@ -202,7 +233,9 @@ export const Home = (): JSX.Element => {
           showCaret={inputIsFocused}
         />
 
-        {finished && <div>Good job!</div>}
+        {finished && finishTime && (
+          <div css={s.result}>Good job! {wpm} wpm</div>
+        )}
 
         <input
           id="typingInput"

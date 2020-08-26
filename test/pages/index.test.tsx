@@ -79,4 +79,8 @@ describe('Home page', () => {
   it('blocks all modifiers except shift', () => {
     pending()
   })
+
+  it('shows wpm when finished typing', () => {
+    pending()
+  })
 })
