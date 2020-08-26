@@ -125,6 +125,7 @@ export const Home = (): JSX.Element => {
   )
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
+  const [finished, setFinished] = useState(false)
 
   const handleDelete = ({ word = false }) => {
     const newUserTypeInput = [...userTypeInput]
@@ -145,6 +146,7 @@ export const Home = (): JSX.Element => {
       return
     }
     if (userTypeInput.length == words.length) {
+      setFinished(true)
       return
     }
 
@@ -176,6 +178,14 @@ export const Home = (): JSX.Element => {
       newUserTypeInput.length - 1
     ].concat(key)
     setUserTypeInput(newUserTypeInput)
+
+    if (userTypeInput.length == words.length) {
+      if (
+        newUserTypeInput[newUserTypeInput.length - 1] == words[words.length - 1]
+      ) {
+        setFinished(true)
+      }
+    }
   }
 
   return (
@@ -191,6 +201,8 @@ export const Home = (): JSX.Element => {
           userWords={userTypeInput}
           showCaret={inputIsFocused}
         />
+
+        {finished && <div>Good job!</div>}
 
         <input
           id="typingInput"

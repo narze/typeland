@@ -101,4 +101,20 @@ describe('index', () => {
     cy.focused().type('{meta}{shift}c')
     cy.findAllByTestId('wrong').should('not.exist')
   })
+
+  it('finish typing when reached the end', () => {
+    cy.visit('/')
+
+    cy.focused().type('the quick brown fox jumps over the lazy dog')
+
+    cy.findByText(/Good job!/i).should('exist')
+  })
+
+  it('finish typing when pressing spacebar in the last word', () => {
+    cy.visit('/')
+
+    cy.focused().type('the quick brown fox jumps over txe lazy d ')
+
+    cy.findByText(/Good job!/i).should('exist')
+  })
 })
