@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { TypingArea } from '../components/TypingArea'
 
 const s = {
   container: tw`
@@ -13,28 +14,10 @@ const s = {
     text-4xl
     text-blue-600
   `,
-  typingArea: tw`
-    text-lg
-  `,
   typingInput: tw`
     h-0
     w-0
   `,
-  correct: tw`
-    text-green-600
-  `,
-  wrong: tw`
-    text-red-400
-  `,
-  caret: [
-    tw`
-      h-4
-      border border-blue-500
-    `,
-    css`
-      width: 1px;
-    `,
-  ],
   footer: tw`
     fixed
     bottom-0
@@ -49,79 +32,6 @@ const s = {
     text-center
     text-xl
   `,
-}
-
-const Word = ({
-  template,
-  userInput,
-  showCaret,
-}: {
-  template: string
-  userInput: string
-  showCaret: boolean
-}): JSX.Element => {
-  return (
-    <span>
-      {showCaret && userInput.length == 0 ? (
-        <span css={s.caret} data-testid="caret"></span>
-      ) : null}
-
-      {Array.from(
-        Array(Math.min(template.length, userInput.length)).keys()
-      ).map((i) => {
-        const templateChar = template[i]
-        const userInputChar = userInput[i]
-        const displayChar = userInputChar || templateChar
-
-        return (
-          <React.Fragment key={i}>
-            {templateChar == userInputChar ? (
-              <span css={s.correct} className="correct" data-testid="correct">
-                {displayChar}
-              </span>
-            ) : (
-              <span css={s.wrong} className="wrong" data-testid="wrong">
-                {displayChar}
-              </span>
-            )}
-          </React.Fragment>
-        )
-      })}
-
-      {showCaret && userInput.length != 0 ? (
-        <span css={s.caret} data-testid="caret"></span>
-      ) : null}
-    </span>
-  )
-}
-
-const TypingArea = ({
-  words,
-  userWords,
-  showCaret,
-}: {
-  words: Array<string>
-  userWords: Array<string>
-  showCaret: boolean
-}): JSX.Element => {
-  return (
-    <p css={s.typingArea}>
-      {words.join(' ')}
-      <br />
-      {userWords.map((text, i) => {
-        return (
-          <React.Fragment key={i}>
-            <Word
-              template={words[i]}
-              userInput={text}
-              showCaret={showCaret && i == userWords.length - 1}
-            />
-            <span>&nbsp;</span>
-          </React.Fragment>
-        )
-      })}
-    </p>
-  )
 }
 
 export const Home = (): JSX.Element => {
