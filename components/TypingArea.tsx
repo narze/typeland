@@ -10,15 +10,17 @@ const s = {
   `,
 }
 
-export const TypingArea = ({
-  words,
-  userWords,
-  showCaret,
-}: {
+export interface TypingAreaProps {
   words: Array<string>
   userWords: Array<string>
   showCaret: boolean
-}): JSX.Element => {
+}
+
+export const TypingArea: React.FC<TypingAreaProps> = ({
+  words,
+  userWords,
+  showCaret,
+}) => {
   return (
     <p css={s.typingArea}>
       {words.join(' ')}
