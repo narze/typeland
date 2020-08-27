@@ -21,15 +21,17 @@ const s = {
   ],
 }
 
-export const Word = ({
-  template,
-  userInput,
-  showCaret,
-}: {
+export interface WordProps {
   template: string
   userInput: string
   showCaret: boolean
-}): JSX.Element => {
+}
+
+export const Word: React.FC<WordProps> = ({
+  template,
+  userInput,
+  showCaret,
+}) => {
   return (
     <span>
       {showCaret && userInput.length == 0 ? (
