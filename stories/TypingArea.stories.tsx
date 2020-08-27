@@ -5,7 +5,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { TypingArea, TypingAreaProps } from '../components/TypingArea'
 
 export default {
-  title: 'TypingArea',
+  title: 'Typeland/TypingArea',
   component: TypingArea,
 } as Meta
 
