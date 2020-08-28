@@ -123,4 +123,13 @@ describe('index', () => {
     cy.findByText(/Good job!/i).should('exist')
     cy.findByText(/54 wpm/i).should('exist') // 9 * 60 / 10
   })
+
+  it('can restart after finished typing', () => {
+    cy.focused().type('the quick brown fox jumps over the lazy dog')
+
+    cy.findByText(/Good job!/i).should('exist')
+    cy.findByText(/Restart/i).click()
+    cy.findByText(/Good job!/i).should('not.exist')
+    cy.findByText(/Restart/i).should('not.exist')
+  })
 })
