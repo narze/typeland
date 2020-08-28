@@ -33,6 +33,18 @@ const s = {
     text-center
     text-xl
   `,
+  restart: tw`
+    mt-2
+    text-center
+  `,
+  restartButton: tw`
+    py-2 px-4
+    bg-transparent hover:bg-blue-500
+    font-semibold
+    hover:text-white
+    border border-blue-500 hover:border-transparent
+    rounded
+  `,
 }
 
 export const Home = (): JSX.Element => {
@@ -118,6 +130,17 @@ export const Home = (): JSX.Element => {
     }
   }
 
+  const restart = () => {
+    setWords(randomWords(10))
+    setUserTypeInput([''])
+    setInputIsFocused(true)
+    setFinished(false)
+    setStarted(false)
+    setStartTime(0)
+    setFinishTime(0)
+    setWpm(0)
+  }
+
   useEffect(() => {
     if (started && !finished) {
       setStartTime(+new Date())
@@ -151,7 +174,14 @@ export const Home = (): JSX.Element => {
         />
 
         {finished && finishTime && (
-          <div css={s.result}>Good job! {wpm} wpm</div>
+          <>
+            <div css={s.result}>Good job! {wpm} wpm</div>
+            <div css={s.restart}>
+              <button css={s.restartButton} onClick={restart}>
+                Restart
+              </button>
+            </div>
+          </>
         )}
 
         <input
