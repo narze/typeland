@@ -3,7 +3,7 @@ describe('index', () => {
     cy.visit('/', {
       onBeforeLoad: (win) => {
         win._seed = {
-          words: 'the quick brown fox jumps over the lazy dog',
+          words: 'the quick brown fox',
         }
       },
     })
@@ -11,9 +11,7 @@ describe('index', () => {
 
   it('renders home page', () => {
     cy.findAllByText(/Typeland/i).should('exist')
-    cy.findByText(/the quick brown fox jumps over the lazy dog/i).should(
-      'exist'
-    )
+    cy.findByText(/the quick brown fox/i).should('exist')
     cy.findByText(/GitHub/i)
       .should('have.prop', 'href')
       .and('equal', 'https://github.com/narze/typeland')
@@ -102,13 +100,13 @@ describe('index', () => {
   })
 
   it('finish typing when reached the end', () => {
-    cy.focused().type('the quick brown fox jumps over the lazy dog')
+    cy.focused().type('the quick brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
   })
 
   it('finish typing when pressing spacebar in the last word', () => {
-    cy.focused().type('the quick brown fox jumps over txe lazy d ')
+    cy.focused().type('the quick  brown f ')
 
     cy.findByText(/Good job!/i).should('exist')
   })
@@ -116,7 +114,7 @@ describe('index', () => {
   it('shows wpm when finished typing', () => {
     cy.clock(new Date())
 
-    cy.focused().type('the quick brown fox ')
+    cy.focused().type('the quick brown fox')
     cy.tick(10 * 1000)
     cy.focused().type('jumps over txe lazy d ')
 
@@ -125,7 +123,7 @@ describe('index', () => {
   })
 
   it('can restart after finished typing', () => {
-    cy.focused().type('the quick brown fox jumps over the lazy dog')
+    cy.focused().type('the quick brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
     cy.findByText(/Restart/i).click()
