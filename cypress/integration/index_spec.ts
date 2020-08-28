@@ -114,12 +114,12 @@ describe('index', () => {
   it('shows wpm when finished typing', () => {
     cy.clock(new Date())
 
-    cy.focused().type('the quick brown fox')
+    cy.focused().type('the quick ')
     cy.tick(10 * 1000)
-    cy.focused().type('jumps over txe lazy d ')
+    cy.focused().type('brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
-    cy.findByText(/54 wpm/i).should('exist') // 9 * 60 / 10
+    cy.findByText(/24 wpm/i).should('exist') // 4 * 60 / 10
   })
 
   it('can restart after finished typing', () => {
