@@ -2,6 +2,18 @@ import React from 'react'
 import { render, fireEvent } from '../testUtils'
 import userEvent from '@testing-library/user-event'
 import { Home } from '../../pages/index'
+import { randomWords } from '../../utils/wordsDb'
+
+jest.mock('../../utils/wordsDb')
+
+const mockedRandomWords = randomWords as jest.Mock<Array<string>>
+
+beforeEach(() => {
+  jest.clearAllMocks()
+  mockedRandomWords.mockImplementationOnce((_length) =>
+    'the quick brown fox jumps over the lazy dog'.split(' ')
+  )
+})
 
 describe('Home page', () => {
   it('renders title', () => {

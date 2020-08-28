@@ -1,7 +1,15 @@
 describe('index', () => {
-  it('renders home page', () => {
-    cy.visit('/')
+  beforeEach(() => {
+    cy.visit('/', {
+      onBeforeLoad: (win) => {
+        win._seed = {
+          words: 'the quick brown fox jumps over the lazy dog',
+        }
+      },
+    })
+  })
 
+  it('renders home page', () => {
     cy.findAllByText(/Typeland/i).should('exist')
     cy.findByText(/the quick brown fox jumps over the lazy dog/i).should(
       'exist'
@@ -12,8 +20,6 @@ describe('index', () => {
   })
 
   it('highlight typed text', () => {
-    cy.visit('/')
-
     cy.focused().type('t')
     cy.findAllByTestId('correct').contains('t')
 
@@ -26,7 +32,6 @@ describe('index', () => {
   })
 
   it('can delete typed text with backspace', () => {
-    cy.visit('/')
     cy.focused().type('t')
     cy.findAllByTestId('correct').contains('t')
 
@@ -50,8 +55,6 @@ describe('index', () => {
   })
 
   it('can delete whole incomplete word with option/ctrl/meta backspace', () => {
-    cy.visit('/')
-
     cy.focused().type('t')
     cy.focused().type('h')
     cy.findAllByTestId('correct').contains('t').next().contains('h')
@@ -75,8 +78,6 @@ describe('index', () => {
   })
 
   it('always focus input & show caret', () => {
-    cy.visit('/')
-
     cy.focused().type('t')
     cy.findAllByTestId('correct').contains('t')
 
@@ -89,8 +90,6 @@ describe('index', () => {
   })
 
   it('blocks all modifiers except shift', () => {
-    cy.visit('/')
-
     cy.focused().type('{backspace}')
     cy.focused().type('T')
     cy.findAllByTestId('wrong').contains('T')
@@ -103,23 +102,18 @@ describe('index', () => {
   })
 
   it('finish typing when reached the end', () => {
-    cy.visit('/')
-
     cy.focused().type('the quick brown fox jumps over the lazy dog')
 
     cy.findByText(/Good job!/i).should('exist')
   })
 
   it('finish typing when pressing spacebar in the last word', () => {
-    cy.visit('/')
-
     cy.focused().type('the quick brown fox jumps over txe lazy d ')
 
     cy.findByText(/Good job!/i).should('exist')
   })
 
   it('shows wpm when finished typing', () => {
-    cy.visit('/')
     cy.clock(new Date())
 
     cy.focused().type('the quick brown fox ')

@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { useEffect, useState } from 'react'
 import { TypingArea } from '../components/TypingArea'
+import { randomWords } from '../utils/wordsDb'
 
 const s = {
   container: tw`
@@ -35,9 +36,7 @@ const s = {
 }
 
 export const Home = (): JSX.Element => {
-  const words: Array<string> = 'the quick brown fox jumps over the lazy dog'.split(
-    ' '
-  )
+  const [words, setWords] = useState([''])
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
   const [finished, setFinished] = useState(false)
@@ -45,6 +44,14 @@ export const Home = (): JSX.Element => {
   const [startTime, setStartTime] = useState(0)
   const [finishTime, setFinishTime] = useState(0)
   const [wpm, setWpm] = useState(0)
+
+  useEffect(() => {
+    if (window._seed) {
+      setWords(window._seed.words.split(' '))
+    } else {
+      setWords(randomWords(10))
+    }
+  }, [])
 
   const handleDelete = ({ word = false }) => {
     const newUserTypeInput = [...userTypeInput]
