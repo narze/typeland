@@ -126,20 +126,52 @@ describe('index', () => {
     cy.focused().type('the quick brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
-    cy.findByText(/Restart/i).click()
+    cy.findAllByRole('button')
+      .findByText(/Restart/i)
+      .click()
     cy.findByText(/Good job!/i).should('not.exist')
     cy.findByText(/Restart/i).should('not.exist')
   })
 
-  it('can restart with enter key', () => {
+  it('can restart with enter key when finished', () => {
     cy.focused().type('the quick brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
-    cy.findByText(/Restart/i).should('exist')
+    cy.findAllByRole('button')
+      .findByText(/Restart/i)
+      .should('exist')
 
     cy.focused().type('{enter}')
 
     cy.findByText(/Good job!/i).should('not.exist')
+    cy.findByText(/Restart/i).should('not.exist')
+  })
+
+  it('can restart mid-session with double enter', () => {
+    cy.focused().type('the quick ')
+
+    cy.findByText(/Good job!/i).should('not.exist')
+    cy.findByText(/Restart/i).should('not.exist')
+
+    cy.focused().type('{enter}')
+
+    cy.findAllByRole('button')
+      .findByText(/Restart/i)
+      .should('exist')
+
+    // Continue typing cancels restart
+    cy.focused().type('brown')
+
+    cy.findByText(/Restart/i).should('not.exist')
+
+    cy.focused().type('{enter}')
+
+    cy.findAllByRole('button')
+      .findByText(/Restart/i)
+      .should('exist')
+
+    // Press enter again to restart
+    cy.focused().type('{enter}')
     cy.findByText(/Restart/i).should('not.exist')
   })
 })
