@@ -14,6 +14,7 @@ const s = {
   title: tw`
     text-4xl
     text-blue-600
+    antialiased
   `,
   typingInput: tw`
     h-0
@@ -26,7 +27,7 @@ const s = {
     text-center
   `,
   githubLink: tw`
-    text-sm
+    text-xs
   `,
   result: tw`
     mt-4
