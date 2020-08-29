@@ -24,10 +24,14 @@ exports[`Home page can delete typed text with backspace 1`] = `
   font-size: 2.25rem;
   color: #1c64f2;
   color: rgba(28,100,242,var(--text-opacity));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .emotion-4 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .emotion-3 {
@@ -52,7 +56,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
 }
 
 .emotion-6 {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 .emotion-1 {
@@ -145,10 +149,14 @@ exports[`Home page highlights text which is typed 1`] = `
   font-size: 2.25rem;
   color: #1c64f2;
   color: rgba(28,100,242,var(--text-opacity));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .emotion-5 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .emotion-4 {
@@ -173,7 +181,7 @@ exports[`Home page highlights text which is typed 1`] = `
 }
 
 .emotion-7 {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 .emotion-1 {
@@ -278,10 +286,14 @@ exports[`Home page renders title 1`] = `
   font-size: 2.25rem;
   color: #1c64f2;
   color: rgba(28,100,242,var(--text-opacity));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .emotion-2 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .emotion-1 {
@@ -306,7 +318,7 @@ exports[`Home page renders title 1`] = `
 }
 
 .emotion-4 {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 <div

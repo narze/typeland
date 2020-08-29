@@ -1,1 +1,7 @@
+/* Run yarn build:base-css after editing this file */
+
 @tailwind base;
+
+html {
+  font-size: 140%;
+}

@@ -6,7 +6,8 @@ import React from 'react'
 
 const s = {
   typingArea: tw`
-    text-lg
+    text-xl
+    antialiased
   `,
 }
 
