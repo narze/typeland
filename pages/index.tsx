@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { useEffect, useState } from 'react'
 import { TypingArea } from '../components/TypingArea'
@@ -11,6 +11,14 @@ const s = {
     flex
     items-center justify-center
   `,
+  main: [
+    tw`
+      max-w-1/2
+    `,
+    css`
+      min-width: 640px;
+    `,
+  ],
   title: tw`
     text-4xl
     text-blue-600
@@ -57,12 +65,13 @@ export const Home = (): JSX.Element => {
   const [startTime, setStartTime] = useState(0)
   const [finishTime, setFinishTime] = useState(0)
   const [wpm, setWpm] = useState(0)
+  const DEFAULT_WORD_COUNT = 30
 
   useEffect(() => {
     if (window._seed) {
       setWords(window._seed.words.split(' '))
     } else {
-      setWords(randomWords(10))
+      setWords(randomWords(DEFAULT_WORD_COUNT))
     }
   }, [])
 
@@ -132,7 +141,7 @@ export const Home = (): JSX.Element => {
   }
 
   const restart = () => {
-    setWords(randomWords(10))
+    setWords(randomWords(DEFAULT_WORD_COUNT))
     setUserTypeInput([''])
     setInputIsFocused(true)
     setFinished(false)
@@ -165,7 +174,7 @@ export const Home = (): JSX.Element => {
       css={s.container}
       onClick={() => document.getElementById('typingInput').focus()}
     >
-      <main>
+      <main css={s.main}>
         <h1 css={s.title}>Typeland</h1>
 
         <TypingArea

@@ -19,6 +19,9 @@ const s = {
       width: 1px;
     `,
   ],
+  word: tw`
+    break-normal
+  `,
 }
 
 export interface WordProps {
@@ -33,7 +36,7 @@ export const Word: React.FC<WordProps> = ({
   showCaret,
 }) => {
   return (
-    <span>
+    <span css={s.word}>
       {showCaret && userInput.length == 0 ? (
         <span css={s.caret} data-testid="caret"></span>
       ) : null}

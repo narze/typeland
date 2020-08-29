@@ -3,6 +3,7 @@ import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 import { TypingArea, TypingAreaProps } from '../components/TypingArea'
+import { randomWords } from '../utils/wordsDb'
 
 export default {
   title: 'Typeland/TypingArea',
@@ -24,5 +25,15 @@ export const WrongTyping = Template.bind({})
 WrongTyping.args = {
   words: ['Hello', 'World!'],
   userWords: ['Jello', 'War!'],
+  showCaret: true,
+}
+
+export const ManyWords = Template.bind({})
+
+const manyWords = randomWords(100)
+
+ManyWords.args = {
+  words: manyWords,
+  userWords: manyWords,
   showCaret: true,
 }

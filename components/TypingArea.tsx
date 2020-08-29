@@ -9,6 +9,14 @@ const s = {
     text-xl
     antialiased
   `,
+  template: tw`
+    my-1
+    break-words
+  `,
+  user: tw`
+    my-1
+    break-words
+  `,
 }
 
 export interface TypingAreaProps {
@@ -23,21 +31,22 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   showCaret,
 }) => {
   return (
-    <p css={s.typingArea}>
-      {words.join(' ')}
-      <br />
-      {userWords.map((text, i) => {
-        return (
-          <React.Fragment key={i}>
-            <Word
-              template={words[i]}
-              userInput={text}
-              showCaret={showCaret && i == userWords.length - 1}
-            />
-            <span>&nbsp;</span>
-          </React.Fragment>
-        )
-      })}
-    </p>
+    <div css={s.typingArea}>
+      <p css={s.template}>{words.join(' ')}</p>
+      <p css={s.user}>
+        {userWords.map((text, i) => {
+          return (
+            <React.Fragment key={i}>
+              <Word
+                template={words[i]}
+                userInput={text}
+                showCaret={showCaret && i == userWords.length - 1}
+              />
+              <span>&nbsp;</span>
+            </React.Fragment>
+          )
+        })}
+      </p>
+    </div>
   )
 }
