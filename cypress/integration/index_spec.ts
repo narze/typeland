@@ -130,4 +130,16 @@ describe('index', () => {
     cy.findByText(/Good job!/i).should('not.exist')
     cy.findByText(/Restart/i).should('not.exist')
   })
+
+  it('can restart with enter key', () => {
+    cy.focused().type('the quick brown fox')
+
+    cy.findByText(/Good job!/i).should('exist')
+    cy.findByText(/Restart/i).should('exist')
+
+    cy.focused().type('{enter}')
+
+    cy.findByText(/Good job!/i).should('not.exist')
+    cy.findByText(/Restart/i).should('not.exist')
+  })
 })
