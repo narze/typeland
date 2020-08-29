@@ -54,6 +54,10 @@ const s = {
     border border-blue-500 hover:border-transparent
     rounded
   `,
+  restartHint: tw`
+    mt-1
+    text-xs
+  `,
 }
 
 export const Home = (): JSX.Element => {
@@ -105,6 +109,12 @@ export const Home = (): JSX.Element => {
     setUserTypeInput(newUserTypeInput)
   }
 
+  const handleEnter = () => {
+    if (finished) {
+      restart()
+    }
+  }
+
   const handleType = (e) => {
     const { key, altKey, ctrlKey, metaKey } = e
 
@@ -114,6 +124,10 @@ export const Home = (): JSX.Element => {
 
     if (key == ' ') {
       return handleSpace()
+    }
+
+    if (key == 'Enter') {
+      return handleEnter()
     }
 
     // Filter out modifiers
@@ -190,6 +204,9 @@ export const Home = (): JSX.Element => {
               <button css={s.restartButton} onClick={restart}>
                 Restart
               </button>
+              <div css={s.restartHint}>
+                Click or press <code>Enter</code>
+              </div>
             </div>
           </>
         )}
