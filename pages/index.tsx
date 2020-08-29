@@ -69,6 +69,7 @@ export const Home = (): JSX.Element => {
   const [startTime, setStartTime] = useState(0)
   const [finishTime, setFinishTime] = useState(0)
   const [wpm, setWpm] = useState(0)
+  const [promptRestart, setPromptRestart] = useState(false)
   const DEFAULT_WORD_COUNT = 30
 
   useEffect(() => {
@@ -110,8 +111,12 @@ export const Home = (): JSX.Element => {
   }
 
   const handleEnter = () => {
-    if (finished) {
-      restart()
+    if (finished || promptRestart) {
+      return restart()
+    }
+
+    if (started) {
+      setPromptRestart(true)
     }
   }
 
@@ -122,10 +127,6 @@ export const Home = (): JSX.Element => {
       return handleDelete({ word: altKey || ctrlKey || metaKey })
     }
 
-    if (key == ' ') {
-      return handleSpace()
-    }
-
     if (key == 'Enter') {
       return handleEnter()
     }
@@ -133,6 +134,14 @@ export const Home = (): JSX.Element => {
     // Filter out modifiers
     if (key.length != 1 || altKey || ctrlKey || metaKey) {
       return
+    }
+
+    if (promptRestart) {
+      setPromptRestart(false)
+    }
+
+    if (key == ' ') {
+      return handleSpace()
     }
 
     if (!started) {
@@ -163,6 +172,7 @@ export const Home = (): JSX.Element => {
     setStartTime(0)
     setFinishTime(0)
     setWpm(0)
+    setPromptRestart(false)
   }
 
   useEffect(() => {
@@ -206,6 +216,19 @@ export const Home = (): JSX.Element => {
               </button>
               <div css={s.restartHint}>
                 Click or press <code>Enter</code>
+              </div>
+            </div>
+          </>
+        )}
+
+        {promptRestart && (
+          <>
+            <div css={s.restart}>
+              <button css={s.restartButton} onClick={restart}>
+                Restart
+              </button>
+              <div css={s.restartHint}>
+                Press <code>Enter</code> again to restart typing.
               </div>
             </div>
           </>
