@@ -62,3 +62,222 @@ exports[`renders single word with caret 1`] = `
   </span>
 </DocumentFragment>
 `;
+
+exports[`renders template character on wrong typing in typealong mode 1`] = `
+<DocumentFragment>
+  .emotion-6 {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-1 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+.emotion-4 {
+  --border-opacity: 1;
+  height: 1rem;
+  border-width: 1px;
+  border-color: #3f83f8;
+  border-color: rgba(63,131,248,var(--border-opacity));
+  width: 1px;
+}
+
+.emotion-5 {
+  --text-opacity: 1;
+  color: #d2d6dc;
+  color: rgba(210,214,220,var(--text-opacity));
+}
+
+<span
+    class="emotion-6"
+  >
+    <span
+      class="correct emotion-0"
+      data-testid="correct"
+    >
+      w
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      o
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      r
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      l
+    </span>
+    <span
+      class="emotion-4"
+      data-testid="caret"
+    />
+    <span
+      class="pending emotion-5"
+      data-testid="pending"
+    >
+      d
+    </span>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`renders template character on wrong typing in typealong mode 2`] = `
+<DocumentFragment>
+  .emotion-8 {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-1 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+.emotion-7 {
+  --border-opacity: 1;
+  height: 1rem;
+  border-width: 1px;
+  border-color: #3f83f8;
+  border-color: rgba(63,131,248,var(--border-opacity));
+  width: 1px;
+}
+
+<span
+    class="emotion-8"
+  >
+    <span
+      class="correct emotion-0"
+      data-testid="correct"
+    >
+      w
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      o
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      r
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      l
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      d
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      x
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      x
+    </span>
+    <span
+      class="emotion-7"
+      data-testid="caret"
+    />
+  </span>
+</DocumentFragment>
+`;
+
+exports[`renders user character on wrong typing in default mode 1`] = `
+<DocumentFragment>
+  .emotion-5 {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-1 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+.emotion-4 {
+  --border-opacity: 1;
+  height: 1rem;
+  border-width: 1px;
+  border-color: #3f83f8;
+  border-color: rgba(63,131,248,var(--border-opacity));
+  width: 1px;
+}
+
+<span
+    class="emotion-5"
+  >
+    <span
+      class="correct emotion-0"
+      data-testid="correct"
+    >
+      w
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      w
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      w
+    </span>
+    <span
+      class="wrong emotion-1"
+      data-testid="wrong"
+    >
+      w
+    </span>
+    <span
+      class="emotion-4"
+      data-testid="caret"
+    />
+  </span>
+</DocumentFragment>
+`;

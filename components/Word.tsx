@@ -55,7 +55,8 @@ export const Word: React.FC<WordProps> = ({
       ).map((i) => {
         const templateChar = template[i]
         const userInputChar = userInput[i]
-        const displayChar = userInputChar || templateChar
+        const displayChar =
+          mode == Mode.typealong ? templateChar : userInputChar || templateChar
 
         let charElement
         if (templateChar && userInputChar) {
@@ -72,7 +73,7 @@ export const Word: React.FC<WordProps> = ({
         } else if (userInputChar) {
           charElement = (
             <span css={s.wrong} className="wrong" data-testid="wrong">
-              {displayChar}
+              {userInputChar}
             </span>
           )
         } else if (mode == Mode.typealong) {

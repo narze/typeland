@@ -29,7 +29,7 @@ describe('typealong mode', () => {
     }
 
     const { asFragment, getByTestId } = render(<TypingArea {...props} />, {})
-    expect(getByTestId('user')).toHaveTextContent('the quick brown doge')
+    expect(getByTestId('user')).toHaveTextContent('the quick brown foxe')
     expect(getByTestId('template')).toHaveTextContent('jumps over the lazy dog')
 
     expect(asFragment()).toMatchSnapshot()
@@ -44,7 +44,7 @@ describe('typealong mode', () => {
     }
 
     const { asFragment, getByTestId } = render(<TypingArea {...props} />, {})
-    expect(getByTestId('user')).toHaveTextContent('the quick brown doge jumps')
+    expect(getByTestId('user')).toHaveTextContent('the quick brown foxe jumps')
     expect(getByTestId('template')).toHaveTextContent('over the lazy dog')
 
     expect(asFragment()).toMatchSnapshot()

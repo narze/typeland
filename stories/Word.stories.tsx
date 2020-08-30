@@ -27,6 +27,15 @@ WrongWord.args = {
   showCaret: true,
 }
 
+export const WrongWordTypealong = Template.bind({})
+
+WrongWordTypealong.args = {
+  template: 'Typeland',
+  userInput: 'Typoland',
+  showCaret: true,
+  mode: 'typealong',
+}
+
 export const WordInputShorterThanTemplate = Template.bind({})
 
 WordInputShorterThanTemplate.args = {
