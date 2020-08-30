@@ -188,10 +188,16 @@ exports[`renders typing area 1`] = `
 
 exports[`typealong mode renders mid-word correctly 1`] = `
 <DocumentFragment>
-  .emotion-28 {
+  .emotion-30 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.emotion-28 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  overflow-wrap: break-word;
 }
 
 .emotion-3 {
@@ -227,9 +233,10 @@ exports[`typealong mode renders mid-word correctly 1`] = `
 }
 
 <div
-    class="emotion-28"
+    class="emotion-30"
   >
     <span
+      class="emotion-28"
       data-testid="user"
     >
       <span
@@ -405,6 +412,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
       </span>
     </span>
     <span
+      class="emotion-28"
       data-testid="template"
     >
       over the lazy dog
@@ -415,10 +423,16 @@ exports[`typealong mode renders mid-word correctly 1`] = `
 
 exports[`typealong mode renders template & user area combined 1`] = `
 <DocumentFragment>
-  .emotion-22 {
+  .emotion-24 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.emotion-22 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  overflow-wrap: break-word;
 }
 
 .emotion-3 {
@@ -448,9 +462,10 @@ exports[`typealong mode renders template & user area combined 1`] = `
 }
 
 <div
-    class="emotion-22"
+    class="emotion-24"
   >
     <span
+      class="emotion-22"
       data-testid="user"
     >
       <span
@@ -589,6 +604,7 @@ exports[`typealong mode renders template & user area combined 1`] = `
       </span>
     </span>
     <span
+      class="emotion-22"
       data-testid="template"
     >
       jumps over the lazy dog

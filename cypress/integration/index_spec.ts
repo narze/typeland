@@ -126,9 +126,7 @@ describe('index', () => {
     cy.focused().type('the quick brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
-    cy.findAllByRole('button')
-      .findByText(/Restart/i)
-      .click()
+    cy.findByRole('button', { name: /Restart/i }).click()
     cy.findByText(/Good job!/i).should('not.exist')
     cy.findByText(/Restart/i).should('not.exist')
   })
@@ -137,9 +135,7 @@ describe('index', () => {
     cy.focused().type('the quick brown fox')
 
     cy.findByText(/Good job!/i).should('exist')
-    cy.findAllByRole('button')
-      .findByText(/Restart/i)
-      .should('exist')
+    cy.findByRole('button', { name: /Restart/i }).should('exist')
 
     cy.focused().type('{enter}')
 
@@ -155,9 +151,7 @@ describe('index', () => {
 
     cy.focused().type('{enter}')
 
-    cy.findAllByRole('button')
-      .findByText(/Restart/i)
-      .should('exist')
+    cy.findByRole('button', { name: /Restart/i }).should('exist')
 
     // Continue typing cancels restart
     cy.focused().type('brown')
@@ -166,12 +160,16 @@ describe('index', () => {
 
     cy.focused().type('{enter}')
 
-    cy.findAllByRole('button')
-      .findByText(/Restart/i)
-      .should('exist')
+    cy.findByRole('button', { name: /Restart/i }).should('exist')
 
     // Press enter again to restart
     cy.focused().type('{enter}')
     cy.findByText(/Restart/i).should('not.exist')
+  })
+
+  it('can change to typealong mode and back to default mode', () => {
+    cy.findByRole('button', { name: /default/i }).click()
+    cy.findByRole('button', { name: /typealong/i }).click()
+    cy.findByRole('button', { name: /default/i }).click()
   })
 })

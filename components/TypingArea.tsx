@@ -41,7 +41,7 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
 
     return (
       <div css={s.typingArea}>
-        <span data-testid="user">
+        <span css={s.user} data-testid="user">
           {userWords.map((text, i) => {
             return (
               <React.Fragment key={i}>
@@ -56,7 +56,9 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
             )
           })}
         </span>
-        <span data-testid="template">{remainingWords.join(' ')}</span>
+        <span css={s.template} data-testid="template">
+          {remainingWords.join(' ')}
+        </span>
       </div>
     )
   }
