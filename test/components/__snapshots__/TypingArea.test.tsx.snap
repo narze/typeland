@@ -345,7 +345,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
           class="wrong emotion-16"
           data-testid="wrong"
         >
-          d
+          f
         </span>
         <span
           class="correct emotion-0"
@@ -357,7 +357,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
           class="wrong emotion-16"
           data-testid="wrong"
         >
-          g
+          x
         </span>
         <span
           class="wrong emotion-16"
@@ -574,7 +574,7 @@ exports[`typealong mode renders template & user area combined 1`] = `
           class="wrong emotion-16"
           data-testid="wrong"
         >
-          d
+          f
         </span>
         <span
           class="correct emotion-0"
@@ -586,7 +586,7 @@ exports[`typealong mode renders template & user area combined 1`] = `
           class="wrong emotion-16"
           data-testid="wrong"
         >
-          g
+          x
         </span>
         <span
           class="wrong emotion-16"
