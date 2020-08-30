@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders single word with caret 1`] = `
+<DocumentFragment>
+  .emotion-5 {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-2 {
+  --border-opacity: 1;
+  height: 1rem;
+  border-width: 1px;
+  border-color: #3f83f8;
+  border-color: rgba(63,131,248,var(--border-opacity));
+  width: 1px;
+}
+
+.emotion-3 {
+  --text-opacity: 1;
+  color: #d2d6dc;
+  color: rgba(210,214,220,var(--text-opacity));
+}
+
+<span
+    class="emotion-5"
+  >
+    <span
+      class="correct emotion-0"
+      data-testid="correct"
+    >
+      d
+    </span>
+    <span
+      class="correct emotion-0"
+      data-testid="correct"
+    >
+      o
+    </span>
+    <span
+      class="emotion-2"
+      data-testid="caret"
+    />
+    <span
+      class="pending emotion-3"
+      data-testid="pending"
+    >
+      g
+    </span>
+    <span
+      class="pending emotion-3"
+      data-testid="pending"
+    >
+      e
+    </span>
+  </span>
+</DocumentFragment>
+`;

@@ -217,7 +217,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
   color: rgba(249,128,128,var(--text-opacity));
 }
 
-.emotion-26 {
+.emotion-24 {
   --border-opacity: 1;
   height: 1rem;
   border-width: 1px;
@@ -226,7 +226,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
   width: 1px;
 }
 
-.emotion-24 {
+.emotion-25 {
   --text-opacity: 1;
   color: #d2d6dc;
   color: rgba(210,214,220,var(--text-opacity));
@@ -391,21 +391,21 @@ exports[`typealong mode renders mid-word correctly 1`] = `
           m
         </span>
         <span
-          class="pending emotion-24"
+          class="emotion-24"
+          data-testid="caret"
+        />
+        <span
+          class="pending emotion-25"
           data-testid="pending"
         >
           p
         </span>
         <span
-          class="pending emotion-24"
+          class="pending emotion-25"
           data-testid="pending"
         >
           s
         </span>
-        <span
-          class="emotion-26"
-          data-testid="caret"
-        />
       </span>
       <span>
          
