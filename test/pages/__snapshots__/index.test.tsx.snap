@@ -59,15 +59,6 @@ exports[`Home page can delete typed text with backspace 1`] = `
   word-break: normal;
 }
 
-.emotion-6 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
-}
-
 .emotion-10 {
   height: 0;
   width: 0;
@@ -84,6 +75,15 @@ exports[`Home page can delete typed text with backspace 1`] = `
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-6 {
+  --border-opacity: 1;
+  height: 1rem;
+  border-width: 1px;
+  border-color: #3f83f8;
+  border-color: rgba(63,131,248,var(--border-opacity));
+  width: 1px;
 }
 
 <div
@@ -229,15 +229,6 @@ exports[`Home page highlights text which is typed 1`] = `
   word-break: normal;
 }
 
-.emotion-7 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
-}
-
 .emotion-11 {
   height: 0;
   width: 0;
@@ -254,6 +245,15 @@ exports[`Home page highlights text which is typed 1`] = `
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-7 {
+  --border-opacity: 1;
+  height: 1rem;
+  border-width: 1px;
+  border-color: #3f83f8;
+  border-color: rgba(63,131,248,var(--border-opacity));
+  width: 1px;
 }
 
 .emotion-6 {

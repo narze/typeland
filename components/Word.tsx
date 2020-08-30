@@ -83,12 +83,15 @@ export const Word: React.FC<WordProps> = ({
           )
         }
 
-        return <React.Fragment key={i}>{charElement}</React.Fragment>
+        return (
+          <React.Fragment key={i}>
+            {charElement}
+            {showCaret && userInput.length && userInput.length == i + 1 ? (
+              <span css={s.caret} data-testid="caret"></span>
+            ) : null}
+          </React.Fragment>
+        )
       })}
-
-      {showCaret && userInput.length != 0 ? (
-        <span css={s.caret} data-testid="caret"></span>
-      ) : null}
     </span>
   )
 }
