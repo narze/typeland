@@ -7,7 +7,6 @@ it('renders typing area', () => {
     words: 'the quick brown fox jumps over the lazy dog'.split(' '),
     userWords: 'the quick brown dog'.split(' '),
     showCaret: true,
-    mode: '',
   }
 
   const { asFragment, getByTestId } = render(<TypingArea {...props} />, {})
