@@ -78,12 +78,15 @@ exports[`Home page can delete typed text with backspace 1`] = `
 }
 
 .emotion-6 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 <div
@@ -248,12 +251,15 @@ exports[`Home page highlights text which is typed 1`] = `
 }
 
 .emotion-7 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 .emotion-6 {
@@ -412,12 +418,15 @@ exports[`Home page renders title 1`] = `
 }
 
 .emotion-4 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 .emotion-8 {
