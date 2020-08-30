@@ -26,3 +26,28 @@ WrongWord.args = {
   userInput: 'Typoland',
   showCaret: true,
 }
+
+export const WordInputShorterThanTemplate = Template.bind({})
+
+WordInputShorterThanTemplate.args = {
+  template: 'dogeee',
+  userInput: 'dog',
+  showCaret: true,
+}
+
+export const WordInputShorterThanTemplateTypealong = Template.bind({})
+
+WordInputShorterThanTemplateTypealong.args = {
+  template: 'dogeee',
+  userInput: 'dog',
+  showCaret: true,
+  mode: 'typealong',
+}
+
+export const WordInputLongerThanTemplate = Template.bind({})
+
+WordInputLongerThanTemplate.args = {
+  template: 'dog',
+  userInput: 'dogeee',
+  showCaret: true,
+}

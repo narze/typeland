@@ -10,6 +10,9 @@ const s = {
   wrong: tw`
     text-red-400
   `,
+  pending: tw`
+    text-gray-300
+  `,
   caret: [
     tw`
       h-4
@@ -24,16 +27,22 @@ const s = {
   `,
 }
 
+export enum Mode {
+  typealong = 'typealong',
+}
+
 export interface WordProps {
   template: string
   userInput: string
   showCaret: boolean
+  mode?: Mode
 }
 
 export const Word: React.FC<WordProps> = ({
   template,
   userInput,
   showCaret,
+  mode,
 }) => {
   return (
     <span css={s.word}>
@@ -42,15 +51,16 @@ export const Word: React.FC<WordProps> = ({
       ) : null}
 
       {Array.from(
-        Array(Math.min(template.length, userInput.length)).keys()
+        Array(Math.max(template.length, userInput.length)).keys()
       ).map((i) => {
         const templateChar = template[i]
         const userInputChar = userInput[i]
         const displayChar = userInputChar || templateChar
 
-        return (
-          <React.Fragment key={i}>
-            {templateChar == userInputChar ? (
+        let charElement
+        if (templateChar && userInputChar) {
+          charElement =
+            templateChar == userInputChar ? (
               <span css={s.correct} className="correct" data-testid="correct">
                 {displayChar}
               </span>
@@ -58,9 +68,22 @@ export const Word: React.FC<WordProps> = ({
               <span css={s.wrong} className="wrong" data-testid="wrong">
                 {displayChar}
               </span>
-            )}
-          </React.Fragment>
-        )
+            )
+        } else if (userInputChar) {
+          charElement = (
+            <span css={s.wrong} className="wrong" data-testid="wrong">
+              {displayChar}
+            </span>
+          )
+        } else if (mode == Mode.typealong) {
+          charElement = (
+            <span css={s.pending} className="pending" data-testid="pending">
+              {displayChar}
+            </span>
+          )
+        }
+
+        return <React.Fragment key={i}>{charElement}</React.Fragment>
       })}
 
       {showCaret && userInput.length != 0 ? (

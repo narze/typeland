@@ -37,3 +37,11 @@ ManyWords.args = {
   userWords: manyWords,
   showCaret: true,
 }
+export const Typealong = Template.bind({})
+
+Typealong.args = {
+  words: ['the', 'quick', 'brown', 'fox', 'jumps'],
+  userWords: ['the', 'quick', 'brown', 'dogeee'],
+  showCaret: true,
+  mode: 'typealong',
+}
