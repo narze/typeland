@@ -1,3 +1,6 @@
+const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { compilerOptions } = require('./tsconfig')
+
 module.exports = {
   preset: 'ts-jest/presets/js-with-babel',
   roots: ['<rootDir>'],
@@ -16,6 +19,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
+    ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   },
   snapshotSerializers: ['jest-emotion'],
   setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts'],

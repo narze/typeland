@@ -97,11 +97,13 @@ exports[`Home page can delete typed text with backspace 1`] = `
       >
         <p
           class="emotion-1"
+          data-testid="template"
         >
           the quick brown fox jumps over the lazy dog
         </p>
         <p
           class="emotion-1"
+          data-testid="user"
         >
           <span
             class="emotion-5"
@@ -255,11 +257,13 @@ exports[`Home page highlights text which is typed 1`] = `
       >
         <p
           class="emotion-1"
+          data-testid="template"
         >
           the quick brown fox jumps over the lazy dog
         </p>
         <p
           class="emotion-1"
+          data-testid="user"
         >
           <span
             class="emotion-6"
@@ -407,11 +411,13 @@ exports[`Home page renders title 1`] = `
       >
         <p
           class="emotion-1"
+          data-testid="template"
         >
           the quick brown fox jumps over the lazy dog
         </p>
         <p
           class="emotion-1"
+          data-testid="user"
         >
           <span
             class="emotion-3"

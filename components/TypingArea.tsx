@@ -19,21 +19,54 @@ const s = {
   `,
 }
 
+export enum Mode {
+  typealong = 'typealong',
+}
+
 export interface TypingAreaProps {
   words: Array<string>
   userWords: Array<string>
   showCaret: boolean
+  mode?: Mode
 }
 
 export const TypingArea: React.FC<TypingAreaProps> = ({
   words,
   userWords,
   showCaret,
+  mode,
 }) => {
+  if (mode == 'typealong') {
+    const remainingWords = words.slice(userWords.length)
+
+    return (
+      <div css={s.typingArea}>
+        <span data-testid="user">
+          {userWords.map((text, i) => {
+            return (
+              <React.Fragment key={i}>
+                <Word
+                  template={words[i]}
+                  userInput={text}
+                  showCaret={showCaret && i == userWords.length - 1}
+                  mode={mode}
+                />
+                <span>&nbsp;</span>
+              </React.Fragment>
+            )
+          })}
+        </span>
+        <span data-testid="template">{remainingWords.join(' ')}</span>
+      </div>
+    )
+  }
+
   return (
     <div css={s.typingArea}>
-      <p css={s.template}>{words.join(' ')}</p>
-      <p css={s.user}>
+      <p css={s.template} data-testid="template">
+        {words.join(' ')}
+      </p>
+      <p css={s.user} data-testid="user">
         {userWords.map((text, i) => {
           return (
             <React.Fragment key={i}>
