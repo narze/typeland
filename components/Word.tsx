@@ -15,11 +15,15 @@ const s = {
   `,
   caret: [
     tw`
-      h-4
-      border border-blue-500
+      inline-block
+      -mb-1
+      h-6
+      bg-blue-500
     `,
     css`
-      width: 1px;
+      width: 2px;
+      margin-left: -1px;
+      margin-right: -1px;
     `,
   ],
   word: tw`

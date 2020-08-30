@@ -14,12 +14,15 @@ exports[`renders single word with caret 1`] = `
 }
 
 .emotion-2 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 .emotion-3 {
@@ -83,12 +86,15 @@ exports[`renders template character on wrong typing in typealong mode 1`] = `
 }
 
 .emotion-4 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 .emotion-5 {
@@ -158,12 +164,15 @@ exports[`renders template character on wrong typing in typealong mode 2`] = `
 }
 
 .emotion-7 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 <span
@@ -239,12 +248,15 @@ exports[`renders user character on wrong typing in default mode 1`] = `
 }
 
 .emotion-4 {
-  --border-opacity: 1;
-  height: 1rem;
-  border-width: 1px;
-  border-color: #3f83f8;
-  border-color: rgba(63,131,248,var(--border-opacity));
-  width: 1px;
+  --bg-opacity: 1;
+  display: inline-block;
+  margin-bottom: -0.25rem;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 <span
