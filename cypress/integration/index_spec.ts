@@ -172,4 +172,16 @@ describe('index', () => {
     cy.findByRole('button', { name: /typealong/i }).click()
     cy.findByRole('button', { name: /default/i }).click()
   })
+
+  it('shows live wpm on start', () => {
+    cy.findByText(/wpm/i).should('not.exist')
+
+    cy.focused().type('t')
+
+    cy.findByText(/wpm/i).should('exist')
+
+    cy.focused().type('he quick brown fox')
+
+    cy.findAllByText(/wpm/i).should('have.length', 1)
+  })
 })

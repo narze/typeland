@@ -95,4 +95,8 @@ describe('Home page', () => {
   it('shows wpm when finished typing', () => {
     pending()
   })
+
+  it('shows live wpm while typing', () => {
+    pending()
+  })
 })

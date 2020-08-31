@@ -48,4 +48,24 @@ describe('typealong mode', () => {
 
     expect(asFragment()).toMatchSnapshot()
   })
+
+  it('exports stats via onStatsUpdate prop', () => {
+    const onStatsUpdate = jest.fn()
+
+    const props = {
+      words: 'the quick brown fox jumps over the lazy dog'.split(' '),
+      userWords: 'the quick brown doge jum'.split(' '),
+      showCaret: true,
+      mode: Mode.typealong,
+      onStatsUpdate,
+    }
+
+    render(<TypingArea {...props} />, {})
+
+    expect(onStatsUpdate).toHaveBeenCalledTimes(1)
+    expect(onStatsUpdate).toHaveBeenCalledWith({
+      correct: 3,
+      wrong: 2,
+    })
+  })
 })

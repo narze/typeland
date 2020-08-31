@@ -2,7 +2,7 @@
 
 exports[`Home page can delete typed text with backspace 1`] = `
 <DocumentFragment>
-  .emotion-14 {
+  .emotion-15 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -19,7 +19,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
   justify-content: center;
 }
 
-.emotion-11 {
+.emotion-12 {
   max-width: 50%;
   min-width: 640px;
 }
@@ -59,12 +59,12 @@ exports[`Home page can delete typed text with backspace 1`] = `
   word-break: normal;
 }
 
-.emotion-10 {
+.emotion-11 {
   height: 0;
   width: 0;
 }
 
-.emotion-13 {
+.emotion-14 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
@@ -80,6 +80,8 @@ exports[`Home page can delete typed text with backspace 1`] = `
 .emotion-6 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -89,11 +91,15 @@ exports[`Home page can delete typed text with backspace 1`] = `
   margin-right: -1px;
 }
 
+.emotion-10 {
+  font-size: 1rem;
+}
+
 <div
-    class="emotion-14"
+    class="emotion-15"
   >
     <main
-      class="emotion-11"
+      class="emotion-12"
     >
       <h1
         class="emotion-2"
@@ -149,8 +155,13 @@ exports[`Home page can delete typed text with backspace 1`] = `
           </span>
         </p>
       </div>
-      <input
+      <div
         class="emotion-10"
+      >
+        0 wpm
+      </div>
+      <input
+        class="emotion-11"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -158,7 +169,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
       />
     </main>
     <div
-      class="emotion-13"
+      class="emotion-14"
     >
       <a
         class="emotion-1"
@@ -175,7 +186,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
 
 exports[`Home page highlights text which is typed 1`] = `
 <DocumentFragment>
-  .emotion-15 {
+  .emotion-16 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -192,7 +203,7 @@ exports[`Home page highlights text which is typed 1`] = `
   justify-content: center;
 }
 
-.emotion-12 {
+.emotion-13 {
   max-width: 50%;
   min-width: 640px;
 }
@@ -232,12 +243,12 @@ exports[`Home page highlights text which is typed 1`] = `
   word-break: normal;
 }
 
-.emotion-11 {
+.emotion-12 {
   height: 0;
   width: 0;
 }
 
-.emotion-14 {
+.emotion-15 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
@@ -253,6 +264,8 @@ exports[`Home page highlights text which is typed 1`] = `
 .emotion-7 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -262,6 +275,10 @@ exports[`Home page highlights text which is typed 1`] = `
   margin-right: -1px;
 }
 
+.emotion-11 {
+  font-size: 1rem;
+}
+
 .emotion-6 {
   --text-opacity: 1;
   color: #f98080;
@@ -269,10 +286,10 @@ exports[`Home page highlights text which is typed 1`] = `
 }
 
 <div
-    class="emotion-15"
+    class="emotion-16"
   >
     <main
-      class="emotion-12"
+      class="emotion-13"
     >
       <h1
         class="emotion-2"
@@ -334,8 +351,13 @@ exports[`Home page highlights text which is typed 1`] = `
           </span>
         </p>
       </div>
-      <input
+      <div
         class="emotion-11"
+      >
+        0 wpm
+      </div>
+      <input
+        class="emotion-12"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -343,7 +365,7 @@ exports[`Home page highlights text which is typed 1`] = `
       />
     </main>
     <div
-      class="emotion-14"
+      class="emotion-15"
     >
       <a
         class="emotion-1"
@@ -420,6 +442,8 @@ exports[`Home page renders title 1`] = `
 .emotion-4 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;

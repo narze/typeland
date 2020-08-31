@@ -58,6 +58,9 @@ const s = {
     mt-1
     text-xs
   `,
+  liveWpm: tw`
+    text-base
+  `,
 }
 
 export const Home = (): JSX.Element => {
@@ -69,9 +72,16 @@ export const Home = (): JSX.Element => {
   const [startTime, setStartTime] = useState(0)
   const [finishTime, setFinishTime] = useState(0)
   const [wpm, setWpm] = useState(0)
+  const [liveWpm, setLiveWpm] = useState(0)
+  const [elapsedMs, setElapsedMs] = useState(0)
+  const [stats, setStats] = useState({
+    correct: 0,
+    wrong: 0,
+  })
   const [promptRestart, setPromptRestart] = useState(false)
   const [currentMode, setCurrentMode] = useState('default')
   const DEFAULT_WORD_COUNT = 30
+  const TIMER_LOOP_MS = 1000
 
   useEffect(() => {
     if (window._seed) {
@@ -80,6 +90,25 @@ export const Home = (): JSX.Element => {
       setWords(randomWords(DEFAULT_WORD_COUNT))
     }
   }, [])
+
+  useEffect(() => {
+    let timer
+
+    if (started) {
+      timer = setInterval(() => {
+        setElapsedMs((ms) => ms + TIMER_LOOP_MS)
+      }, TIMER_LOOP_MS)
+    } else {
+      setElapsedMs(0)
+      clearInterval(timer)
+    }
+
+    return () => clearInterval(timer)
+  }, [started])
+
+  useEffect(() => {
+    setLiveWpm(Math.round((stats.correct * 60) / (elapsedMs / 1000.0)) || 0)
+  }, [elapsedMs])
 
   const handleDelete = ({ word = false }) => {
     const newUserTypeInput = [...userTypeInput]
@@ -173,6 +202,12 @@ export const Home = (): JSX.Element => {
     setStartTime(0)
     setFinishTime(0)
     setWpm(0)
+    setLiveWpm(0)
+    setElapsedMs(0)
+    setStats({
+      correct: 0,
+      wrong: 0,
+    })
     setPromptRestart(false)
   }
 
@@ -182,6 +217,10 @@ export const Home = (): JSX.Element => {
     } else {
       setCurrentMode('default')
     }
+  }
+
+  const handleStatsUpdate = (stats) => {
+    setStats(stats)
   }
 
   useEffect(() => {
@@ -197,7 +236,7 @@ export const Home = (): JSX.Element => {
   useEffect(() => {
     if (startTime && finishTime && !wpm) {
       setWpm(
-        Math.round((words.length * 60) / ((finishTime - startTime) / 1000.0))
+        Math.round((stats.correct * 60) / ((finishTime - startTime) / 1000.0))
       )
     }
   }, [startTime, finishTime, wpm])
@@ -224,7 +263,10 @@ export const Home = (): JSX.Element => {
           userWords={userTypeInput}
           showCaret={inputIsFocused}
           mode={Mode[currentMode]}
+          onStatsUpdate={handleStatsUpdate}
         />
+
+        {started && !finished && <div css={s.liveWpm}>{liveWpm} wpm</div>}
 
         {finished && finishTime && (
           <>

@@ -34,6 +34,8 @@ exports[`renders typing area 1`] = `
 .emotion-20 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -223,6 +225,8 @@ exports[`typealong mode renders mid-word correctly 1`] = `
 .emotion-24 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -461,6 +465,8 @@ exports[`typealong mode renders template & user area combined 1`] = `
 .emotion-20 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
