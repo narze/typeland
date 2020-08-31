@@ -80,8 +80,6 @@ exports[`Home page can delete typed text with backspace 1`] = `
 .emotion-6 {
   --bg-opacity: 1;
   display: inline-block;
-  overflow-wrap: normal;
-  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -264,8 +262,6 @@ exports[`Home page highlights text which is typed 1`] = `
 .emotion-7 {
   --bg-opacity: 1;
   display: inline-block;
-  overflow-wrap: normal;
-  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -442,8 +438,6 @@ exports[`Home page renders title 1`] = `
 .emotion-4 {
   --bg-opacity: 1;
   display: inline-block;
-  overflow-wrap: normal;
-  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
