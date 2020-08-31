@@ -16,6 +16,8 @@ exports[`renders single word with caret 1`] = `
 .emotion-2 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -88,6 +90,8 @@ exports[`renders template character on wrong typing in typealong mode 1`] = `
 .emotion-4 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -166,6 +170,8 @@ exports[`renders template character on wrong typing in typealong mode 2`] = `
 .emotion-7 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
@@ -250,6 +256,8 @@ exports[`renders user character on wrong typing in default mode 1`] = `
 .emotion-4 {
   --bg-opacity: 1;
   display: inline-block;
+  overflow-wrap: normal;
+  word-break: normal;
   margin-bottom: -0.25rem;
   height: 1.5rem;
   background-color: #3f83f8;
