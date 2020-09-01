@@ -44,6 +44,7 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   finished,
   onStatsUpdate,
 }) => {
+  // TODO: Move to global state / context
   const [stats, setStats] = useState({
     correct: 0,
     wrong: 0,
