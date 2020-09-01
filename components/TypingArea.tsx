@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { Word } from './Word'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const s = {
   typingArea: tw`
@@ -28,7 +28,12 @@ export interface TypingAreaProps {
   userWords: Array<string>
   showCaret: boolean
   mode?: Mode
-  onStatsUpdate?: (stats: { correct: number }) => void
+  finished?: boolean
+  onStatsUpdate?: (stats: {
+    correct: number
+    wrong: number
+    total: number
+  }) => void
 }
 
 export const TypingArea: React.FC<TypingAreaProps> = ({
@@ -36,27 +41,42 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   userWords,
   showCaret,
   mode,
+  finished,
   onStatsUpdate,
 }) => {
+  const [stats, setStats] = useState({
+    correct: 0,
+    wrong: 0,
+    total: 0,
+  })
+
   useEffect(() => {
-    if (onStatsUpdate) {
-      const stats = {
-        correct: 0,
-        wrong: 0,
+    const offset = stats.total
+
+    userWords.slice(offset).forEach((text, i) => {
+      if (text == '') {
+        return
       }
 
-      // TODO: Optimize so that userWords are not iterate every time
-      userWords.forEach((text, i) => {
-        if (text == words[i]) {
-          stats.correct += 1
-        } else {
-          stats.wrong += 1
-        }
-      })
+      if (text == words[offset + i]) {
+        setStats((prevStats) => {
+          const { correct, total } = prevStats
+          return { ...prevStats, correct: correct + 1, total: total + 1 }
+        })
+      } else {
+        setStats((prevStats) => {
+          const { wrong, total } = prevStats
+          return { ...prevStats, wrong: wrong + 1, total: total + 1 }
+        })
+      }
+    })
+  }, [userWords.length, finished])
 
+  useEffect(() => {
+    if (onStatsUpdate) {
       onStatsUpdate(stats)
     }
-  }, [userWords.length, (userWords[words.length - 1] || []).length])
+  }, [stats])
 
   if (mode == 'typealong') {
     const remainingWords = words.slice(userWords.length)
