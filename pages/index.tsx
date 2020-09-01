@@ -77,6 +77,7 @@ export const Home = (): JSX.Element => {
   const [stats, setStats] = useState({
     correct: 0,
     wrong: 0,
+    total: 0,
   })
   const [promptRestart, setPromptRestart] = useState(false)
   const [currentMode, setCurrentMode] = useState('default')
@@ -207,6 +208,7 @@ export const Home = (): JSX.Element => {
     setStats({
       correct: 0,
       wrong: 0,
+      total: 0,
     })
     setPromptRestart(false)
   }
@@ -264,6 +266,7 @@ export const Home = (): JSX.Element => {
           showCaret={inputIsFocused}
           mode={Mode[currentMode]}
           onStatsUpdate={handleStatsUpdate}
+          finished={finished}
         />
 
         {started && !finished && <div css={s.liveWpm}>{liveWpm} wpm</div>}

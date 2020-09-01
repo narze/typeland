@@ -54,18 +54,37 @@ describe('typealong mode', () => {
 
     const props = {
       words: 'the quick brown fox jumps over the lazy dog'.split(' '),
-      userWords: 'the quick brown doge jum'.split(' '),
+      userWords: 'the quick brown doge jum '.split(' '),
       showCaret: true,
       mode: Mode.typealong,
       onStatsUpdate,
     }
 
-    render(<TypingArea {...props} />, {})
+    const { rerender } = render(<TypingArea {...props} />, {})
 
-    expect(onStatsUpdate).toHaveBeenCalledTimes(1)
+    expect(onStatsUpdate).toHaveBeenCalledTimes(2)
+    expect(onStatsUpdate).toHaveBeenCalledWith({
+      correct: 0,
+      wrong: 0,
+      total: 0,
+    })
     expect(onStatsUpdate).toHaveBeenCalledWith({
       correct: 3,
       wrong: 2,
+      total: 5,
+    })
+
+    onStatsUpdate.mockReset()
+
+    props.userWords = 'the quick brown doge jum over a lazy dog'.split(' ')
+
+    rerender(<TypingArea {...props} />)
+
+    expect(onStatsUpdate).toHaveBeenCalledTimes(1)
+    expect(onStatsUpdate).toHaveBeenCalledWith({
+      correct: 6,
+      wrong: 3,
+      total: 9,
     })
   })
 })
