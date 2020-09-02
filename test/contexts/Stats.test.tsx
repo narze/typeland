@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from '../testUtils'
-import { StatContext } from '@/contexts/Stat'
+import { StatsContext } from '@/contexts/Stats'
 
 const renderWithProvider = (ui, { providerProps, ...renderOptions }) => {
   return render(
-    <StatContext.Provider {...providerProps}>{ui}</StatContext.Provider>,
+    <StatsContext.Provider {...providerProps}>{ui}</StatsContext.Provider>,
     renderOptions
   )
 }
@@ -19,7 +19,7 @@ test('Renders correctly', () => {
   }
 
   const { getByText } = renderWithProvider(
-    <StatContext.Consumer>
+    <StatsContext.Consumer>
       {({ correct, wrong, total }) => (
         <>
           <span>correct: {correct}</span>
@@ -27,7 +27,7 @@ test('Renders correctly', () => {
           <span>total: {total}</span>
         </>
       )}
-    </StatContext.Consumer>,
+    </StatsContext.Consumer>,
     { providerProps }
   )
 
