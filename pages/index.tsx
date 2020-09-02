@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { TypingArea, Mode } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
+import { StatsContext } from '../contexts/Stats'
 
 const s = {
   container: tw`
@@ -74,13 +75,9 @@ export const Home = (): JSX.Element => {
   const [wpm, setWpm] = useState(0)
   const [liveWpm, setLiveWpm] = useState(0)
   const [elapsedMs, setElapsedMs] = useState(0)
-  const [stats, setStats] = useState({
-    correct: 0,
-    wrong: 0,
-    total: 0,
-  })
   const [promptRestart, setPromptRestart] = useState(false)
   const [currentMode, setCurrentMode] = useState('default')
+  const { correct, wrong, total, reset: resetStats } = useContext(StatsContext)
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
 
@@ -108,7 +105,7 @@ export const Home = (): JSX.Element => {
   }, [started])
 
   useEffect(() => {
-    setLiveWpm(Math.round((stats.correct * 60) / (elapsedMs / 1000.0)) || 0)
+    setLiveWpm(Math.round((correct * 60) / (elapsedMs / 1000.0)) || 0)
   }, [elapsedMs])
 
   const handleDelete = ({ word = false }) => {
@@ -205,12 +202,8 @@ export const Home = (): JSX.Element => {
     setWpm(0)
     setLiveWpm(0)
     setElapsedMs(0)
-    setStats({
-      correct: 0,
-      wrong: 0,
-      total: 0,
-    })
     setPromptRestart(false)
+    resetStats()
   }
 
   const toggleMode = () => {
@@ -219,10 +212,6 @@ export const Home = (): JSX.Element => {
     } else {
       setCurrentMode('default')
     }
-  }
-
-  const handleStatsUpdate = (stats) => {
-    setStats(stats)
   }
 
   useEffect(() => {
@@ -237,9 +226,7 @@ export const Home = (): JSX.Element => {
 
   useEffect(() => {
     if (startTime && finishTime && !wpm) {
-      setWpm(
-        Math.round((stats.correct * 60) / ((finishTime - startTime) / 1000.0))
-      )
+      setWpm(Math.round((correct * 60) / ((finishTime - startTime) / 1000.0)))
     }
   }, [startTime, finishTime, wpm])
 
@@ -265,11 +252,16 @@ export const Home = (): JSX.Element => {
           userWords={userTypeInput}
           showCaret={inputIsFocused}
           mode={Mode[currentMode]}
-          onStatsUpdate={handleStatsUpdate}
           finished={finished}
         />
 
         {started && !finished && <div css={s.liveWpm}>{liveWpm} wpm</div>}
+
+        {started && (
+          <div css={s.liveWpm}>
+            Stats (correct/wrong/total) : {correct}/{wrong}/{total}
+          </div>
+        )}
 
         {finished && finishTime && (
           <>

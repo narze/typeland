@@ -2,7 +2,7 @@
 
 exports[`Home page can delete typed text with backspace 1`] = `
 <DocumentFragment>
-  .emotion-15 {
+  .emotion-16 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -19,7 +19,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
   justify-content: center;
 }
 
-.emotion-12 {
+.emotion-13 {
   max-width: 50%;
   min-width: 640px;
 }
@@ -59,12 +59,12 @@ exports[`Home page can delete typed text with backspace 1`] = `
   word-break: normal;
 }
 
-.emotion-11 {
+.emotion-12 {
   height: 0;
   width: 0;
 }
 
-.emotion-14 {
+.emotion-15 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
@@ -94,10 +94,10 @@ exports[`Home page can delete typed text with backspace 1`] = `
 }
 
 <div
-    class="emotion-15"
+    class="emotion-16"
   >
     <main
-      class="emotion-12"
+      class="emotion-13"
     >
       <h1
         class="emotion-2"
@@ -158,8 +158,13 @@ exports[`Home page can delete typed text with backspace 1`] = `
       >
         0 wpm
       </div>
+      <div
+        class="emotion-10"
+      >
+        Stats (correct/wrong/total) : //
+      </div>
       <input
-        class="emotion-11"
+        class="emotion-12"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -167,7 +172,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
       />
     </main>
     <div
-      class="emotion-14"
+      class="emotion-15"
     >
       <a
         class="emotion-1"
@@ -184,7 +189,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
 
 exports[`Home page highlights text which is typed 1`] = `
 <DocumentFragment>
-  .emotion-16 {
+  .emotion-17 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -201,7 +206,7 @@ exports[`Home page highlights text which is typed 1`] = `
   justify-content: center;
 }
 
-.emotion-13 {
+.emotion-14 {
   max-width: 50%;
   min-width: 640px;
 }
@@ -241,12 +246,12 @@ exports[`Home page highlights text which is typed 1`] = `
   word-break: normal;
 }
 
-.emotion-12 {
+.emotion-13 {
   height: 0;
   width: 0;
 }
 
-.emotion-15 {
+.emotion-16 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
@@ -282,10 +287,10 @@ exports[`Home page highlights text which is typed 1`] = `
 }
 
 <div
-    class="emotion-16"
+    class="emotion-17"
   >
     <main
-      class="emotion-13"
+      class="emotion-14"
     >
       <h1
         class="emotion-2"
@@ -352,8 +357,13 @@ exports[`Home page highlights text which is typed 1`] = `
       >
         0 wpm
       </div>
+      <div
+        class="emotion-11"
+      >
+        Stats (correct/wrong/total) : //
+      </div>
       <input
-        class="emotion-12"
+        class="emotion-13"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -361,7 +371,7 @@ exports[`Home page highlights text which is typed 1`] = `
       />
     </main>
     <div
-      class="emotion-15"
+      class="emotion-16"
     >
       <a
         class="emotion-1"
