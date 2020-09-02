@@ -6,4 +6,4 @@ const stats = {
   total: 0,
 }
 
-export const StatContext = React.createContext(stats)
+export const StatsContext = React.createContext(stats)
