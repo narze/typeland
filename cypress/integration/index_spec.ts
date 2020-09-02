@@ -184,4 +184,20 @@ describe('index', () => {
 
     cy.findAllByText(/wpm/i).should('have.length', 1)
   })
+
+  it('shows stats on start', () => {
+    cy.findByText('Stats (correct/wrong/total) : 0/0/0').should('not.exist')
+
+    cy.focused().type('t')
+
+    cy.findByText('Stats (correct/wrong/total) : 0/0/0').should('exist')
+
+    cy.focused().type('he quick ')
+
+    cy.findByText('Stats (correct/wrong/total) : 2/0/2').should('exist')
+
+    cy.focused().type('blue fox')
+
+    cy.findByText('Stats (correct/wrong/total) : 3/1/4').should('exist')
+  })
 })
