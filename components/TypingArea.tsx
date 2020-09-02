@@ -2,7 +2,8 @@
 import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { Word } from './Word'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { StatsContext } from '../contexts/Stats'
 
 const s = {
   typingArea: tw`
@@ -29,11 +30,6 @@ export interface TypingAreaProps {
   showCaret: boolean
   mode?: Mode
   finished?: boolean
-  onStatsUpdate?: (stats: {
-    correct: number
-    wrong: number
-    total: number
-  }) => void
 }
 
 export const TypingArea: React.FC<TypingAreaProps> = ({
@@ -42,17 +38,11 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   showCaret,
   mode,
   finished,
-  onStatsUpdate,
 }) => {
-  // TODO: Move to global state / context
-  const [stats, setStats] = useState({
-    correct: 0,
-    wrong: 0,
-    total: 0,
-  })
+  const { incrementCorrect, incrementWrong, total } = useContext(StatsContext)
 
   useEffect(() => {
-    const offset = stats.total
+    const offset = total
 
     userWords.slice(offset).forEach((text, i) => {
       if (text == '') {
@@ -60,24 +50,12 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
       }
 
       if (text == words[offset + i]) {
-        setStats((prevStats) => {
-          const { correct, total } = prevStats
-          return { ...prevStats, correct: correct + 1, total: total + 1 }
-        })
+        incrementCorrect()
       } else {
-        setStats((prevStats) => {
-          const { wrong, total } = prevStats
-          return { ...prevStats, wrong: wrong + 1, total: total + 1 }
-        })
+        incrementWrong()
       }
     })
   }, [userWords.length, finished])
-
-  useEffect(() => {
-    if (onStatsUpdate) {
-      onStatsUpdate(stats)
-    }
-  }, [stats])
 
   if (mode == 'typealong') {
     const remainingWords = words.slice(userWords.length)

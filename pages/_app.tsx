@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import '../styles/base.css'
+import { StatsProvider } from '../contexts/Stats'
 
 export default function MyApp({
   Component,
@@ -14,7 +15,9 @@ export default function MyApp({
         <title>Typeland</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <StatsProvider>
+        <Component {...pageProps} />
+      </StatsProvider>
     </>
   )
 }
