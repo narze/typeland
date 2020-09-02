@@ -77,6 +77,7 @@ export const Home = (): JSX.Element => {
   const [elapsedMs, setElapsedMs] = useState(0)
   const [promptRestart, setPromptRestart] = useState(false)
   const [currentMode, setCurrentMode] = useState('default')
+  const [disableTimer, setDisableTimer] = useState(false)
   const { correct, wrong, total, reset: resetStats } = useContext(StatsContext)
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
@@ -84,6 +85,7 @@ export const Home = (): JSX.Element => {
   useEffect(() => {
     if (window._seed) {
       setWords(window._seed.words.split(' '))
+      setDisableTimer(window._seed.disableTimer)
     } else {
       setWords(randomWords(DEFAULT_WORD_COUNT))
     }
@@ -91,6 +93,10 @@ export const Home = (): JSX.Element => {
 
   useEffect(() => {
     let timer
+
+    if (disableTimer) {
+      return
+    }
 
     if (started) {
       timer = setInterval(() => {
