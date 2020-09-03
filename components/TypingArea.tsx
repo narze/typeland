@@ -32,37 +32,59 @@ export interface TypingAreaProps {
   finished?: boolean
 }
 
-export const TypingArea: React.FC<TypingAreaProps> = ({
-  words,
-  userWords,
-  showCaret,
-  mode,
-  finished,
-}) => {
-  const { incrementCorrect, incrementWrong, total } = useContext(StatsContext)
+export const TypingArea: React.FC<TypingAreaProps> = React.memo(
+  ({ words, userWords, showCaret, mode, finished }) => {
+    const { incrementCorrect, incrementWrong, total } = useContext(StatsContext)
 
-  useEffect(() => {
-    const offset = total
+    useEffect(() => {
+      const offset = total
 
-    userWords.slice(offset).forEach((text, i) => {
-      if (text == '') {
-        return
-      }
+      userWords.slice(offset).forEach((text, i) => {
+        if (text == '') {
+          return
+        }
 
-      if (text == words[offset + i]) {
-        incrementCorrect()
-      } else {
-        incrementWrong()
-      }
-    })
-  }, [userWords.length, finished])
+        if (text == words[offset + i]) {
+          incrementCorrect()
+        } else {
+          incrementWrong()
+        }
+      })
+    }, [userWords.length, finished])
 
-  if (mode == 'typealong') {
-    const remainingWords = words.slice(userWords.length)
+    if (mode == 'typealong') {
+      const remainingWords = words.slice(userWords.length)
+
+      return (
+        <div css={s.typingArea}>
+          <span css={s.user} data-testid="user">
+            {userWords.map((text, i) => {
+              return (
+                <React.Fragment key={i}>
+                  <Word
+                    template={words[i]}
+                    userInput={text}
+                    showCaret={showCaret && i == userWords.length - 1}
+                    mode={mode}
+                  />
+                  <span>&nbsp;</span>
+                </React.Fragment>
+              )
+            })}
+          </span>
+          <span css={s.template} data-testid="template">
+            {remainingWords.join(' ')}
+          </span>
+        </div>
+      )
+    }
 
     return (
       <div css={s.typingArea}>
-        <span css={s.user} data-testid="user">
+        <p css={s.template} data-testid="template">
+          {words.join(' ')}
+        </p>
+        <p css={s.user} data-testid="user">
           {userWords.map((text, i) => {
             return (
               <React.Fragment key={i}>
@@ -70,39 +92,13 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
                   template={words[i]}
                   userInput={text}
                   showCaret={showCaret && i == userWords.length - 1}
-                  mode={mode}
                 />
                 <span>&nbsp;</span>
               </React.Fragment>
             )
           })}
-        </span>
-        <span css={s.template} data-testid="template">
-          {remainingWords.join(' ')}
-        </span>
+        </p>
       </div>
     )
   }
-
-  return (
-    <div css={s.typingArea}>
-      <p css={s.template} data-testid="template">
-        {words.join(' ')}
-      </p>
-      <p css={s.user} data-testid="user">
-        {userWords.map((text, i) => {
-          return (
-            <React.Fragment key={i}>
-              <Word
-                template={words[i]}
-                userInput={text}
-                showCaret={showCaret && i == userWords.length - 1}
-              />
-              <span>&nbsp;</span>
-            </React.Fragment>
-          )
-        })}
-      </p>
-    </div>
-  )
-}
+)
