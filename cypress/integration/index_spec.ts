@@ -4,7 +4,6 @@ describe('index', () => {
       onBeforeLoad: (win) => {
         win._seed = {
           words: 'the quick brown fox',
-          disableTimer: true,
         }
       },
     })
