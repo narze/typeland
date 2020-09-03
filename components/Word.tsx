@@ -42,61 +42,60 @@ export interface WordProps {
   mode?: Mode
 }
 
-export const Word: React.FC<WordProps> = ({
-  template,
-  userInput,
-  showCaret,
-  mode,
-}) => {
-  return (
-    <span css={s.word}>
-      {showCaret && userInput.length == 0 ? (
-        <span css={s.caret} data-testid="caret"></span>
-      ) : null}
+export const Word: React.FC<WordProps> = React.memo(
+  ({ template, userInput, showCaret, mode }) => {
+    return (
+      <span css={s.word}>
+        {showCaret && userInput.length == 0 ? (
+          <span css={s.caret} data-testid="caret"></span>
+        ) : null}
 
-      {Array.from(
-        Array(Math.max(template.length, userInput.length)).keys()
-      ).map((i) => {
-        const templateChar = template[i]
-        const userInputChar = userInput[i]
-        const displayChar =
-          mode == Mode.typealong ? templateChar : userInputChar || templateChar
+        {Array.from(
+          Array(Math.max(template.length, userInput.length)).keys()
+        ).map((i) => {
+          const templateChar = template[i]
+          const userInputChar = userInput[i]
+          const displayChar =
+            mode == Mode.typealong
+              ? templateChar
+              : userInputChar || templateChar
 
-        let charElement
-        if (templateChar && userInputChar) {
-          charElement =
-            templateChar == userInputChar ? (
-              <span css={s.correct} className="correct" data-testid="correct">
-                {displayChar}
-              </span>
-            ) : (
+          let charElement
+          if (templateChar && userInputChar) {
+            charElement =
+              templateChar == userInputChar ? (
+                <span css={s.correct} className="correct" data-testid="correct">
+                  {displayChar}
+                </span>
+              ) : (
+                <span css={s.wrong} className="wrong" data-testid="wrong">
+                  {displayChar}
+                </span>
+              )
+          } else if (userInputChar) {
+            charElement = (
               <span css={s.wrong} className="wrong" data-testid="wrong">
+                {userInputChar}
+              </span>
+            )
+          } else if (mode == Mode.typealong) {
+            charElement = (
+              <span css={s.pending} className="pending" data-testid="pending">
                 {displayChar}
               </span>
             )
-        } else if (userInputChar) {
-          charElement = (
-            <span css={s.wrong} className="wrong" data-testid="wrong">
-              {userInputChar}
-            </span>
-          )
-        } else if (mode == Mode.typealong) {
-          charElement = (
-            <span css={s.pending} className="pending" data-testid="pending">
-              {displayChar}
-            </span>
-          )
-        }
+          }
 
-        return (
-          <React.Fragment key={i}>
-            {charElement}
-            {showCaret && userInput.length && userInput.length == i + 1 ? (
-              <span css={s.caret} data-testid="caret"></span>
-            ) : null}
-          </React.Fragment>
-        )
-      })}
-    </span>
-  )
-}
+          return (
+            <React.Fragment key={i}>
+              {charElement}
+              {showCaret && userInput.length && userInput.length == i + 1 ? (
+                <span css={s.caret} data-testid="caret"></span>
+              ) : null}
+            </React.Fragment>
+          )
+        })}
+      </span>
+    )
+  }
+)
