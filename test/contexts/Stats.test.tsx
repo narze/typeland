@@ -15,7 +15,7 @@ const renderWithProvider = (
 test('renders without props', () => {
   const { getByText } = renderWithProvider(
     <StatsContext.Consumer>
-      {({ correct, wrong, total }) => (
+      {({ stats: { correct, wrong, total } }) => (
         <>
           <span>correct: {correct}</span>
           <span>wrong: {wrong}</span>
@@ -41,7 +41,7 @@ test('renders with props', () => {
 
   const { getByText } = renderWithProvider(
     <StatsContext.Consumer>
-      {({ correct, wrong, total }) => (
+      {({ stats: { correct, wrong, total } }) => (
         <>
           <span>correct: {correct}</span>
           <span>wrong: {wrong}</span>
@@ -68,14 +68,18 @@ test('can increment count & reset', () => {
 
   const { getByText } = renderWithProvider(
     <StatsContext.Consumer>
-      {({ correct, wrong, total, incrementCorrect, incrementWrong, reset }) => (
+      {({ stats: { correct, wrong, total }, dispatch }) => (
         <>
           <span>correct: {correct}</span>
           <span>wrong: {wrong}</span>
           <span>total: {total}</span>
-          <button onClick={incrementCorrect}>Increment Correct</button>
-          <button onClick={incrementWrong}>Increment Wrong</button>
-          <button onClick={reset}>Reset</button>
+          <button onClick={() => dispatch({ type: 'incrementCorrect' })}>
+            Increment Correct
+          </button>
+          <button onClick={() => dispatch({ type: 'incrementWrong' })}>
+            Increment Wrong
+          </button>
+          <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
         </>
       )}
     </StatsContext.Consumer>,

@@ -161,7 +161,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
       <div
         class="emotion-10"
       >
-        Stats (correct/wrong/total) : //
+        Stats (correct/wrong/total) : 0/0/0
       </div>
       <input
         class="emotion-12"
@@ -360,7 +360,7 @@ exports[`Home page highlights text which is typed 1`] = `
       <div
         class="emotion-11"
       >
-        Stats (correct/wrong/total) : //
+        Stats (correct/wrong/total) : 0/0/0
       </div>
       <input
         class="emotion-13"

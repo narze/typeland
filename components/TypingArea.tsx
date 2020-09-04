@@ -34,10 +34,10 @@ export interface TypingAreaProps {
 
 export const TypingArea: React.FC<TypingAreaProps> = React.memo(
   ({ words, userWords, showCaret, mode, finished }) => {
-    const { incrementCorrect, incrementWrong, total } = useContext(StatsContext)
+    const { stats, dispatch } = useContext(StatsContext)
 
     useEffect(() => {
-      const offset = total
+      const offset = stats.total
 
       userWords.slice(offset).forEach((text, i) => {
         if (text == '') {
@@ -45,9 +45,9 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
         }
 
         if (text == words[offset + i]) {
-          incrementCorrect()
+          dispatch({ type: 'incrementCorrect' })
         } else {
-          incrementWrong()
+          dispatch({ type: 'incrementWrong' })
         }
       })
     }, [userWords.length, finished])
