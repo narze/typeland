@@ -4,13 +4,20 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 
 import { TypingArea, TypingAreaProps } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
+import { StatsProvider } from '../contexts/Stats'
 
 export default {
   title: 'Typeland/TypingArea',
   component: TypingArea,
 } as Meta
 
-const Template: Story<TypingAreaProps> = (args) => <TypingArea {...args} />
+const Template: Story<TypingAreaProps> = (args) => {
+  return (
+    <StatsProvider>
+      <TypingArea {...args} />
+    </StatsProvider>
+  )
+}
 
 export const Default = Template.bind({})
 
