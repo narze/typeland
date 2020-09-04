@@ -4,18 +4,16 @@ import { TypingArea, Mode } from '@/components/TypingArea'
 import { StatsContext } from '../../contexts/Stats'
 
 const providerValue = {
-  incrementCorrect: jest.fn(),
-  incrementWrong: jest.fn(),
-  reset: jest.fn(),
-  correct: 0,
-  wrong: 0,
-  total: 0,
+  dispatch: jest.fn(),
+  stats: {
+    correct: 0,
+    wrong: 0,
+    total: 0,
+  },
 }
 
 afterEach(() => {
-  providerValue.incrementCorrect.mockClear()
-  providerValue.incrementWrong.mockClear()
-  providerValue.reset.mockClear()
+  providerValue.dispatch.mockClear()
 })
 
 const renderWithProvider = (
@@ -94,19 +92,48 @@ describe('typealong mode', () => {
 
     renderWithProvider(<TypingArea {...props} />)
 
-    expect(providerValue.incrementCorrect).toHaveBeenCalledTimes(3)
-    expect(providerValue.incrementWrong).toHaveBeenCalledTimes(2)
+    expect(providerValue.dispatch).toHaveBeenCalledTimes(5)
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(1, {
+      type: 'incrementCorrect',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(2, {
+      type: 'incrementCorrect',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(3, {
+      type: 'incrementCorrect',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(4, {
+      type: 'incrementWrong',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(5, {
+      type: 'incrementWrong',
+    })
 
-    providerValue.incrementCorrect.mockClear()
-    providerValue.incrementWrong.mockClear()
+    providerValue.dispatch.mockClear()
 
     props.userWords = 'the quick brown doge jum over a lazy dog'.split(' ')
 
     renderWithProvider(<TypingArea {...props} />, {
-      providerProps: { value: { ...providerValue, total: 5 } },
+      providerProps: {
+        value: {
+          ...providerValue,
+          stats: { ...providerValue.stats, total: 5 },
+        },
+      },
     })
 
-    expect(providerValue.incrementCorrect).toHaveBeenCalledTimes(3)
-    expect(providerValue.incrementWrong).toHaveBeenCalledTimes(1)
+    expect(providerValue.dispatch).toHaveBeenCalledTimes(4)
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(1, {
+      type: 'incrementCorrect',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(2, {
+      type: 'incrementWrong',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(3, {
+      type: 'incrementCorrect',
+    })
+    expect(providerValue.dispatch).toHaveBeenNthCalledWith(4, {
+      type: 'incrementCorrect',
+    })
   })
 })

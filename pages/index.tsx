@@ -77,7 +77,7 @@ export const Home = (): JSX.Element => {
   const [elapsedMs, setElapsedMs] = useState(0)
   const [promptRestart, setPromptRestart] = useState(false)
   const [currentMode, setCurrentMode] = useState('default')
-  const { correct, wrong, total, reset: resetStats } = useContext(StatsContext)
+  const { stats, dispatch } = useContext(StatsContext)
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
 
@@ -105,7 +105,7 @@ export const Home = (): JSX.Element => {
   }, [started])
 
   useEffect(() => {
-    setLiveWpm(Math.round((correct * 60) / (elapsedMs / 1000.0)) || 0)
+    setLiveWpm(Math.round((stats.correct * 60) / (elapsedMs / 1000.0)) || 0)
   }, [elapsedMs])
 
   const handleDelete = ({ word = false }) => {
@@ -203,7 +203,7 @@ export const Home = (): JSX.Element => {
     setLiveWpm(0)
     setElapsedMs(0)
     setPromptRestart(false)
-    resetStats()
+    dispatch({ type: 'reset' })
   }
 
   const toggleMode = () => {
@@ -226,7 +226,9 @@ export const Home = (): JSX.Element => {
 
   useEffect(() => {
     if (startTime && finishTime && !wpm) {
-      setWpm(Math.round((correct * 60) / ((finishTime - startTime) / 1000.0)))
+      setWpm(
+        Math.round((stats.correct * 60) / ((finishTime - startTime) / 1000.0))
+      )
     }
   }, [startTime, finishTime, wpm])
 
@@ -259,7 +261,8 @@ export const Home = (): JSX.Element => {
 
         {started && (
           <div css={s.liveWpm}>
-            Stats (correct/wrong/total) : {correct}/{wrong}/{total}
+            Stats (correct/wrong/total) : {stats.correct}/{stats.wrong}/
+            {stats.total}
           </div>
         )}
 

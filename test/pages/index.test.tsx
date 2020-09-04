@@ -3,10 +3,34 @@ import { render, fireEvent } from '../testUtils'
 import userEvent from '@testing-library/user-event'
 import { Home } from '../../pages/index'
 import { randomWords } from '../../utils/wordsDb'
+import { StatsContext } from '@/contexts/Stats'
 
 jest.mock('../../utils/wordsDb')
 
 const mockedRandomWords = randomWords as jest.Mock<Array<string>>
+
+const providerValue = {
+  dispatch: jest.fn(),
+  stats: {
+    correct: 0,
+    wrong: 0,
+    total: 0,
+  },
+}
+
+afterEach(() => {
+  providerValue.dispatch.mockClear()
+})
+
+const renderWithProvider = (
+  ui,
+  { providerProps = { value: providerValue }, ...renderOptions } = {}
+) => {
+  return render(
+    <StatsContext.Provider {...providerProps}>{ui}</StatsContext.Provider>,
+    renderOptions
+  )
+}
 
 beforeEach(() => {
   jest.clearAllMocks()
@@ -17,20 +41,23 @@ beforeEach(() => {
 
 describe('Home page', () => {
   it('renders title', () => {
-    const { asFragment, getByText } = render(<Home />, {})
+    const { asFragment, getByText } = renderWithProvider(<Home />, {})
     getByText(/Typeland/i)
 
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('renders text to type', () => {
-    const { getByText } = render(<Home />, {})
+    const { getByText } = renderWithProvider(<Home />, {})
 
     getByText(/the quick brown fox jumps over the lazy dog/i)
   })
 
   it('highlights text which is typed', () => {
-    const { asFragment, getByTestId, getAllByTestId } = render(<Home />, {})
+    const { asFragment, getByTestId, getAllByTestId } = renderWithProvider(
+      <Home />,
+      {}
+    )
 
     const typingInput = getByTestId('typingInput')
 
@@ -51,10 +78,12 @@ describe('Home page', () => {
   })
 
   it('can delete typed text with backspace', () => {
-    const { asFragment, getByTestId, getAllByTestId, queryByTestId } = render(
-      <Home />,
-      {}
-    )
+    const {
+      asFragment,
+      getByTestId,
+      getAllByTestId,
+      queryByTestId,
+    } = renderWithProvider(<Home />, {})
 
     const typingInput = getByTestId('typingInput')
 

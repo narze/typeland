@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 
 interface StatsContextProps {
-  correct: number
-  wrong: number
-  total: number
-  incrementCorrect: () => void
-  incrementWrong: () => void
-  reset: () => void
+  stats: {
+    correct: number
+    wrong: number
+    total: number
+  }
+  dispatch: React.Dispatch<any>
 }
 
 interface StatsProviderProps {
@@ -20,34 +20,37 @@ const defaultStats = {
   total: 0,
 }
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'incrementCorrect':
+      return {
+        ...state,
+        correct: state.correct + 1,
+        total: state.total + 1,
+      }
+    case 'incrementWrong':
+      return {
+        ...state,
+        wrong: state.wrong + 1,
+        total: state.total + 1,
+      }
+    case 'reset':
+      return { ...defaultStats }
+    default:
+      return state
+  }
+}
+
 export const StatsContext = React.createContext({} as StatsContextProps)
 
 export const StatsProvider: React.FC<StatsProviderProps> = ({
   children,
   value,
 }) => {
-  const [stats, setStats] = useState(value || defaultStats)
-
-  const functions = {
-    incrementCorrect: () => {
-      setStats((prevStats) => {
-        const { correct, total } = prevStats
-        return { ...prevStats, correct: correct + 1, total: total + 1 }
-      })
-    },
-    incrementWrong: () => {
-      setStats((prevStats) => {
-        const { wrong, total } = prevStats
-        return { ...prevStats, wrong: wrong + 1, total: total + 1 }
-      })
-    },
-    reset: () => {
-      setStats(defaultStats)
-    },
-  }
+  const [stats, dispatch] = useReducer(reducer, value || defaultStats)
 
   return (
-    <StatsContext.Provider value={{ ...stats, ...functions }}>
+    <StatsContext.Provider value={{ stats, dispatch }}>
       {children}
     </StatsContext.Provider>
   )
