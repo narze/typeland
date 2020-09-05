@@ -55,8 +55,22 @@ exports[`Home page can delete typed text with backspace 1`] = `
 }
 
 .emotion-7 {
+  position: relative;
   overflow-wrap: normal;
   word-break: normal;
+}
+
+.emotion-4 {
+  --bg-opacity: 1;
+  position: absolute;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
+  left: 1px;
+  top: 0px;
 }
 
 .emotion-12 {
@@ -71,22 +85,10 @@ exports[`Home page can delete typed text with backspace 1`] = `
   text-align: center;
 }
 
-.emotion-4 {
+.emotion-5 {
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-6 {
-  --bg-opacity: 1;
-  display: inline-block;
-  margin-bottom: -0.25rem;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
 }
 
 .emotion-10 {
@@ -132,21 +134,21 @@ exports[`Home page can delete typed text with backspace 1`] = `
             class="emotion-7"
           >
             <span
-              class="correct emotion-4"
+              class="emotion-4"
+              data-testid="caret"
+            />
+            <span
+              class="correct emotion-5"
               data-testid="correct"
             >
               t
             </span>
             <span
-              class="correct emotion-4"
+              class="correct emotion-5"
               data-testid="correct"
             >
               h
             </span>
-            <span
-              class="emotion-6"
-              data-testid="caret"
-            />
           </span>
           <span>
              
@@ -242,8 +244,22 @@ exports[`Home page highlights text which is typed 1`] = `
 }
 
 .emotion-8 {
+  position: relative;
   overflow-wrap: normal;
   word-break: normal;
+}
+
+.emotion-4 {
+  --bg-opacity: 1;
+  position: absolute;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
+  left: 1px;
+  top: 0px;
 }
 
 .emotion-13 {
@@ -258,29 +274,17 @@ exports[`Home page highlights text which is typed 1`] = `
   text-align: center;
 }
 
-.emotion-4 {
+.emotion-5 {
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-7 {
-  --bg-opacity: 1;
-  display: inline-block;
-  margin-bottom: -0.25rem;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
 }
 
 .emotion-11 {
   font-size: 1rem;
 }
 
-.emotion-6 {
+.emotion-7 {
   --text-opacity: 1;
   color: #f98080;
   color: rgba(249,128,128,var(--text-opacity));
@@ -325,27 +329,27 @@ exports[`Home page highlights text which is typed 1`] = `
             class="emotion-8"
           >
             <span
-              class="correct emotion-4"
+              class="emotion-4"
+              data-testid="caret"
+            />
+            <span
+              class="correct emotion-5"
               data-testid="correct"
             >
               t
             </span>
             <span
-              class="correct emotion-4"
+              class="correct emotion-5"
               data-testid="correct"
             >
               h
             </span>
             <span
-              class="wrong emotion-6"
+              class="wrong emotion-7"
               data-testid="wrong"
             >
               x
             </span>
-            <span
-              class="emotion-7"
-              data-testid="caret"
-            />
           </span>
           <span>
              
@@ -441,20 +445,22 @@ exports[`Home page renders title 1`] = `
 }
 
 .emotion-5 {
+  position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
 
 .emotion-4 {
   --bg-opacity: 1;
-  display: inline-block;
-  margin-bottom: -0.25rem;
+  position: absolute;
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
+  left: 1px;
+  top: 0px;
 }
 
 .emotion-8 {

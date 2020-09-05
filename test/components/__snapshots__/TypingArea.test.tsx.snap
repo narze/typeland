@@ -15,6 +15,7 @@ exports[`renders typing area 1`] = `
 }
 
 .emotion-4 {
+  position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
@@ -26,21 +27,22 @@ exports[`renders typing area 1`] = `
 }
 
 .emotion-17 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-.emotion-20 {
   --bg-opacity: 1;
-  display: inline-block;
-  margin-bottom: -0.25rem;
+  position: absolute;
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
+  left: 1px;
+  top: 0px;
+}
+
+.emotion-18 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
 }
 
 <div
@@ -159,7 +161,11 @@ exports[`renders typing area 1`] = `
         class="emotion-4"
       >
         <span
-          class="wrong emotion-17"
+          class="emotion-17"
+          data-testid="caret"
+        />
+        <span
+          class="wrong emotion-18"
           data-testid="wrong"
         >
           d
@@ -171,15 +177,11 @@ exports[`renders typing area 1`] = `
           o
         </span>
         <span
-          class="wrong emotion-17"
+          class="wrong emotion-18"
           data-testid="wrong"
         >
           g
         </span>
-        <span
-          class="emotion-20"
-          data-testid="caret"
-        />
       </span>
       <span>
          
@@ -204,6 +206,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
 }
 
 .emotion-3 {
+  position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
@@ -214,22 +217,23 @@ exports[`typealong mode renders mid-word correctly 1`] = `
   color: rgba(5,122,85,var(--text-opacity));
 }
 
-.emotion-16 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-.emotion-24 {
+.emotion-21 {
   --bg-opacity: 1;
-  display: inline-block;
-  margin-bottom: -0.25rem;
+  position: absolute;
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
+  left: 1px;
+  top: 0px;
+}
+
+.emotion-16 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
 }
 
 .emotion-25 {
@@ -379,6 +383,10 @@ exports[`typealong mode renders mid-word correctly 1`] = `
         class="emotion-3"
       >
         <span
+          class="emotion-21"
+          data-testid="caret"
+        />
+        <span
           class="correct emotion-0"
           data-testid="correct"
         >
@@ -396,10 +404,6 @@ exports[`typealong mode renders mid-word correctly 1`] = `
         >
           m
         </span>
-        <span
-          class="emotion-24"
-          data-testid="caret"
-        />
         <span
           class="pending emotion-25"
           data-testid="pending"
@@ -442,6 +446,7 @@ exports[`typealong mode renders template & user area combined 1`] = `
 }
 
 .emotion-3 {
+  position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
@@ -453,21 +458,22 @@ exports[`typealong mode renders template & user area combined 1`] = `
 }
 
 .emotion-16 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-.emotion-20 {
   --bg-opacity: 1;
-  display: inline-block;
-  margin-bottom: -0.25rem;
+  position: absolute;
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
+  left: 1px;
+  top: 0px;
+}
+
+.emotion-17 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
 }
 
 <div
@@ -580,7 +586,11 @@ exports[`typealong mode renders template & user area combined 1`] = `
         class="emotion-3"
       >
         <span
-          class="wrong emotion-16"
+          class="emotion-16"
+          data-testid="caret"
+        />
+        <span
+          class="wrong emotion-17"
           data-testid="wrong"
         >
           f
@@ -592,21 +602,17 @@ exports[`typealong mode renders template & user area combined 1`] = `
           o
         </span>
         <span
-          class="wrong emotion-16"
+          class="wrong emotion-17"
           data-testid="wrong"
         >
           x
         </span>
         <span
-          class="wrong emotion-16"
+          class="wrong emotion-17"
           data-testid="wrong"
         >
           e
         </span>
-        <span
-          class="emotion-20"
-          data-testid="caret"
-        />
       </span>
       <span>
          

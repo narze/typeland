@@ -1,9 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 
 const s = {
+  word: tw`
+    relative
+    break-normal
+  `,
   correct: tw`
     text-green-600
   `,
@@ -15,8 +19,7 @@ const s = {
   `,
   caret: [
     tw`
-      inline-block
-      -mb-1
+      absolute
       h-6
       bg-blue-500
     `,
@@ -26,9 +29,6 @@ const s = {
       margin-right: -1px;
     `,
   ],
-  word: tw`
-    break-normal
-  `,
 }
 
 export enum Mode {
@@ -44,15 +44,44 @@ export interface WordProps {
 
 export const Word: React.FC<WordProps> = React.memo(
   ({ template, userInput, showCaret, mode }) => {
+    const lastInputEl = useRef(null)
+    const [caretPos, setCaretPos] = useState({
+      left: 0,
+      top: 0,
+    })
+
+    const caretPosCss = () => {
+      return css`
+        left: ${caretPos.left + 1}px;
+        top: ${caretPos.top}px;
+      `
+    }
+
+    useEffect(() => {
+      if (!lastInputEl.current) {
+        setCaretPos({
+          left: 0,
+          top: 0,
+        })
+        return
+      }
+
+      setCaretPos({
+        left: lastInputEl.current.offsetLeft + lastInputEl.current.offsetWidth,
+        top: lastInputEl.current.offsetTop,
+      })
+    }, [userInput.length])
+
     return (
       <span css={s.word}>
-        {showCaret && userInput.length == 0 ? (
-          <span css={s.caret} data-testid="caret"></span>
-        ) : null}
+        {showCaret && (
+          <span css={[s.caret, caretPosCss()]} data-testid="caret"></span>
+        )}
 
         {Array.from(
           Array(Math.max(template.length, userInput.length)).keys()
         ).map((i) => {
+          const ref = i == userInput.length - 1 ? lastInputEl : null
           const templateChar = template[i]
           const userInputChar = userInput[i]
           const displayChar =
@@ -64,36 +93,49 @@ export const Word: React.FC<WordProps> = React.memo(
           if (templateChar && userInputChar) {
             charElement =
               templateChar == userInputChar ? (
-                <span css={s.correct} className="correct" data-testid="correct">
+                <span
+                  css={s.correct}
+                  className="correct"
+                  data-testid="correct"
+                  ref={ref}
+                >
                   {displayChar}
                 </span>
               ) : (
-                <span css={s.wrong} className="wrong" data-testid="wrong">
+                <span
+                  css={s.wrong}
+                  className="wrong"
+                  data-testid="wrong"
+                  ref={ref}
+                >
                   {displayChar}
                 </span>
               )
           } else if (userInputChar) {
             charElement = (
-              <span css={s.wrong} className="wrong" data-testid="wrong">
+              <span
+                css={s.wrong}
+                className="wrong"
+                data-testid="wrong"
+                ref={ref}
+              >
                 {userInputChar}
               </span>
             )
           } else if (mode == Mode.typealong) {
             charElement = (
-              <span css={s.pending} className="pending" data-testid="pending">
+              <span
+                css={s.pending}
+                className="pending"
+                data-testid="pending"
+                ref={ref}
+              >
                 {displayChar}
               </span>
             )
           }
 
-          return (
-            <React.Fragment key={i}>
-              {charElement}
-              {showCaret && userInput.length && userInput.length == i + 1 ? (
-                <span css={s.caret} data-testid="caret"></span>
-              ) : null}
-            </React.Fragment>
-          )
+          return <React.Fragment key={i}>{charElement}</React.Fragment>
         })}
       </span>
     )
