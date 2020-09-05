@@ -24,6 +24,7 @@ const s = {
       bg-blue-500
     `,
     css`
+      transition: all 0.1s ease-out;
       width: 2px;
       margin-left: -1px;
       margin-right: -1px;
