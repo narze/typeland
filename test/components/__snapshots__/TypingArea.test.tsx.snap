@@ -32,6 +32,8 @@ exports[`renders typing area 1`] = `
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
@@ -223,6 +225,8 @@ exports[`typealong mode renders mid-word correctly 1`] = `
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
@@ -463,6 +467,8 @@ exports[`typealong mode renders template & user area combined 1`] = `
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;

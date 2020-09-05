@@ -66,6 +66,8 @@ exports[`Home page can delete typed text with backspace 1`] = `
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
@@ -255,6 +257,8 @@ exports[`Home page highlights text which is typed 1`] = `
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
@@ -456,6 +460,8 @@ exports[`Home page renders title 1`] = `
   height: 1.5rem;
   background-color: #3f83f8;
   background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   width: 2px;
   margin-left: -1px;
   margin-right: -1px;
