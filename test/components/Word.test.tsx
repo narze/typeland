@@ -44,9 +44,7 @@ it('renders single word with caret', () => {
       .join('')
   ).toBe('ge')
 
-  const o = getAllByTestId('correct').slice(-1)[0]
-    .nextElementSibling as HTMLElement
-  expect(o.dataset.testid).toBe('caret')
+  expect(getAllByTestId('caret').length).toBe(1)
 
   expect(asFragment()).toMatchSnapshot()
 })
