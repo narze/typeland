@@ -2,6 +2,8 @@
 
 A typing practice website, now in development -> https://typeland.vercel.app
 
+![Imgur](https://i.imgur.com/EWAc8lD.png)
+
 ## Plan & Progress
 
 https://github.com/narze/typeland/projects/1
