@@ -10,13 +10,13 @@ const s = {
     text-xl
     antialiased
   `,
-  template: tw`
+  wordWrapper: tw`
     my-1
-    break-words
+    flex flex-wrap
+    w-full
   `,
-  user: tw`
-    my-1
-    break-words
+  word: tw`
+    mr-1
   `,
 }
 
@@ -51,7 +51,7 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
 
     return (
       <div css={s.typingArea} data-testid="text">
-        <span css={s.user} data-testid="user">
+        <div css={s.wordWrapper}>
           {userWords.map((text, i) => {
             return (
               <React.Fragment key={i}>
@@ -60,14 +60,20 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
                   userInput={text}
                   showCaret={showCaret && i == userWords.length - 1}
                 />
-                <span>&nbsp;</span>
               </React.Fragment>
             )
           })}
-        </span>
-        <span css={s.template} data-testid="template">
-          {remainingWords.join(' ')}
-        </span>
+
+          {remainingWords.map((text, i) => {
+            return (
+              <React.Fragment key={i}>
+                <span css={s.word} data-testid="remainingWord">
+                  {text}
+                </span>
+              </React.Fragment>
+            )
+          })}
+        </div>
       </div>
     )
   }
