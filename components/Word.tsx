@@ -32,19 +32,14 @@ const s = {
   ],
 }
 
-export enum Mode {
-  typealong = 'typealong',
-}
-
 export interface WordProps {
   template: string
   userInput: string
   showCaret: boolean
-  mode?: Mode
 }
 
 export const Word: React.FC<WordProps> = React.memo(
-  ({ template, userInput, showCaret, mode }) => {
+  ({ template, userInput, showCaret }) => {
     const lastInputEl = useRef(null)
     const [caretPos, setCaretPos] = useState({
       left: 0,
@@ -85,10 +80,6 @@ export const Word: React.FC<WordProps> = React.memo(
           const ref = i == userInput.length - 1 ? lastInputEl : null
           const templateChar = template[i]
           const userInputChar = userInput[i]
-          const displayChar =
-            mode == Mode.typealong
-              ? templateChar
-              : userInputChar || templateChar
 
           let charElement
           if (templateChar && userInputChar) {
@@ -100,7 +91,7 @@ export const Word: React.FC<WordProps> = React.memo(
                   data-testid="correct"
                   ref={ref}
                 >
-                  {displayChar}
+                  {templateChar}
                 </span>
               ) : (
                 <span
@@ -109,7 +100,7 @@ export const Word: React.FC<WordProps> = React.memo(
                   data-testid="wrong"
                   ref={ref}
                 >
-                  {displayChar}
+                  {templateChar}
                 </span>
               )
           } else if (userInputChar) {
@@ -123,7 +114,7 @@ export const Word: React.FC<WordProps> = React.memo(
                 {userInputChar}
               </span>
             )
-          } else if (mode == Mode.typealong) {
+          } else {
             charElement = (
               <span
                 css={s.pending}
@@ -131,7 +122,7 @@ export const Word: React.FC<WordProps> = React.memo(
                 data-testid="pending"
                 ref={ref}
               >
-                {displayChar}
+                {templateChar}
               </span>
             )
           }

@@ -20,20 +20,15 @@ const s = {
   `,
 }
 
-export enum Mode {
-  typealong = 'typealong',
-}
-
 export interface TypingAreaProps {
   words: Array<string>
   userWords: Array<string>
   showCaret: boolean
-  mode?: Mode
   finished?: boolean
 }
 
 export const TypingArea: React.FC<TypingAreaProps> = React.memo(
-  ({ words, userWords, showCaret, mode, finished }) => {
+  ({ words, userWords, showCaret, finished }) => {
     const { stats, dispatch } = useContext(StatsContext)
 
     useEffect(() => {
@@ -52,39 +47,11 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
       })
     }, [userWords.length, finished])
 
-    if (mode == 'typealong') {
-      const remainingWords = words.slice(userWords.length)
-
-      return (
-        <div css={s.typingArea} data-testid="text">
-          <span css={s.user} data-testid="user">
-            {userWords.map((text, i) => {
-              return (
-                <React.Fragment key={i}>
-                  <Word
-                    template={words[i]}
-                    userInput={text}
-                    showCaret={showCaret && i == userWords.length - 1}
-                    mode={mode}
-                  />
-                  <span>&nbsp;</span>
-                </React.Fragment>
-              )
-            })}
-          </span>
-          <span css={s.template} data-testid="template">
-            {remainingWords.join(' ')}
-          </span>
-        </div>
-      )
-    }
+    const remainingWords = words.slice(userWords.length)
 
     return (
-      <div css={s.typingArea}>
-        <p css={s.template} data-testid="template">
-          {words.join(' ')}
-        </p>
-        <p css={s.user} data-testid="user">
+      <div css={s.typingArea} data-testid="text">
+        <span css={s.user} data-testid="user">
           {userWords.map((text, i) => {
             return (
               <React.Fragment key={i}>
@@ -97,7 +64,10 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
               </React.Fragment>
             )
           })}
-        </p>
+        </span>
+        <span css={s.template} data-testid="template">
+          {remainingWords.join(' ')}
+        </span>
       </div>
     )
   }
