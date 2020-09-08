@@ -2,7 +2,7 @@
 
 exports[`Home page can delete typed text with backspace 1`] = `
 <DocumentFragment>
-  .emotion-17 {
+  .emotion-15 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -19,12 +19,12 @@ exports[`Home page can delete typed text with backspace 1`] = `
   justify-content: center;
 }
 
-.emotion-14 {
+.emotion-12 {
   max-width: 50%;
   min-width: 640px;
 }
 
-.emotion-2 {
+.emotion-0 {
   --text-opacity: 1;
   font-size: 2.25rem;
   color: #1c64f2;
@@ -33,34 +33,25 @@ exports[`Home page can delete typed text with backspace 1`] = `
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-1 {
-  font-size: 0.75rem;
-}
-
-.emotion-0 {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-10 {
+.emotion-8 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-8 {
+.emotion-6 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   overflow-wrap: break-word;
 }
 
-.emotion-7 {
+.emotion-5 {
   position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
 
-.emotion-3 {
+.emotion-1 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -75,85 +66,78 @@ exports[`Home page can delete typed text with backspace 1`] = `
   top: 0px;
 }
 
-.emotion-13 {
+.emotion-11 {
   height: 0;
   width: 0;
 }
 
-.emotion-16 {
+.emotion-14 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
   text-align: center;
 }
 
-.emotion-6 {
+.emotion-13 {
+  font-size: 0.75rem;
+}
+
+.emotion-4 {
   --text-opacity: 1;
   color: #d2d6dc;
   color: rgba(210,214,220,var(--text-opacity));
 }
 
-.emotion-4 {
+.emotion-2 {
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
 }
 
-.emotion-11 {
+.emotion-9 {
   font-size: 1rem;
 }
 
 <div
-    class="emotion-17"
+    class="emotion-15"
   >
     <main
-      class="emotion-14"
+      class="emotion-12"
     >
       <h1
-        class="emotion-2"
+        class="emotion-0"
       >
         Typeland
-        <span
-          class="emotion-1"
-        >
-           [Mode : 
-          <button
-            class="emotion-0"
-          >
-            typealong
-          </button>
-          ]
-        </span>
       </h1>
       <div
-        class="emotion-10"
+        class="emotion-8"
         data-testid="text"
       >
         <span
-          class="emotion-8"
+          class="emotion-6"
           data-testid="user"
         >
           <span
-            class="emotion-7"
+            class="emotion-5"
           >
             <span
-              class="emotion-3"
+              class="emotion-1"
               data-testid="caret"
             />
             <span
-              class="correct emotion-4"
+              class="correct emotion-2"
               data-testid="correct"
             >
               t
             </span>
             <span
-              class="correct emotion-4"
+              class="correct emotion-2"
               data-testid="correct"
             >
               h
             </span>
             <span
-              class="pending emotion-6"
+              class="pending emotion-4"
               data-testid="pending"
             >
               e
@@ -164,24 +148,24 @@ exports[`Home page can delete typed text with backspace 1`] = `
           </span>
         </span>
         <span
-          class="emotion-8"
+          class="emotion-6"
           data-testid="template"
         >
           quick brown fox jumps over the lazy dog
         </span>
       </div>
       <div
-        class="emotion-11"
+        class="emotion-9"
       >
         0 wpm
       </div>
       <div
-        class="emotion-11"
+        class="emotion-9"
       >
         Stats (correct/wrong/total) : 0/0/0
       </div>
       <input
-        class="emotion-13"
+        class="emotion-11"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -189,10 +173,10 @@ exports[`Home page can delete typed text with backspace 1`] = `
       />
     </main>
     <div
-      class="emotion-16"
+      class="emotion-14"
     >
       <a
-        class="emotion-1"
+        class="emotion-13"
         href="https://github.com/narze/typeland"
         rel="noreferrer"
         target="_blank"
@@ -205,210 +189,6 @@ exports[`Home page can delete typed text with backspace 1`] = `
 `;
 
 exports[`Home page highlights text which is typed 1`] = `
-<DocumentFragment>
-  .emotion-17 {
-  height: 100vh;
-  min-width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.emotion-14 {
-  max-width: 50%;
-  min-width: 640px;
-}
-
-.emotion-2 {
-  --text-opacity: 1;
-  font-size: 2.25rem;
-  color: #1c64f2;
-  color: rgba(28,100,242,var(--text-opacity));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-1 {
-  font-size: 0.75rem;
-}
-
-.emotion-0 {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-10 {
-  font-size: 1.25rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-8 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-  overflow-wrap: break-word;
-}
-
-.emotion-7 {
-  position: relative;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-.emotion-3 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
-  left: 1px;
-  top: 0px;
-}
-
-.emotion-13 {
-  height: 0;
-  width: 0;
-}
-
-.emotion-16 {
-  position: fixed;
-  bottom: 0;
-  padding-bottom: 2rem;
-  text-align: center;
-}
-
-.emotion-4 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-11 {
-  font-size: 1rem;
-}
-
-.emotion-6 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-<div
-    class="emotion-17"
-  >
-    <main
-      class="emotion-14"
-    >
-      <h1
-        class="emotion-2"
-      >
-        Typeland
-        <span
-          class="emotion-1"
-        >
-           [Mode : 
-          <button
-            class="emotion-0"
-          >
-            typealong
-          </button>
-          ]
-        </span>
-      </h1>
-      <div
-        class="emotion-10"
-        data-testid="text"
-      >
-        <span
-          class="emotion-8"
-          data-testid="user"
-        >
-          <span
-            class="emotion-7"
-          >
-            <span
-              class="emotion-3"
-              data-testid="caret"
-            />
-            <span
-              class="correct emotion-4"
-              data-testid="correct"
-            >
-              t
-            </span>
-            <span
-              class="correct emotion-4"
-              data-testid="correct"
-            >
-              h
-            </span>
-            <span
-              class="wrong emotion-6"
-              data-testid="wrong"
-            >
-              e
-            </span>
-          </span>
-          <span>
-             
-          </span>
-        </span>
-        <span
-          class="emotion-8"
-          data-testid="template"
-        >
-          quick brown fox jumps over the lazy dog
-        </span>
-      </div>
-      <div
-        class="emotion-11"
-      >
-        0 wpm
-      </div>
-      <div
-        class="emotion-11"
-      >
-        Stats (correct/wrong/total) : 0/0/0
-      </div>
-      <input
-        class="emotion-13"
-        data-testid="typingInput"
-        id="typingInput"
-        tabindex="0"
-        type="text"
-      />
-    </main>
-    <div
-      class="emotion-16"
-    >
-      <a
-        class="emotion-1"
-        href="https://github.com/narze/typeland"
-        rel="noreferrer"
-        target="_blank"
-      >
-        GitHub
-      </a>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Home page renders title 1`] = `
 <DocumentFragment>
   .emotion-15 {
   height: 100vh;
@@ -432,7 +212,7 @@ exports[`Home page renders title 1`] = `
   min-width: 640px;
 }
 
-.emotion-2 {
+.emotion-0 {
   --text-opacity: 1;
   font-size: 2.25rem;
   color: #1c64f2;
@@ -441,34 +221,25 @@ exports[`Home page renders title 1`] = `
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-1 {
-  font-size: 0.75rem;
-}
-
-.emotion-0 {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-10 {
+.emotion-8 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-8 {
+.emotion-6 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   overflow-wrap: break-word;
 }
 
-.emotion-7 {
+.emotion-5 {
   position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
 
-.emotion-3 {
+.emotion-1 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -495,10 +266,24 @@ exports[`Home page renders title 1`] = `
   text-align: center;
 }
 
+.emotion-13 {
+  font-size: 0.75rem;
+}
+
+.emotion-2 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-9 {
+  font-size: 1rem;
+}
+
 .emotion-4 {
   --text-opacity: 1;
-  color: #d2d6dc;
-  color: rgba(210,214,220,var(--text-opacity));
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
 }
 
 <div
@@ -508,51 +293,40 @@ exports[`Home page renders title 1`] = `
       class="emotion-12"
     >
       <h1
-        class="emotion-2"
+        class="emotion-0"
       >
         Typeland
-        <span
-          class="emotion-1"
-        >
-           [Mode : 
-          <button
-            class="emotion-0"
-          >
-            typealong
-          </button>
-          ]
-        </span>
       </h1>
       <div
-        class="emotion-10"
+        class="emotion-8"
         data-testid="text"
       >
         <span
-          class="emotion-8"
+          class="emotion-6"
           data-testid="user"
         >
           <span
-            class="emotion-7"
+            class="emotion-5"
           >
             <span
-              class="emotion-3"
+              class="emotion-1"
               data-testid="caret"
             />
             <span
-              class="pending emotion-4"
-              data-testid="pending"
+              class="correct emotion-2"
+              data-testid="correct"
             >
               t
             </span>
             <span
-              class="pending emotion-4"
-              data-testid="pending"
+              class="correct emotion-2"
+              data-testid="correct"
             >
               h
             </span>
             <span
-              class="pending emotion-4"
-              data-testid="pending"
+              class="wrong emotion-4"
+              data-testid="wrong"
             >
               e
             </span>
@@ -562,11 +336,21 @@ exports[`Home page renders title 1`] = `
           </span>
         </span>
         <span
-          class="emotion-8"
+          class="emotion-6"
           data-testid="template"
         >
           quick brown fox jumps over the lazy dog
         </span>
+      </div>
+      <div
+        class="emotion-9"
+      >
+        0 wpm
+      </div>
+      <div
+        class="emotion-9"
+      >
+        Stats (correct/wrong/total) : 0/0/0
       </div>
       <input
         class="emotion-11"
@@ -580,7 +364,175 @@ exports[`Home page renders title 1`] = `
       class="emotion-14"
     >
       <a
-        class="emotion-1"
+        class="emotion-13"
+        href="https://github.com/narze/typeland"
+        rel="noreferrer"
+        target="_blank"
+      >
+        GitHub
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Home page renders title 1`] = `
+<DocumentFragment>
+  .emotion-13 {
+  height: 100vh;
+  min-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-10 {
+  max-width: 50%;
+  min-width: 640px;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  font-size: 2.25rem;
+  color: #1c64f2;
+  color: rgba(28,100,242,var(--text-opacity));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.emotion-8 {
+  font-size: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.emotion-6 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  overflow-wrap: break-word;
+}
+
+.emotion-5 {
+  position: relative;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.emotion-1 {
+  --bg-opacity: 1;
+  position: absolute;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
+  left: 1px;
+  top: 0px;
+}
+
+.emotion-9 {
+  height: 0;
+  width: 0;
+}
+
+.emotion-12 {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.emotion-11 {
+  font-size: 0.75rem;
+}
+
+.emotion-2 {
+  --text-opacity: 1;
+  color: #d2d6dc;
+  color: rgba(210,214,220,var(--text-opacity));
+}
+
+<div
+    class="emotion-13"
+  >
+    <main
+      class="emotion-10"
+    >
+      <h1
+        class="emotion-0"
+      >
+        Typeland
+      </h1>
+      <div
+        class="emotion-8"
+        data-testid="text"
+      >
+        <span
+          class="emotion-6"
+          data-testid="user"
+        >
+          <span
+            class="emotion-5"
+          >
+            <span
+              class="emotion-1"
+              data-testid="caret"
+            />
+            <span
+              class="pending emotion-2"
+              data-testid="pending"
+            >
+              t
+            </span>
+            <span
+              class="pending emotion-2"
+              data-testid="pending"
+            >
+              h
+            </span>
+            <span
+              class="pending emotion-2"
+              data-testid="pending"
+            >
+              e
+            </span>
+          </span>
+          <span>
+             
+          </span>
+        </span>
+        <span
+          class="emotion-6"
+          data-testid="template"
+        >
+          quick brown fox jumps over the lazy dog
+        </span>
+      </div>
+      <input
+        class="emotion-9"
+        data-testid="typingInput"
+        id="typingInput"
+        tabindex="0"
+        type="text"
+      />
+    </main>
+    <div
+      class="emotion-12"
+    >
+      <a
+        class="emotion-11"
         href="https://github.com/narze/typeland"
         rel="noreferrer"
         target="_blank"

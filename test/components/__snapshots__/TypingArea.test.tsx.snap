@@ -1,199 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders typing area 1`] = `
-<DocumentFragment>
-  .emotion-23 {
-  font-size: 1.25rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-0 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-  overflow-wrap: break-word;
-}
-
-.emotion-4 {
-  position: relative;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-.emotion-1 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-17 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
-  left: 1px;
-  top: 0px;
-}
-
-.emotion-18 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-<div
-    class="emotion-23"
-  >
-    <p
-      class="emotion-0"
-      data-testid="template"
-    >
-      the quick brown fox jumps over the lazy dog
-    </p>
-    <p
-      class="emotion-0"
-      data-testid="user"
-    >
-      <span
-        class="emotion-4"
-      >
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          t
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          h
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          e
-        </span>
-      </span>
-      <span>
-         
-      </span>
-      <span
-        class="emotion-4"
-      >
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          q
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          u
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          i
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          c
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          k
-        </span>
-      </span>
-      <span>
-         
-      </span>
-      <span
-        class="emotion-4"
-      >
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          b
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          r
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          o
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          w
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          n
-        </span>
-      </span>
-      <span>
-         
-      </span>
-      <span
-        class="emotion-4"
-      >
-        <span
-          class="emotion-17"
-          data-testid="caret"
-        />
-        <span
-          class="wrong emotion-18"
-          data-testid="wrong"
-        >
-          d
-        </span>
-        <span
-          class="correct emotion-1"
-          data-testid="correct"
-        >
-          o
-        </span>
-        <span
-          class="wrong emotion-18"
-          data-testid="wrong"
-        >
-          g
-        </span>
-      </span>
-      <span>
-         
-      </span>
-    </p>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`typealong mode renders mid-word correctly 1`] = `
+exports[`renders mid-word correctly 1`] = `
 <DocumentFragment>
   .emotion-30 {
   font-size: 1.25rem;
@@ -436,7 +243,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`typealong mode renders template & user area combined 1`] = `
+exports[`renders template & user area combined 1`] = `
 <DocumentFragment>
   .emotion-24 {
   font-size: 1.25rem;
@@ -628,6 +435,200 @@ exports[`typealong mode renders template & user area combined 1`] = `
     </span>
     <span
       class="emotion-22"
+      data-testid="template"
+    >
+      jumps over the lazy dog
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders typing area 1`] = `
+<DocumentFragment>
+  .emotion-23 {
+  font-size: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.emotion-21 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  overflow-wrap: break-word;
+}
+
+.emotion-3 {
+  position: relative;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.emotion-0 {
+  --text-opacity: 1;
+  color: #057a55;
+  color: rgba(5,122,85,var(--text-opacity));
+}
+
+.emotion-16 {
+  --bg-opacity: 1;
+  position: absolute;
+  height: 1.5rem;
+  background-color: #3f83f8;
+  background-color: rgba(63,131,248,var(--bg-opacity));
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+  width: 2px;
+  margin-left: -1px;
+  margin-right: -1px;
+  left: 1px;
+  top: 0px;
+}
+
+.emotion-17 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+<div
+    class="emotion-23"
+    data-testid="text"
+  >
+    <span
+      class="emotion-21"
+      data-testid="user"
+    >
+      <span
+        class="emotion-3"
+      >
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          t
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          h
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          e
+        </span>
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="emotion-3"
+      >
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          q
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          u
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          i
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          c
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          k
+        </span>
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="emotion-3"
+      >
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          b
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          r
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          o
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          w
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          n
+        </span>
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="emotion-3"
+      >
+        <span
+          class="emotion-16"
+          data-testid="caret"
+        />
+        <span
+          class="wrong emotion-17"
+          data-testid="wrong"
+        >
+          f
+        </span>
+        <span
+          class="correct emotion-0"
+          data-testid="correct"
+        >
+          o
+        </span>
+        <span
+          class="wrong emotion-17"
+          data-testid="wrong"
+        >
+          x
+        </span>
+      </span>
+      <span>
+         
+      </span>
+    </span>
+    <span
+      class="emotion-21"
       data-testid="template"
     >
       jumps over the lazy dog

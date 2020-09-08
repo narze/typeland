@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { useEffect, useState, useContext } from 'react'
-import { TypingArea, Mode } from '../components/TypingArea'
+import { TypingArea } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
 import { StatsContext } from '../contexts/Stats'
 
@@ -76,7 +76,6 @@ export const Home = (): JSX.Element => {
   const [liveWpm, setLiveWpm] = useState(0)
   const [elapsedMs, setElapsedMs] = useState(0)
   const [promptRestart, setPromptRestart] = useState(false)
-  const [currentMode, setCurrentMode] = useState('typealong')
   const { stats, dispatch } = useContext(StatsContext)
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
@@ -206,14 +205,6 @@ export const Home = (): JSX.Element => {
     dispatch({ type: 'reset' })
   }
 
-  const toggleMode = () => {
-    if (currentMode == 'default') {
-      setCurrentMode('typealong')
-    } else {
-      setCurrentMode('default')
-    }
-  }
-
   useEffect(() => {
     if (started && !finished) {
       setStartTime(+new Date())
@@ -238,22 +229,12 @@ export const Home = (): JSX.Element => {
       onClick={() => document.getElementById('typingInput').focus()}
     >
       <main css={s.main}>
-        <h1 css={s.title}>
-          Typeland
-          <span css={tw`text-xs`}>
-            {` `}[Mode :{' '}
-            <button css={tw`underline`} onClick={toggleMode}>
-              {currentMode}
-            </button>
-            ]
-          </span>
-        </h1>
+        <h1 css={s.title}>Typeland</h1>
 
         <TypingArea
           words={words}
           userWords={userTypeInput}
           showCaret={inputIsFocused}
-          mode={Mode[currentMode]}
           finished={finished}
         />
 

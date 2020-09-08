@@ -26,7 +26,7 @@ describe('index', () => {
 
     cy.focused().type('x')
     cy.findAllByTestId('correct').contains('t').next().contains('h')
-    cy.findAllByTestId('wrong').contains('x')
+    cy.findAllByTestId('wrong').contains('e')
   })
 
   it('can delete typed text with backspace', () => {
@@ -41,7 +41,7 @@ describe('index', () => {
 
     cy.focused().type('o')
     cy.findAllByTestId('correct').contains('t')
-    cy.findAllByTestId('wrong').contains('o')
+    cy.findAllByTestId('wrong').contains('h')
 
     cy.focused().type('{backspace}')
     cy.findAllByTestId('correct').contains('t')
@@ -90,7 +90,7 @@ describe('index', () => {
   it('blocks all modifiers except shift', () => {
     cy.focused().type('{backspace}')
     cy.focused().type('T')
-    cy.findAllByTestId('wrong').contains('T')
+    cy.findAllByTestId('wrong').contains('t')
 
     cy.focused().type('{backspace}')
     cy.focused().type('{alt}{shift}a')
@@ -165,12 +165,6 @@ describe('index', () => {
     // Press enter again to restart
     cy.focused().type('{enter}')
     cy.findByText(/Restart/i).should('not.exist')
-  })
-
-  it('can change to typealong mode and back to default mode', () => {
-    cy.findByRole('button', { name: /default/i }).click()
-    cy.findByRole('button', { name: /typealong/i }).click()
-    cy.findByRole('button', { name: /default/i }).click()
   })
 
   it('shows live wpm on start', () => {

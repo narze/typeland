@@ -70,7 +70,7 @@ exports[`renders single word with caret 1`] = `
 </DocumentFragment>
 `;
 
-exports[`renders template character on wrong typing in typealong mode 1`] = `
+exports[`renders template character on wrong typing 1`] = `
 <DocumentFragment>
   .emotion-6 {
   position: relative;
@@ -99,16 +99,16 @@ exports[`renders template character on wrong typing in typealong mode 1`] = `
   color: rgba(5,122,85,var(--text-opacity));
 }
 
-.emotion-2 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
 .emotion-5 {
   --text-opacity: 1;
   color: #d2d6dc;
   color: rgba(210,214,220,var(--text-opacity));
+}
+
+.emotion-2 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
 }
 
 <span
@@ -152,7 +152,7 @@ exports[`renders template character on wrong typing in typealong mode 1`] = `
 </DocumentFragment>
 `;
 
-exports[`renders template character on wrong typing in typealong mode 2`] = `
+exports[`renders template character on wrong typing 2`] = `
 <DocumentFragment>
   .emotion-8 {
   position: relative;
@@ -235,76 +235,6 @@ exports[`renders template character on wrong typing in typealong mode 2`] = `
       data-testid="wrong"
     >
       x
-    </span>
-  </span>
-</DocumentFragment>
-`;
-
-exports[`renders user character on wrong typing in default mode 1`] = `
-<DocumentFragment>
-  .emotion-5 {
-  position: relative;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-.emotion-0 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
-  left: 1px;
-  top: 0px;
-}
-
-.emotion-1 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-2 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-<span
-    class="emotion-5"
-  >
-    <span
-      class="emotion-0"
-      data-testid="caret"
-    />
-    <span
-      class="correct emotion-1"
-      data-testid="correct"
-    >
-      w
-    </span>
-    <span
-      class="wrong emotion-2"
-      data-testid="wrong"
-    >
-      w
-    </span>
-    <span
-      class="wrong emotion-2"
-      data-testid="wrong"
-    >
-      w
-    </span>
-    <span
-      class="wrong emotion-2"
-      data-testid="wrong"
-    >
-      w
     </span>
   </span>
 </DocumentFragment>
