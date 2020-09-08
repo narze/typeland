@@ -248,6 +248,7 @@ exports[`typealong mode renders mid-word correctly 1`] = `
 
 <div
     class="emotion-30"
+    data-testid="text"
   >
     <span
       class="emotion-28"
@@ -484,6 +485,7 @@ exports[`typealong mode renders template & user area combined 1`] = `
 
 <div
     class="emotion-24"
+    data-testid="text"
   >
     <span
       class="emotion-22"
