@@ -11,7 +11,7 @@ describe('index', () => {
 
   it('renders home page', () => {
     cy.findAllByText(/Typeland/i).should('exist')
-    cy.findByText(/the quick brown fox/i).should('exist')
+    cy.findByTestId('text').contains(/the quick brown fox/i)
     cy.findByText(/GitHub/i)
       .should('have.prop', 'href')
       .and('equal', 'https://github.com/narze/typeland')

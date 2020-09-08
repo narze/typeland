@@ -2,7 +2,7 @@
 
 exports[`Home page can delete typed text with backspace 1`] = `
 <DocumentFragment>
-  .emotion-16 {
+  .emotion-17 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -19,7 +19,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
   justify-content: center;
 }
 
-.emotion-13 {
+.emotion-14 {
   max-width: 50%;
   min-width: 640px;
 }
@@ -42,13 +42,13 @@ exports[`Home page can delete typed text with backspace 1`] = `
   text-decoration: underline;
 }
 
-.emotion-9 {
+.emotion-10 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-3 {
+.emotion-8 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   overflow-wrap: break-word;
@@ -60,7 +60,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
   word-break: normal;
 }
 
-.emotion-4 {
+.emotion-3 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -75,33 +75,39 @@ exports[`Home page can delete typed text with backspace 1`] = `
   top: 0px;
 }
 
-.emotion-12 {
+.emotion-13 {
   height: 0;
   width: 0;
 }
 
-.emotion-15 {
+.emotion-16 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
   text-align: center;
 }
 
-.emotion-5 {
+.emotion-6 {
+  --text-opacity: 1;
+  color: #d2d6dc;
+  color: rgba(210,214,220,var(--text-opacity));
+}
+
+.emotion-4 {
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
 }
 
-.emotion-10 {
+.emotion-11 {
   font-size: 1rem;
 }
 
 <div
-    class="emotion-16"
+    class="emotion-17"
   >
     <main
-      class="emotion-13"
+      class="emotion-14"
     >
       <h1
         class="emotion-2"
@@ -114,61 +120,67 @@ exports[`Home page can delete typed text with backspace 1`] = `
           <button
             class="emotion-0"
           >
-            default
+            typealong
           </button>
           ]
         </span>
       </h1>
       <div
-        class="emotion-9"
+        class="emotion-10"
       >
-        <p
-          class="emotion-3"
-          data-testid="template"
-        >
-          the quick brown fox jumps over the lazy dog
-        </p>
-        <p
-          class="emotion-3"
+        <span
+          class="emotion-8"
           data-testid="user"
         >
           <span
             class="emotion-7"
           >
             <span
-              class="emotion-4"
+              class="emotion-3"
               data-testid="caret"
             />
             <span
-              class="correct emotion-5"
+              class="correct emotion-4"
               data-testid="correct"
             >
               t
             </span>
             <span
-              class="correct emotion-5"
+              class="correct emotion-4"
               data-testid="correct"
             >
               h
+            </span>
+            <span
+              class="pending emotion-6"
+              data-testid="pending"
+            >
+              e
             </span>
           </span>
           <span>
              
           </span>
-        </p>
+        </span>
+        <span
+          class="emotion-8"
+          data-testid="template"
+        >
+          quick brown fox jumps over the lazy dog
+        </span>
       </div>
       <div
-        class="emotion-10"
+        class="emotion-11"
       >
         0 wpm
       </div>
       <div
-        class="emotion-10"
+        class="emotion-11"
       >
         Stats (correct/wrong/total) : 0/0/0
       </div>
       <input
-        class="emotion-12"
+        class="emotion-13"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -176,7 +188,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
       />
     </main>
     <div
-      class="emotion-15"
+      class="emotion-16"
     >
       <a
         class="emotion-1"
@@ -239,19 +251,19 @@ exports[`Home page highlights text which is typed 1`] = `
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-3 {
+.emotion-8 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   overflow-wrap: break-word;
 }
 
-.emotion-8 {
+.emotion-7 {
   position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
 
-.emotion-4 {
+.emotion-3 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -278,7 +290,7 @@ exports[`Home page highlights text which is typed 1`] = `
   text-align: center;
 }
 
-.emotion-5 {
+.emotion-4 {
   --text-opacity: 1;
   color: #057a55;
   color: rgba(5,122,85,var(--text-opacity));
@@ -288,7 +300,7 @@ exports[`Home page highlights text which is typed 1`] = `
   font-size: 1rem;
 }
 
-.emotion-7 {
+.emotion-6 {
   --text-opacity: 1;
   color: #f98080;
   color: rgba(249,128,128,var(--text-opacity));
@@ -311,7 +323,7 @@ exports[`Home page highlights text which is typed 1`] = `
           <button
             class="emotion-0"
           >
-            default
+            typealong
           </button>
           ]
         </span>
@@ -319,46 +331,46 @@ exports[`Home page highlights text which is typed 1`] = `
       <div
         class="emotion-10"
       >
-        <p
-          class="emotion-3"
-          data-testid="template"
-        >
-          the quick brown fox jumps over the lazy dog
-        </p>
-        <p
-          class="emotion-3"
+        <span
+          class="emotion-8"
           data-testid="user"
         >
           <span
-            class="emotion-8"
+            class="emotion-7"
           >
             <span
-              class="emotion-4"
+              class="emotion-3"
               data-testid="caret"
             />
             <span
-              class="correct emotion-5"
+              class="correct emotion-4"
               data-testid="correct"
             >
               t
             </span>
             <span
-              class="correct emotion-5"
+              class="correct emotion-4"
               data-testid="correct"
             >
               h
             </span>
             <span
-              class="wrong emotion-7"
+              class="wrong emotion-6"
               data-testid="wrong"
             >
-              x
+              e
             </span>
           </span>
           <span>
              
           </span>
-        </p>
+        </span>
+        <span
+          class="emotion-8"
+          data-testid="template"
+        >
+          quick brown fox jumps over the lazy dog
+        </span>
       </div>
       <div
         class="emotion-11"
@@ -396,7 +408,7 @@ exports[`Home page highlights text which is typed 1`] = `
 
 exports[`Home page renders title 1`] = `
 <DocumentFragment>
-  .emotion-12 {
+  .emotion-15 {
   height: 100vh;
   min-width: 100%;
   display: -webkit-box;
@@ -413,7 +425,7 @@ exports[`Home page renders title 1`] = `
   justify-content: center;
 }
 
-.emotion-9 {
+.emotion-12 {
   max-width: 50%;
   min-width: 640px;
 }
@@ -436,25 +448,25 @@ exports[`Home page renders title 1`] = `
   text-decoration: underline;
 }
 
-.emotion-7 {
+.emotion-10 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-3 {
+.emotion-8 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   overflow-wrap: break-word;
 }
 
-.emotion-5 {
+.emotion-7 {
   position: relative;
   overflow-wrap: normal;
   word-break: normal;
 }
 
-.emotion-4 {
+.emotion-3 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -469,23 +481,29 @@ exports[`Home page renders title 1`] = `
   top: 0px;
 }
 
-.emotion-8 {
+.emotion-11 {
   height: 0;
   width: 0;
 }
 
-.emotion-11 {
+.emotion-14 {
   position: fixed;
   bottom: 0;
   padding-bottom: 2rem;
   text-align: center;
 }
 
+.emotion-4 {
+  --text-opacity: 1;
+  color: #d2d6dc;
+  color: rgba(210,214,220,var(--text-opacity));
+}
+
 <div
-    class="emotion-12"
+    class="emotion-15"
   >
     <main
-      class="emotion-9"
+      class="emotion-12"
     >
       <h1
         class="emotion-2"
@@ -498,39 +516,57 @@ exports[`Home page renders title 1`] = `
           <button
             class="emotion-0"
           >
-            default
+            typealong
           </button>
           ]
         </span>
       </h1>
       <div
-        class="emotion-7"
+        class="emotion-10"
       >
-        <p
-          class="emotion-3"
-          data-testid="template"
-        >
-          the quick brown fox jumps over the lazy dog
-        </p>
-        <p
-          class="emotion-3"
+        <span
+          class="emotion-8"
           data-testid="user"
         >
           <span
-            class="emotion-5"
+            class="emotion-7"
           >
             <span
-              class="emotion-4"
+              class="emotion-3"
               data-testid="caret"
             />
+            <span
+              class="pending emotion-4"
+              data-testid="pending"
+            >
+              t
+            </span>
+            <span
+              class="pending emotion-4"
+              data-testid="pending"
+            >
+              h
+            </span>
+            <span
+              class="pending emotion-4"
+              data-testid="pending"
+            >
+              e
+            </span>
           </span>
           <span>
              
           </span>
-        </p>
+        </span>
+        <span
+          class="emotion-8"
+          data-testid="template"
+        >
+          quick brown fox jumps over the lazy dog
+        </span>
       </div>
       <input
-        class="emotion-8"
+        class="emotion-11"
         data-testid="typingInput"
         id="typingInput"
         tabindex="0"
@@ -538,7 +574,7 @@ exports[`Home page renders title 1`] = `
       />
     </main>
     <div
-      class="emotion-11"
+      class="emotion-14"
     >
       <a
         class="emotion-1"
