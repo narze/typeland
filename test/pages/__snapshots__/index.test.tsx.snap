@@ -127,6 +127,7 @@ exports[`Home page can delete typed text with backspace 1`] = `
       </h1>
       <div
         class="emotion-10"
+        data-testid="text"
       >
         <span
           class="emotion-8"
@@ -330,6 +331,7 @@ exports[`Home page highlights text which is typed 1`] = `
       </h1>
       <div
         class="emotion-10"
+        data-testid="text"
       >
         <span
           class="emotion-8"
@@ -523,6 +525,7 @@ exports[`Home page renders title 1`] = `
       </h1>
       <div
         class="emotion-10"
+        data-testid="text"
       >
         <span
           class="emotion-8"
