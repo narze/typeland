@@ -6,7 +6,7 @@ import React, { useRef, useEffect, useState } from 'react'
 const s = {
   word: tw`
     relative
-    break-normal
+    mr-1
   `,
   correct: tw`
     text-green-600
@@ -26,8 +26,6 @@ const s = {
     css`
       transition: all 0.1s ease-out;
       width: 2px;
-      margin-left: -1px;
-      margin-right: -1px;
     `,
   ],
 }
@@ -42,8 +40,8 @@ export const Word: React.FC<WordProps> = React.memo(
   ({ template, userInput, showCaret }) => {
     const lastInputEl = useRef(null)
     const [caretPos, setCaretPos] = useState({
-      left: 0,
-      top: 0,
+      left: -1,
+      top: 4,
     })
 
     const caretPosCss = () => {
@@ -55,25 +53,26 @@ export const Word: React.FC<WordProps> = React.memo(
 
     useEffect(() => {
       if (!lastInputEl.current) {
-        setCaretPos({
-          left: 0,
-          top: 0,
+        setCaretPos((prev) => {
+          return {
+            ...prev,
+            left: 0,
+          }
         })
         return
       }
 
-      setCaretPos({
-        left: lastInputEl.current.offsetLeft + lastInputEl.current.offsetWidth,
-        top: lastInputEl.current.offsetTop,
+      setCaretPos((prev) => {
+        return {
+          ...prev,
+          left:
+            lastInputEl.current.offsetLeft + lastInputEl.current.offsetWidth,
+        }
       })
     }, [userInput.length])
 
     return (
-      <span css={s.word}>
-        {showCaret && (
-          <span css={[s.caret, caretPosCss()]} data-testid="caret"></span>
-        )}
-
+      <span css={s.word} data-testid="word">
         {Array.from(
           Array(Math.max(template.length, userInput.length)).keys()
         ).map((i) => {
@@ -129,6 +128,10 @@ export const Word: React.FC<WordProps> = React.memo(
 
           return <React.Fragment key={i}>{charElement}</React.Fragment>
         })}
+
+        {showCaret && (
+          <span css={[s.caret, caretPosCss()]} data-testid="caret"></span>
+        )}
       </span>
     )
   }

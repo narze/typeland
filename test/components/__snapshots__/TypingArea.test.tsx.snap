@@ -2,22 +2,28 @@
 
 exports[`renders mid-word correctly 1`] = `
 <DocumentFragment>
-  .emotion-30 {
+  .emotion-33 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-28 {
+.emotion-32 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  overflow-wrap: break-word;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .emotion-3 {
   position: relative;
-  overflow-wrap: normal;
-  word-break: normal;
+  margin-right: 0.25rem;
 }
 
 .emotion-0 {
@@ -26,7 +32,17 @@ exports[`renders mid-word correctly 1`] = `
   color: rgba(5,122,85,var(--text-opacity));
 }
 
-.emotion-21 {
+.emotion-16 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+.emotion-28 {
+  margin-right: 0.25rem;
+}
+
+.emotion-26 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -35,34 +51,26 @@ exports[`renders mid-word correctly 1`] = `
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
   width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
   left: 1px;
-  top: 0px;
+  top: 4px;
 }
 
-.emotion-16 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-.emotion-25 {
+.emotion-24 {
   --text-opacity: 1;
   color: #d2d6dc;
   color: rgba(210,214,220,var(--text-opacity));
 }
 
 <div
-    class="emotion-30"
+    class="emotion-33"
     data-testid="text"
   >
-    <span
-      class="emotion-28"
-      data-testid="user"
+    <div
+      class="emotion-32"
     >
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="correct emotion-0"
@@ -83,11 +91,9 @@ exports[`renders mid-word correctly 1`] = `
           e
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="correct emotion-0"
@@ -120,11 +126,9 @@ exports[`renders mid-word correctly 1`] = `
           k
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="correct emotion-0"
@@ -157,11 +161,9 @@ exports[`renders mid-word correctly 1`] = `
           n
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="wrong emotion-16"
@@ -188,16 +190,10 @@ exports[`renders mid-word correctly 1`] = `
           e
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
-        <span
-          class="emotion-21"
-          data-testid="caret"
-        />
         <span
           class="correct emotion-0"
           data-testid="correct"
@@ -217,250 +213,75 @@ exports[`renders mid-word correctly 1`] = `
           m
         </span>
         <span
-          class="pending emotion-25"
+          class="pending emotion-24"
           data-testid="pending"
         >
           p
         </span>
         <span
-          class="pending emotion-25"
+          class="pending emotion-24"
           data-testid="pending"
         >
           s
         </span>
-      </span>
-      <span>
-         
-      </span>
-    </span>
-    <span
-      class="emotion-28"
-      data-testid="template"
-    >
-      over the lazy dog
-    </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`renders template & user area combined 1`] = `
-<DocumentFragment>
-  .emotion-24 {
-  font-size: 1.25rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-22 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-  overflow-wrap: break-word;
-}
-
-.emotion-3 {
-  position: relative;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-.emotion-0 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-16 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
-  left: 1px;
-  top: 0px;
-}
-
-.emotion-17 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-<div
-    class="emotion-24"
-    data-testid="text"
-  >
-    <span
-      class="emotion-22"
-      data-testid="user"
-    >
-      <span
-        class="emotion-3"
-      >
         <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          t
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          h
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          e
-        </span>
-      </span>
-      <span>
-         
-      </span>
-      <span
-        class="emotion-3"
-      >
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          q
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          u
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          i
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          c
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          k
-        </span>
-      </span>
-      <span>
-         
-      </span>
-      <span
-        class="emotion-3"
-      >
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          b
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          r
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          o
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          w
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          n
-        </span>
-      </span>
-      <span>
-         
-      </span>
-      <span
-        class="emotion-3"
-      >
-        <span
-          class="emotion-16"
+          class="emotion-26"
           data-testid="caret"
         />
-        <span
-          class="wrong emotion-17"
-          data-testid="wrong"
-        >
-          f
-        </span>
-        <span
-          class="correct emotion-0"
-          data-testid="correct"
-        >
-          o
-        </span>
-        <span
-          class="wrong emotion-17"
-          data-testid="wrong"
-        >
-          x
-        </span>
-        <span
-          class="wrong emotion-17"
-          data-testid="wrong"
-        >
-          e
-        </span>
       </span>
-      <span>
-         
+      <span
+        class="emotion-28"
+        data-testid="remainingWord"
+      >
+        over
       </span>
-    </span>
-    <span
-      class="emotion-22"
-      data-testid="template"
-    >
-      jumps over the lazy dog
-    </span>
+      <span
+        class="emotion-28"
+        data-testid="remainingWord"
+      >
+        the
+      </span>
+      <span
+        class="emotion-28"
+        data-testid="remainingWord"
+      >
+        lazy
+      </span>
+      <span
+        class="emotion-28"
+        data-testid="remainingWord"
+      >
+        dog
+      </span>
+    </div>
   </div>
 </DocumentFragment>
 `;
 
 exports[`renders typing area 1`] = `
 <DocumentFragment>
-  .emotion-23 {
+  .emotion-27 {
   font-size: 1.25rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.emotion-21 {
+.emotion-26 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  overflow-wrap: break-word;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .emotion-3 {
   position: relative;
-  overflow-wrap: normal;
-  word-break: normal;
+  margin-right: 0.25rem;
 }
 
 .emotion-0 {
@@ -470,6 +291,16 @@ exports[`renders typing area 1`] = `
 }
 
 .emotion-16 {
+  --text-opacity: 1;
+  color: #f98080;
+  color: rgba(249,128,128,var(--text-opacity));
+}
+
+.emotion-21 {
+  margin-right: 0.25rem;
+}
+
+.emotion-19 {
   --bg-opacity: 1;
   position: absolute;
   height: 1.5rem;
@@ -478,28 +309,20 @@ exports[`renders typing area 1`] = `
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
   width: 2px;
-  margin-left: -1px;
-  margin-right: -1px;
   left: 1px;
-  top: 0px;
-}
-
-.emotion-17 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
+  top: 4px;
 }
 
 <div
-    class="emotion-23"
+    class="emotion-27"
     data-testid="text"
   >
-    <span
-      class="emotion-21"
-      data-testid="user"
+    <div
+      class="emotion-26"
     >
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="correct emotion-0"
@@ -520,11 +343,9 @@ exports[`renders typing area 1`] = `
           e
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="correct emotion-0"
@@ -557,11 +378,9 @@ exports[`renders typing area 1`] = `
           k
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
           class="correct emotion-0"
@@ -594,18 +413,12 @@ exports[`renders typing area 1`] = `
           n
         </span>
       </span>
-      <span>
-         
-      </span>
       <span
         class="emotion-3"
+        data-testid="word"
       >
         <span
-          class="emotion-16"
-          data-testid="caret"
-        />
-        <span
-          class="wrong emotion-17"
+          class="wrong emotion-16"
           data-testid="wrong"
         >
           f
@@ -617,22 +430,47 @@ exports[`renders typing area 1`] = `
           o
         </span>
         <span
-          class="wrong emotion-17"
+          class="wrong emotion-16"
           data-testid="wrong"
         >
           x
         </span>
+        <span
+          class="emotion-19"
+          data-testid="caret"
+        />
       </span>
-      <span>
-         
+      <span
+        class="emotion-21"
+        data-testid="remainingWord"
+      >
+        jumps
       </span>
-    </span>
-    <span
-      class="emotion-21"
-      data-testid="template"
-    >
-      jumps over the lazy dog
-    </span>
+      <span
+        class="emotion-21"
+        data-testid="remainingWord"
+      >
+        over
+      </span>
+      <span
+        class="emotion-21"
+        data-testid="remainingWord"
+      >
+        the
+      </span>
+      <span
+        class="emotion-21"
+        data-testid="remainingWord"
+      >
+        lazy
+      </span>
+      <span
+        class="emotion-21"
+        data-testid="remainingWord"
+      >
+        dog
+      </span>
+    </div>
   </div>
 </DocumentFragment>
 `;

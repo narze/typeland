@@ -48,12 +48,20 @@ describe('Home page', () => {
   })
 
   it('renders text to type', () => {
-    const { getByTestId } = renderWithProvider(<Home />, {})
+    const { getAllByTestId } = renderWithProvider(<Home />, {})
 
-    expect(getByTestId('user')).toHaveTextContent(/the/i)
-    expect(getByTestId('template')).toHaveTextContent(
-      /quick brown fox jumps over the lazy dog/i
-    )
+    expect(getAllByTestId('word').map((e) => e.textContent)).toEqual(['the'])
+
+    expect(getAllByTestId('remainingWord').map((e) => e.textContent)).toEqual([
+      'quick',
+      'brown',
+      'fox',
+      'jumps',
+      'over',
+      'the',
+      'lazy',
+      'dog',
+    ])
   })
 
   it('highlights text which is typed', () => {

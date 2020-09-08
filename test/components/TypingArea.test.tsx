@@ -33,12 +33,25 @@ it('renders typing area', () => {
     showCaret: true,
   }
 
-  const { asFragment, getByTestId } = renderWithProvider(
+  const { asFragment, getAllByTestId } = renderWithProvider(
     <TypingArea {...props} />,
     {}
   )
-  expect(getByTestId('user')).toHaveTextContent('the quick brown fox')
-  expect(getByTestId('template')).toHaveTextContent('jumps over the lazy dog')
+
+  expect(getAllByTestId('word').map((e) => e.textContent)).toEqual([
+    'the',
+    'quick',
+    'brown',
+    'fox',
+  ])
+
+  expect(getAllByTestId('remainingWord').map((e) => e.textContent)).toEqual([
+    'jumps',
+    'over',
+    'the',
+    'lazy',
+    'dog',
+  ])
 
   expect(asFragment()).toMatchSnapshot()
 })
@@ -50,14 +63,22 @@ it('renders template & user area combined', () => {
     showCaret: true,
   }
 
-  const { asFragment, getByTestId } = renderWithProvider(
-    <TypingArea {...props} />,
-    {}
-  )
-  expect(getByTestId('user')).toHaveTextContent('the quick brown foxe')
-  expect(getByTestId('template')).toHaveTextContent('jumps over the lazy dog')
+  const { getAllByTestId } = renderWithProvider(<TypingArea {...props} />, {})
 
-  expect(asFragment()).toMatchSnapshot()
+  expect(getAllByTestId('word').map((e) => e.textContent)).toEqual([
+    'the',
+    'quick',
+    'brown',
+    'foxe',
+  ])
+
+  expect(getAllByTestId('remainingWord').map((e) => e.textContent)).toEqual([
+    'jumps',
+    'over',
+    'the',
+    'lazy',
+    'dog',
+  ])
 })
 
 it('renders mid-word correctly', () => {
@@ -67,12 +88,25 @@ it('renders mid-word correctly', () => {
     showCaret: true,
   }
 
-  const { asFragment, getByTestId } = renderWithProvider(
+  const { asFragment, getAllByTestId } = renderWithProvider(
     <TypingArea {...props} />,
     {}
   )
-  expect(getByTestId('user')).toHaveTextContent('the quick brown foxe jumps')
-  expect(getByTestId('template')).toHaveTextContent('over the lazy dog')
+
+  expect(getAllByTestId('word').map((e) => e.textContent)).toEqual([
+    'the',
+    'quick',
+    'brown',
+    'foxe',
+    'jumps',
+  ])
+
+  expect(getAllByTestId('remainingWord').map((e) => e.textContent)).toEqual([
+    'over',
+    'the',
+    'lazy',
+    'dog',
+  ])
 
   expect(asFragment()).toMatchSnapshot()
 })
