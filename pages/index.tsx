@@ -76,7 +76,7 @@ export const Home = (): JSX.Element => {
   const [liveWpm, setLiveWpm] = useState(0)
   const [elapsedMs, setElapsedMs] = useState(0)
   const [promptRestart, setPromptRestart] = useState(false)
-  const [currentMode, setCurrentMode] = useState('default')
+  const [currentMode, setCurrentMode] = useState('typealong')
   const { stats, dispatch } = useContext(StatsContext)
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000

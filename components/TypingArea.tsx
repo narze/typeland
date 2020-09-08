@@ -56,7 +56,7 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
       const remainingWords = words.slice(userWords.length)
 
       return (
-        <div css={s.typingArea}>
+        <div css={s.typingArea} data-testid="text">
           <span css={s.user} data-testid="user">
             {userWords.map((text, i) => {
               return (

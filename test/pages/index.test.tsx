@@ -48,9 +48,12 @@ describe('Home page', () => {
   })
 
   it('renders text to type', () => {
-    const { getByText } = renderWithProvider(<Home />, {})
+    const { getByTestId } = renderWithProvider(<Home />, {})
 
-    getByText(/the quick brown fox jumps over the lazy dog/i)
+    expect(getByTestId('user')).toHaveTextContent(/the/i)
+    expect(getByTestId('template')).toHaveTextContent(
+      /quick brown fox jumps over the lazy dog/i
+    )
   })
 
   it('highlights text which is typed', () => {
@@ -72,7 +75,7 @@ describe('Home page', () => {
 
     expect(getAllByTestId('correct')[0]).toHaveTextContent('t')
     expect(getAllByTestId('correct')[1]).toHaveTextContent('h')
-    expect(getByTestId('wrong')).toHaveTextContent('x')
+    expect(getByTestId('wrong')).toHaveTextContent('e')
 
     expect(asFragment()).toMatchSnapshot()
   })
@@ -97,9 +100,9 @@ describe('Home page', () => {
     userEvent.type(typingInput, '{backspace}')
     expect(getByTestId('correct')).toHaveTextContent('t')
 
-    fireEvent.keyDown(typingInput, { key: 'o' })
+    fireEvent.keyDown(typingInput, { key: 'x' })
     expect(getByTestId('correct')).toHaveTextContent('t')
-    expect(getByTestId('wrong')).toHaveTextContent('o')
+    expect(getByTestId('wrong')).toHaveTextContent('h')
 
     userEvent.type(typingInput, '{backspace}')
     expect(getByTestId('correct')).toHaveTextContent('t')
