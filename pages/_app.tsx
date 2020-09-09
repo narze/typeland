@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import '../styles/base.css'
 import { StatsProvider } from '../contexts/Stats'
+import { ThemeProvider, theme } from '@chakra-ui/core'
 
 export default function MyApp({
   Component,
@@ -16,7 +17,9 @@ export default function MyApp({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StatsProvider>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
       </StatsProvider>
     </>
   )
