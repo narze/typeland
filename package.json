@@ -34,11 +34,15 @@
     ]
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.35",
     "emotion": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "firebase": "^7.19.1",
     "next": "latest",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^6.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
