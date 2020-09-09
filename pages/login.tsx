@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-// import { useEffect, useState, useContext } from 'react'
+import { auth } from '../config/firebase'
+
 import {
   FormControl,
   FormLabel,
@@ -30,22 +31,28 @@ const s = {
     text-blue-600
     antialiased
   `,
-  footer: tw`
-    fixed
-    bottom-0
-    pb-8
-    text-center
-  `,
-  githubLink: tw`
-    text-xs
-  `,
 }
 
 export const Login = (): JSX.Element => {
   const { handleSubmit, errors, register, formState } = useForm()
 
   function onSubmit(values) {
-    alert(values.email)
+    return signUp(values).then((user) => {
+      // eslint-disable-next-line no-console
+      console.log(user)
+    })
+  }
+
+  const signUp = ({ email, password }) => {
+    return auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response)
+      })
+      .catch((error) => {
+        return { error }
+      })
   }
 
   function validateEmail(value) {
@@ -69,7 +76,7 @@ export const Login = (): JSX.Element => {
   return (
     <div css={s.container}>
       <main css={s.main}>
-        <h1 css={s.title}>Login</h1>
+        <h1 css={s.title}>Sign Up</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl isInvalid={errors.email}>
@@ -107,17 +114,6 @@ export const Login = (): JSX.Element => {
           </Button>
         </form>
       </main>
-
-      <div css={s.footer}>
-        <a
-          css={s.githubLink}
-          href="https://github.com/narze/typeland"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </a>
-      </div>
     </div>
   )
 }
