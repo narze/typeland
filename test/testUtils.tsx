@@ -1,18 +1,9 @@
 import { render, RenderResult } from '@testing-library/react'
 import { ReactElement } from 'react'
-// import { ThemeProvider } from "my-ui-lib"
-// import { TranslationProvider } from "my-i18n-lib"
-// import defaultStrings from "i18n/en-x-default"
+import { ThemeProvider, theme } from '@chakra-ui/core'
 
 const Providers = ({ children }) => {
-  return children
-  // return (
-  //   <ThemeProvider theme="light">
-  //     <TranslationProvider messages={defaultStrings}>
-  //       {children}
-  //     </TranslationProvider>
-  //   </ThemeProvider>
-  // )
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 
 const customRender = (ui: ReactElement, options = {}): RenderResult =>
