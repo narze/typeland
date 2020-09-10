@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import '../styles/base.css'
+import { AuthProvider } from '../contexts/Auth'
 import { StatsProvider } from '../contexts/Stats'
 import { ThemeProvider, theme } from '@chakra-ui/core'
 
@@ -16,11 +17,13 @@ export default function MyApp({
         <title>Typeland</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <StatsProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </StatsProvider>
+      <AuthProvider>
+        <StatsProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </StatsProvider>
+      </AuthProvider>
     </>
   )
 }
