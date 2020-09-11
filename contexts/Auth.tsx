@@ -2,10 +2,12 @@ import React, { useEffect, useReducer } from 'react'
 import { auth as firebaseAuth } from '../config/firebase'
 import firebase from 'firebase'
 
+interface AuthState {
+  user: firebase.User | null
+}
+
 interface AuthContextProps {
-  state: {
-    user: firebase.User | null
-  }
+  state: AuthState
   dispatch: React.Dispatch<any>
 }
 
@@ -14,11 +16,13 @@ interface AuthProviderProps {
   value?: AuthContextProps
 }
 
-const defaultAuth = {
+const defaultAuth: AuthState = {
   user: null,
 }
 
-const reducer = (state, action) => {
+type Action = { type: 'setUser'; user: firebase.User } | { type: 'unsetUser' }
+
+export const reducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
     case 'setUser':
       return {
@@ -41,7 +45,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   children,
   value,
 }) => {
-  const [state, dispatch] = useReducer(reducer, value || defaultAuth)
+  const [state, dispatch] = useReducer(reducer, value.state || defaultAuth)
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => {
@@ -54,7 +58,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
       } else {
         //The user is logged out
         dispatch({
-          type: 'uesetUser',
+          type: 'unsetUser',
         })
       }
     })
