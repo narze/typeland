@@ -3,6 +3,7 @@ import '../styles/base.css'
 import { AuthProvider } from '../contexts/Auth'
 import { StatsProvider } from '../contexts/Stats'
 import { ThemeProvider, theme } from '@chakra-ui/core'
+import React from 'react'
 
 export default function MyApp({
   Component,
@@ -12,7 +13,7 @@ export default function MyApp({
   pageProps: any
 }): JSX.Element {
   return (
-    <>
+    <React.StrictMode>
       <Head>
         <title>Typeland</title>
         <link rel="icon" href="/favicon.ico" />
@@ -24,6 +25,6 @@ export default function MyApp({
           </ThemeProvider>
         </StatsProvider>
       </AuthProvider>
-    </>
+    </React.StrictMode>
   )
 }
