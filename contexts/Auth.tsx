@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import { auth as firebaseAuth } from '../config/firebase'
 import firebase from 'firebase'
 
@@ -13,7 +13,7 @@ interface AuthContextProps {
 
 interface AuthProviderProps {
   children: React.ReactNode
-  value?: AuthContextProps
+  initialState?: AuthState
 }
 
 const defaultAuth: AuthState = {
@@ -43,11 +43,19 @@ export const reducer = (state: AuthState, action: Action): AuthState => {
 
 export const AuthContext = React.createContext({} as AuthContextProps)
 
+AuthContext.displayName = 'Auth'
+
+export const useAuth = (): [AuthState, React.Dispatch<any>] => {
+  const { state, dispatch } = useContext(AuthContext)
+
+  return [state, dispatch]
+}
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({
   children,
-  value,
+  initialState = defaultAuth,
 }) => {
-  const [state, dispatch] = useReducer(reducer, value.state || defaultAuth)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => {

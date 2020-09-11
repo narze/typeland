@@ -11,7 +11,7 @@ const mockedRandomWords = randomWords as jest.Mock<Array<string>>
 
 const providerValue = {
   dispatch: jest.fn(),
-  stats: {
+  state: {
     correct: 0,
     wrong: 0,
     total: 0,
