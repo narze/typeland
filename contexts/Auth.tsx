@@ -20,7 +20,9 @@ const defaultAuth: AuthState = {
   user: null,
 }
 
-type Action = { type: 'setUser'; user: firebase.User } | { type: 'unsetUser' }
+export type Action =
+  | { type: 'setUser'; user: firebase.User }
+  | { type: 'unsetUser' }
 
 export const reducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
