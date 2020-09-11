@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { auth as firebaseAuth } from '../config/firebase'
-import { AuthContext } from '@/contexts/Auth'
+import { useAuth } from '@/contexts/Auth'
 
 import {
   FormControl,
@@ -12,7 +12,7 @@ import {
   Button,
 } from '@chakra-ui/core'
 import { useForm } from 'react-hook-form'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 
 const s = {
   container: tw`
@@ -37,8 +37,7 @@ const s = {
 
 export const Login = (): JSX.Element => {
   const { handleSubmit, errors, register, formState } = useForm()
-  const { state, dispatch } = useContext(AuthContext)
-  const { user } = state
+  const [auth, authDispatch] = useAuth()
   const [signupForm, setSignupForm] = useState(false)
 
   const signUp = ({ email, password }) => {
@@ -77,18 +76,18 @@ export const Login = (): JSX.Element => {
     return error || true
   }
 
-  if (user) {
+  if (auth.user) {
     return (
       <div css={s.container}>
         <main css={s.main}>
           <h1 css={s.title}>Logged In</h1>
 
-          <p>You are logged in as {user.email}</p>
+          <p>You are logged in as {auth.user.email}</p>
 
           <Button
             mt={4}
             variantColor="teal"
-            onClick={() => dispatch({ type: 'unsetUser' })}
+            onClick={() => authDispatch({ type: 'unsetUser' })}
           >
             Logout
           </Button>

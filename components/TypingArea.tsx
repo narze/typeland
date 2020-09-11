@@ -2,8 +2,8 @@
 import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { Word } from './Word'
-import React, { useContext, useEffect } from 'react'
-import { StatsContext } from '../contexts/Stats'
+import React, { useEffect } from 'react'
+import { useStats } from '../contexts/Stats'
 
 const s = {
   typingArea: tw`
@@ -29,7 +29,7 @@ export interface TypingAreaProps {
 
 export const TypingArea: React.FC<TypingAreaProps> = React.memo(
   ({ words, userWords, showCaret, finished }) => {
-    const { stats, dispatch } = useContext(StatsContext)
+    const [stats, dispatch] = useStats()
 
     useEffect(() => {
       const offset = stats.total

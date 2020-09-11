@@ -5,7 +5,7 @@ import { StatsContext } from '../../contexts/Stats'
 
 const providerValue = {
   dispatch: jest.fn(),
-  stats: {
+  state: {
     correct: 0,
     wrong: 0,
     total: 0,
@@ -145,7 +145,7 @@ it('exports stats via StatsContext', () => {
     providerProps: {
       value: {
         ...providerValue,
-        stats: { ...providerValue.stats, total: 5 },
+        state: { ...providerValue.state, total: 5 },
       },
     },
   })

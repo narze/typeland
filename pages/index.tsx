@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import { TypingArea } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
-import { StatsContext } from '../contexts/Stats'
+import { useStats } from '../contexts/Stats'
 
 const s = {
   container: tw`
@@ -76,7 +76,7 @@ export const Home = (): JSX.Element => {
   const [liveWpm, setLiveWpm] = useState(0)
   const [elapsedMs, setElapsedMs] = useState(0)
   const [promptRestart, setPromptRestart] = useState(false)
-  const { stats, dispatch } = useContext(StatsContext)
+  const [stats, dispatch] = useStats()
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
 

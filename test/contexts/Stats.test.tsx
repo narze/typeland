@@ -1,6 +1,38 @@
 import React from 'react'
 import { render } from '../testUtils'
-import { StatsContext, StatsProvider } from '@/contexts/Stats'
+import { StatsContext, StatsProvider, reducer, Action } from '@/contexts/Stats'
+
+describe('reducer', () => {
+  const state = {
+    correct: 1,
+    wrong: 2,
+    total: 3,
+  }
+
+  it('incrementCorrect increments correct & total', () => {
+    const action: Action = {
+      type: 'incrementCorrect',
+    }
+
+    expect(reducer(state, action)).toEqual({ correct: 2, wrong: 2, total: 4 })
+  })
+
+  it('incrementWrong increments wrong & total', () => {
+    const action: Action = {
+      type: 'incrementWrong',
+    }
+
+    expect(reducer(state, action)).toEqual({ correct: 1, wrong: 3, total: 4 })
+  })
+
+  it('reset clears all values to 0', () => {
+    const action: Action = {
+      type: 'reset',
+    }
+
+    expect(reducer(state, action)).toEqual({ correct: 0, wrong: 0, total: 0 })
+  })
+})
 
 const renderWithProvider = (
   ui,
@@ -12,95 +44,24 @@ const renderWithProvider = (
   )
 }
 
-test('renders without props', () => {
-  const { getByText } = renderWithProvider(
-    <StatsContext.Consumer>
-      {({ stats: { correct, wrong, total } }) => (
-        <>
-          <span>correct: {correct}</span>
-          <span>wrong: {wrong}</span>
-          <span>total: {total}</span>
-        </>
-      )}
-    </StatsContext.Consumer>
-  )
-
-  expect(getByText(/^correct:/).textContent).toBe('correct: 0')
-  expect(getByText(/^wrong:/).textContent).toBe('wrong: 0')
-  expect(getByText(/^total:/).textContent).toBe('total: 0')
-})
-
-test('renders with props', () => {
+it('expose props', () => {
   const providerProps = {
-    value: {
+    initialState: {
       correct: 1,
       wrong: 2,
       total: 3,
     },
   }
 
-  const { getByText } = renderWithProvider(
+  renderWithProvider(
     <StatsContext.Consumer>
-      {({ stats: { correct, wrong, total } }) => (
-        <>
-          <span>correct: {correct}</span>
-          <span>wrong: {wrong}</span>
-          <span>total: {total}</span>
-        </>
-      )}
+      {({ state: { correct, wrong, total } }) => {
+        expect(correct).toBe(1)
+        expect(wrong).toBe(2)
+        expect(total).toBe(3)
+        return <></>
+      }}
     </StatsContext.Consumer>,
     { providerProps }
   )
-
-  expect(getByText(/^correct:/).textContent).toBe('correct: 1')
-  expect(getByText(/^wrong:/).textContent).toBe('wrong: 2')
-  expect(getByText(/^total:/).textContent).toBe('total: 3')
-})
-
-test('can increment count & reset', () => {
-  const providerProps = {
-    value: {
-      correct: 1,
-      wrong: 2,
-      total: 3,
-    },
-  }
-
-  const { getByText } = renderWithProvider(
-    <StatsContext.Consumer>
-      {({ stats: { correct, wrong, total }, dispatch }) => (
-        <>
-          <span>correct: {correct}</span>
-          <span>wrong: {wrong}</span>
-          <span>total: {total}</span>
-          <button onClick={() => dispatch({ type: 'incrementCorrect' })}>
-            Increment Correct
-          </button>
-          <button onClick={() => dispatch({ type: 'incrementWrong' })}>
-            Increment Wrong
-          </button>
-          <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-        </>
-      )}
-    </StatsContext.Consumer>,
-    { providerProps }
-  )
-
-  expect(getByText(/^correct:/).textContent).toBe('correct: 1')
-  expect(getByText(/^total:/).textContent).toBe('total: 3')
-
-  getByText(/Increment Correct/).click()
-  expect(getByText(/^correct:/).textContent).toBe('correct: 2')
-  expect(getByText(/^wrong:/).textContent).toBe('wrong: 2')
-  expect(getByText(/^total:/).textContent).toBe('total: 4')
-
-  getByText(/Increment Wrong/).click()
-  expect(getByText(/^correct:/).textContent).toBe('correct: 2')
-  expect(getByText(/^wrong:/).textContent).toBe('wrong: 3')
-  expect(getByText(/^total:/).textContent).toBe('total: 5')
-
-  getByText(/Reset/).click()
-  expect(getByText(/^correct:/).textContent).toBe('correct: 0')
-  expect(getByText(/^wrong:/).textContent).toBe('wrong: 0')
-  expect(getByText(/^total:/).textContent).toBe('total: 0')
 })
