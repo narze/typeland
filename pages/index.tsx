@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react'
 import { TypingArea } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
 import { useStats } from '../contexts/Stats'
+import { useAuth } from '@/contexts/Auth'
+import Link from 'next/link'
+import { auth as firebaseAuth } from '../config/firebase'
 
 const s = {
   container: tw`
@@ -34,6 +37,13 @@ const s = {
     bottom-0
     pb-8
     text-center
+  `,
+  header: tw`
+    fixed
+    top-0
+    right-8
+    pt-4
+    text-right
   `,
   githubLink: tw`
     text-xs
@@ -77,6 +87,8 @@ export const Home = (): JSX.Element => {
   const [elapsedMs, setElapsedMs] = useState(0)
   const [promptRestart, setPromptRestart] = useState(false)
   const [stats, dispatch] = useStats()
+  const [auth] = useAuth()
+
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
 
@@ -228,6 +240,22 @@ export const Home = (): JSX.Element => {
       css={s.container}
       onClick={() => document.getElementById('typingInput').focus()}
     >
+      <div css={s.header}>
+        {auth.user ? (
+          <>
+            <span>{auth.user.email}</span>
+            <button
+              css={tw`ml-4 cursor-pointer`}
+              onClick={() => firebaseAuth.signOut()}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link href="/login">Login</Link>
+        )}
+      </div>
+
       <main css={s.main}>
         <h1 css={s.title}>Typeland</h1>
 

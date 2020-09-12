@@ -3,6 +3,7 @@ import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { auth as firebaseAuth } from '../config/firebase'
 import { useAuth } from '@/contexts/Auth'
+import { useRouter } from 'next/router'
 
 import {
   FormControl,
@@ -12,7 +13,7 @@ import {
   Button,
 } from '@chakra-ui/core'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const s = {
   container: tw`
@@ -28,6 +29,13 @@ const s = {
       min-width: 640px;
     `,
   ],
+  header: tw`
+    fixed
+    top-0
+    right-8
+    pt-4
+    text-right
+  `,
   title: tw`
     text-4xl
     text-blue-600
@@ -37,8 +45,9 @@ const s = {
 
 export const Login = (): JSX.Element => {
   const { handleSubmit, errors, register, formState } = useForm()
-  const [auth, authDispatch] = useAuth()
+  const [auth] = useAuth()
   const [signupForm, setSignupForm] = useState(false)
+  const router = useRouter()
 
   const signUp = ({ email, password }) => {
     return firebaseAuth
@@ -76,29 +85,21 @@ export const Login = (): JSX.Element => {
     return error || true
   }
 
-  if (auth.user) {
-    return (
-      <div css={s.container}>
-        <main css={s.main}>
-          <h1 css={s.title}>Logged In</h1>
-
-          <p>You are logged in as {auth.user.email}</p>
-
-          <Button
-            mt={4}
-            variantColor="teal"
-            onClick={() => authDispatch({ type: 'unsetUser' })}
-          >
-            Logout
-          </Button>
-        </main>
-      </div>
-    )
-  }
+  useEffect(() => {
+    if (auth.user) {
+      router.push('/')
+    }
+  }, [auth])
 
   if (signupForm) {
     return (
       <div css={s.container}>
+        <div css={s.header}>
+          <button css={tw`ml-4 cursor-pointer`} onClick={() => router.back()}>
+            Back
+          </button>
+        </div>
+
         <main css={s.main}>
           <h1 css={s.title}>Sign Up</h1>
 
@@ -153,6 +154,12 @@ export const Login = (): JSX.Element => {
 
   return (
     <div css={s.container}>
+      <div css={s.header}>
+        <button css={tw`ml-4 cursor-pointer`} onClick={() => router.back()}>
+          Back
+        </button>
+      </div>
+
       <main css={s.main}>
         <h1 css={s.title}>Login</h1>
 
