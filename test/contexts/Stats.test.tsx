@@ -1,6 +1,11 @@
 import React from 'react'
 import { render } from '../testUtils'
-import { StatsContext, StatsProvider, reducer, Action } from '@/contexts/Stats'
+import {
+  StatsStateConsumer,
+  StatsProvider,
+  reducer,
+  Action,
+} from '@/contexts/Stats'
 
 describe('reducer', () => {
   const state = {
@@ -54,14 +59,14 @@ it('expose props', () => {
   }
 
   renderWithProvider(
-    <StatsContext.Consumer>
-      {({ state: { correct, wrong, total } }) => {
+    <StatsStateConsumer>
+      {({ correct, wrong, total }) => {
         expect(correct).toBe(1)
         expect(wrong).toBe(2)
         expect(total).toBe(3)
         return <></>
       }}
-    </StatsContext.Consumer>,
+    </StatsStateConsumer>,
     { providerProps }
   )
 })

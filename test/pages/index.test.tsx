@@ -3,31 +3,24 @@ import { render, fireEvent } from '../testUtils'
 import userEvent from '@testing-library/user-event'
 import { Home } from '../../pages/index'
 import { randomWords } from '../../utils/wordsDb'
-import { StatsContext } from '@/contexts/Stats'
+import { StatsProvider } from '@/contexts/Stats'
 
 jest.mock('../../utils/wordsDb')
 
 const mockedRandomWords = randomWords as jest.Mock<Array<string>>
 
 const providerValue = {
-  dispatch: jest.fn(),
-  state: {
-    correct: 0,
-    wrong: 0,
-    total: 0,
-  },
+  correct: 0,
+  wrong: 0,
+  total: 0,
 }
-
-afterEach(() => {
-  providerValue.dispatch.mockClear()
-})
 
 const renderWithProvider = (
   ui,
   { providerProps = { value: providerValue }, ...renderOptions } = {}
 ) => {
   return render(
-    <StatsContext.Provider {...providerProps}>{ui}</StatsContext.Provider>,
+    <StatsProvider {...providerProps}>{ui}</StatsProvider>,
     renderOptions
   )
 }

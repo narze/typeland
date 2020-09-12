@@ -1,27 +1,33 @@
 import React from 'react'
 import { render } from '../testUtils'
 import { TypingArea } from '@/components/TypingArea'
-import { StatsContext } from '../../contexts/Stats'
+import { StatsProvider } from '../../contexts/Stats'
+import * as Stats from '../../contexts/Stats'
 
 const providerValue = {
-  dispatch: jest.fn(),
-  state: {
+  initialState: {
     correct: 0,
     wrong: 0,
     total: 0,
   },
 }
 
+const mockDispatch = jest.fn()
+const mockUseStats = jest
+  .spyOn(Stats, 'useStats')
+  .mockReturnValue([providerValue.initialState, mockDispatch])
+
 afterEach(() => {
-  providerValue.dispatch.mockClear()
+  mockDispatch.mockClear()
+  mockUseStats.mockClear()
 })
 
 const renderWithProvider = (
   ui,
-  { providerProps = { value: providerValue }, ...renderOptions } = {}
+  { providerProps = {}, ...renderOptions } = {}
 ) => {
   return render(
-    <StatsContext.Provider {...providerProps}>{ui}</StatsContext.Provider>,
+    <StatsProvider {...providerProps}>{ui}</StatsProvider>,
     renderOptions
   )
 }
@@ -120,24 +126,25 @@ it('exports stats via StatsContext', () => {
 
   renderWithProvider(<TypingArea {...props} />)
 
-  expect(providerValue.dispatch).toHaveBeenCalledTimes(5)
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(1, {
+  expect(mockDispatch).toHaveBeenCalledTimes(5)
+  expect(mockDispatch).toHaveBeenNthCalledWith(1, {
     type: 'incrementCorrect',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(2, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(2, {
     type: 'incrementCorrect',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(3, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(3, {
     type: 'incrementCorrect',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(4, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(4, {
     type: 'incrementWrong',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(5, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(5, {
     type: 'incrementWrong',
   })
 
-  providerValue.dispatch.mockClear()
+  mockDispatch.mockClear()
+  mockUseStats.mockClear()
 
   props.userWords = 'the quick brown doge jum over a lazy dog'.split(' ')
 
@@ -145,22 +152,22 @@ it('exports stats via StatsContext', () => {
     providerProps: {
       value: {
         ...providerValue,
-        state: { ...providerValue.state, total: 5 },
+        initialState: { ...providerValue.initialState, total: 5 },
       },
     },
   })
 
-  expect(providerValue.dispatch).toHaveBeenCalledTimes(4)
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(1, {
+  expect(mockDispatch).toHaveBeenCalledTimes(5 + 4)
+  expect(mockDispatch).toHaveBeenNthCalledWith(6, {
     type: 'incrementCorrect',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(2, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(7, {
     type: 'incrementWrong',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(3, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(8, {
     type: 'incrementCorrect',
   })
-  expect(providerValue.dispatch).toHaveBeenNthCalledWith(4, {
+  expect(mockDispatch).toHaveBeenNthCalledWith(9, {
     type: 'incrementCorrect',
   })
 })

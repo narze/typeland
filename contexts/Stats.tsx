@@ -1,25 +1,16 @@
 import React, { useContext, useReducer } from 'react'
 
-interface StatsState {
+interface State {
   correct: number
   wrong: number
   total: number
 }
 
-interface StatsContextProps {
-  state: StatsState
-  dispatch: React.Dispatch<any>
-}
+type Dispatch = React.Dispatch<Action>
 
 interface StatsProviderProps {
   children: React.ReactNode
-  initialState?: StatsState
-}
-
-const defaultStats: StatsState = {
-  correct: 0,
-  wrong: 0,
-  total: 0,
+  initialState?: State
 }
 
 export type Action =
@@ -27,7 +18,13 @@ export type Action =
   | { type: 'incrementWrong' }
   | { type: 'reset' }
 
-export const reducer = (state: StatsState, action: Action): StatsState => {
+const defaultState: State = {
+  correct: 0,
+  wrong: 0,
+  total: 0,
+}
+
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'incrementCorrect':
       return {
@@ -42,31 +39,61 @@ export const reducer = (state: StatsState, action: Action): StatsState => {
         total: state.total + 1,
       }
     case 'reset':
-      return { ...defaultStats }
+      return { ...defaultState }
     default:
-      return state
+      throw new Error(`Unhandled action type}`)
   }
 }
 
-export const StatsContext = React.createContext({} as StatsContextProps)
+const StatsStateContext = React.createContext<State | undefined>(undefined)
+const StatsDispatchContext = React.createContext<Dispatch | undefined>(
+  undefined
+)
 
-StatsContext.displayName = 'Stats'
+StatsStateContext.displayName = 'Stats'
 
-export const useStats = (): [StatsState, React.Dispatch<any>] => {
-  const { state, dispatch } = useContext(StatsContext)
+const StatsStateConsumer = StatsStateContext.Consumer
 
-  return [state, dispatch]
+function useStatsState(): State {
+  const context = useContext(StatsStateContext)
+  if (context === undefined) {
+    throw new Error('useStatsState must be used within a StatsProvider')
+  }
+  return context
 }
 
-export const StatsProvider: React.FC<StatsProviderProps> = ({
+function useStatsDispatch(): Dispatch {
+  const context = useContext(StatsDispatchContext)
+  if (context === undefined) {
+    throw new Error('useStatsDispatch must be used within a StatsProvider')
+  }
+  return context
+}
+
+function useStats(): [State, Dispatch] {
+  return [useStatsState(), useStatsDispatch()]
+}
+
+const StatsProvider: React.FC<StatsProviderProps> = ({
   children,
-  initialState = defaultStats,
+  initialState = defaultState,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <StatsContext.Provider value={{ state, dispatch }}>
-      {children}
-    </StatsContext.Provider>
+    <StatsStateContext.Provider value={state}>
+      <StatsDispatchContext.Provider value={dispatch}>
+        {children}
+      </StatsDispatchContext.Provider>
+    </StatsStateContext.Provider>
   )
+}
+
+export {
+  reducer,
+  StatsProvider,
+  StatsStateConsumer,
+  useStats,
+  useStatsDispatch,
+  useStatsState,
 }

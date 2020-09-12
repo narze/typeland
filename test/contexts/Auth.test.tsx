@@ -1,4 +1,9 @@
-import { AuthContext, AuthProvider, reducer, Action } from '@/contexts/Auth'
+import {
+  AuthStateConsumer,
+  AuthProvider,
+  reducer,
+  Action,
+} from '@/contexts/Auth'
 import { render } from '../testUtils'
 import firebase from 'firebase'
 import { auth } from '../../config/firebase'
@@ -61,12 +66,12 @@ it('expose props', () => {
   }
 
   renderWithProvider(
-    <AuthContext.Consumer>
-      {({ state: { user } }) => {
+    <AuthStateConsumer>
+      {({ user }) => {
         expect(user.email).toBe('foo@bar.com')
         return <></>
       }}
-    </AuthContext.Consumer>,
+    </AuthStateConsumer>,
     { providerProps }
   )
 })

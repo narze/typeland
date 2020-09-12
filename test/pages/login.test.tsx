@@ -1,25 +1,17 @@
 import React from 'react'
 import { render, fireEvent } from '../testUtils'
-import { Login } from '../../pages/login'
-import { AuthContext } from '@/contexts/Auth'
+import { mockFirebaseAuth } from '../mockFirebase'
+import { Login } from '@/pages/login'
+import { AuthProvider } from '@/contexts/Auth'
 
-const providerValue = {
-  dispatch: jest.fn(),
-  state: {
-    user: null,
-  },
-}
-
-afterEach(() => {
-  providerValue.dispatch.mockClear()
-})
+mockFirebaseAuth()
 
 const renderWithAuthProvider = (
   ui,
-  { providerProps = { value: providerValue }, ...renderOptions } = {}
+  { providerProps = {}, ...renderOptions } = {}
 ) => {
   return render(
-    <AuthContext.Provider {...providerProps}>{ui}</AuthContext.Provider>,
+    <AuthProvider {...providerProps}>{ui}</AuthProvider>,
     renderOptions
   )
 }
@@ -43,13 +35,13 @@ describe('Login page', () => {
 
   describe('when user is set in state (already logged in)', () => {
     it('renders user email', () => {
-      const user = {
-        email: 'foo@bar.com',
-      }
-      const providerProps = { value: { ...providerValue, state: { user } } }
+      const user = { email: 'foo@bar.com' }
+      const providerProps = { initialState: { user } }
+
       const { asFragment, getByText } = renderWithAuthProvider(<Login />, {
         providerProps,
       })
+
       fireEvent.click(getByText(new RegExp(user.email, 'i')))
 
       expect(asFragment()).toMatchSnapshot()
