@@ -56,6 +56,9 @@ export const Login = (): JSX.Element => {
         // eslint-disable-next-line no-console
         console.log(response)
       })
+      .catch((e) => {
+        alert(e.message)
+      })
   }
 
   const login = ({ email, password }) => {
@@ -64,6 +67,9 @@ export const Login = (): JSX.Element => {
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response)
+      })
+      .catch((e) => {
+        alert(e.message)
       })
   }
 
