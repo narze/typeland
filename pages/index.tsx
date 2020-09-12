@@ -252,7 +252,9 @@ export const Home = (): JSX.Element => {
             </button>
           </>
         ) : (
-          <Link href="/login">Login</Link>
+          <Link href="/login">
+            <a>Login</a>
+          </Link>
         )}
       </div>
 
