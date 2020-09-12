@@ -6,20 +6,6 @@ import {
 } from '@/contexts/Auth'
 import { render } from '../testUtils'
 import firebase from 'firebase'
-import { auth } from '../../config/firebase'
-jest.mock('../../config/firebase')
-
-const mockOnAuthStateChanged = auth.onAuthStateChanged as jest.Mock
-
-mockOnAuthStateChanged
-  .mockImplementation((callback) => callback({ email: 'foo@bar.com' }))
-  .mockReturnValue(() => {
-    return 'Unsubscribed'
-  })
-
-afterEach(() => {
-  mockOnAuthStateChanged.mockClear()
-})
 
 describe('reducer', () => {
   it('setUser sets user', () => {

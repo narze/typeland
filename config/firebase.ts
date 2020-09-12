@@ -21,5 +21,6 @@ const db = firebase.firestore()
 const now = firebase.firestore.Timestamp.now()
 const storage = firebase.storage()
 export { auth, db, now, storage }
+
 // eslint-disable-next-line no-console
 console.log(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(')

@@ -72,6 +72,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-react": "^7.19.0",
+    "firebase-mock": "^2.3.2",
     "husky": "^4.2.3",
     "jest": "^26.4.0",
     "jest-emotion": "^10.0.32",
