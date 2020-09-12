@@ -2,21 +2,18 @@ import React, { useContext, useEffect, useReducer } from 'react'
 import { auth as firebaseAuth } from '../config/firebase'
 import firebase from 'firebase'
 
-interface AuthState {
+interface State {
   user: firebase.User | null
 }
 
-interface AuthContextProps {
-  state: AuthState
-  dispatch: React.Dispatch<any>
-}
+type Dispatch = React.Dispatch<Action>
 
 interface AuthProviderProps {
   children: React.ReactNode
-  initialState?: AuthState
+  initialState?: State
 }
 
-const defaultAuth: AuthState = {
+const defaultState: State = {
   user: null,
 }
 
@@ -24,7 +21,7 @@ export type Action =
   | { type: 'setUser'; user: firebase.User }
   | { type: 'unsetUser' }
 
-export const reducer = (state: AuthState, action: Action): AuthState => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'setUser':
       return {
@@ -41,19 +38,36 @@ export const reducer = (state: AuthState, action: Action): AuthState => {
   }
 }
 
-export const AuthContext = React.createContext({} as AuthContextProps)
+const AuthStateContext = React.createContext<State | undefined>(undefined)
+const AuthDispatchContext = React.createContext<Dispatch | undefined>(undefined)
 
-AuthContext.displayName = 'Auth'
+AuthStateContext.displayName = 'Auth'
 
-export const useAuth = (): [AuthState, React.Dispatch<any>] => {
-  const { state, dispatch } = useContext(AuthContext)
+const AuthStateConsumer = AuthStateContext.Consumer
 
-  return [state, dispatch]
+function useAuthState(): State {
+  const context = useContext(AuthStateContext)
+  if (context === undefined) {
+    throw new Error('useAuthState must be used within a AuthProvider')
+  }
+  return context
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({
+function useAuthDispatch(): Dispatch {
+  const context = useContext(AuthDispatchContext)
+  if (context === undefined) {
+    throw new Error('useAuthDispatch must be used within a AuthProvider')
+  }
+  return context
+}
+
+function useAuth(): [State, Dispatch] {
+  return [useAuthState(), useAuthDispatch()]
+}
+
+const AuthProvider: React.FC<AuthProviderProps> = ({
   children,
-  initialState = defaultAuth,
+  initialState = defaultState,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -79,8 +93,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   }, [])
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthStateContext.Provider value={state}>
+      <AuthDispatchContext.Provider value={dispatch}>
+        {children}
+      </AuthDispatchContext.Provider>
+    </AuthStateContext.Provider>
   )
+}
+
+export {
+  reducer,
+  AuthProvider,
+  AuthStateConsumer,
+  useAuth,
+  useAuthDispatch,
+  useAuthState,
 }
