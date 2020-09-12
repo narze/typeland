@@ -32,3 +32,15 @@ jobs:
         NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
         NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
         NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
+
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
