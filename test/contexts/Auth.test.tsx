@@ -61,3 +61,19 @@ it('expose props', () => {
     { providerProps }
   )
 })
+
+it('handles login with correct credentials', () => {
+  pending()
+})
+
+it('handles login with incorrect credentials', () => {
+  pending()
+})
+
+it('handles sign up with correct credentials', () => {
+  pending()
+})
+
+it('handles sign up with existing email', () => {
+  pending()
+})
