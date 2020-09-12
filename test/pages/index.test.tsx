@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { Home } from '../../pages/index'
 import { randomWords } from '../../utils/wordsDb'
 import { StatsProvider } from '@/contexts/Stats'
+import { AuthProvider } from '@/contexts/Auth'
 
 jest.mock('../../utils/wordsDb')
 
@@ -20,7 +21,9 @@ const renderWithProvider = (
   { providerProps = { value: providerValue }, ...renderOptions } = {}
 ) => {
   return render(
-    <StatsProvider {...providerProps}>{ui}</StatsProvider>,
+    <AuthProvider>
+      <StatsProvider {...providerProps}>{ui}</StatsProvider>
+    </AuthProvider>,
     renderOptions
   )
 }

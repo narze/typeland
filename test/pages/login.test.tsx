@@ -1,10 +1,21 @@
 import React from 'react'
-import { render, fireEvent } from '../testUtils'
-import { mockFirebaseAuth } from '../mockFirebase'
+import { render } from '../testUtils'
 import { Login } from '@/pages/login'
 import { AuthProvider } from '@/contexts/Auth'
 
-mockFirebaseAuth()
+const mockRouterPush = jest.fn()
+
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      route: '/',
+      pathname: '',
+      query: '',
+      asPath: '',
+      push: mockRouterPush,
+    }
+  },
+}))
 
 const renderWithAuthProvider = (
   ui,
@@ -34,17 +45,20 @@ describe('Login page', () => {
   })
 
   describe('when user is set in state (already logged in)', () => {
-    it('renders user email', () => {
+    it('redirects to home page', () => {
       const user = { email: 'foo@bar.com' }
       const providerProps = { initialState: { user } }
 
-      const { asFragment, getByText } = renderWithAuthProvider(<Login />, {
+      const { asFragment } = renderWithAuthProvider(<Login />, {
         providerProps,
       })
 
-      fireEvent.click(getByText(new RegExp(user.email, 'i')))
+      expect(mockRouterPush).toBeCalledTimes(1)
+      expect(mockRouterPush).toBeCalledWith('/')
 
       expect(asFragment()).toMatchSnapshot()
+
+      mockRouterPush.mockClear()
     })
   })
 })
