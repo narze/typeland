@@ -1,5 +1,7 @@
 # Typeland
 
+[![codecov](https://codecov.io/gh/narze/typeland/branch/master/graph/badge.svg)](https://codecov.io/gh/narze/typeland)
+
 A typing practice website, now in development -> https://typeland.vercel.app
 
 ![Imgur](https://i.imgur.com/EWAc8lD.png)
