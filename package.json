@@ -24,7 +24,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn run type-check"
+      "pre-push": "yarn run type-check",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
@@ -32,6 +33,9 @@
       "yarn lint",
       "yarn format"
     ]
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
@@ -46,6 +50,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
     "@emotion/babel-plugin": "^11.0.0-next.17",
     "@storybook/addon-actions": "^6.0.21",
     "@storybook/addon-essentials": "^6.0.21",
