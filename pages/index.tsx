@@ -160,6 +160,8 @@ export const Home = (): JSX.Element => {
   }
 
   const handleType = (e) => {
+    e.preventDefault()
+
     const { key, altKey, ctrlKey, metaKey } = e
 
     if (key == 'Backspace') {
