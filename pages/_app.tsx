@@ -4,6 +4,7 @@ import { AuthProvider } from '../contexts/Auth'
 import { StatsProvider } from '../contexts/Stats'
 import { ThemeProvider, theme } from '@chakra-ui/core'
 import React from 'react'
+import 'abortcontroller-polyfill/dist/polyfill-patch-fetch'
 
 export default function MyApp({
   Component,
