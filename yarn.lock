@@ -14573,6 +14573,11 @@ use-persisted-state@^0.3.0:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
 
+use-reducer-async@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/use-reducer-async/-/use-reducer-async-2.0.1.tgz#260bf141f6f0cfcefe4a777519bf5fcedced278d"
+  integrity sha512-bO0+d658kP4vD6wahKqcsf+bl5YzJZbrQYsssxOtvLAkqsclmQcjpkp9BoRKSdIL1j3ZzszvzQ/GeXQeD1x/Rw==
+
 use-sidecar@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.0.3.tgz#17a4e567d4830c0c0ee100040e85a7fe68611e0f"
