@@ -35,7 +35,9 @@
     ]
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
