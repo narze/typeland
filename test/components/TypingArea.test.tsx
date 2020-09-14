@@ -9,6 +9,7 @@ const providerValue = {
     correct: 0,
     wrong: 0,
     total: 0,
+    loading: false,
   },
 }
 

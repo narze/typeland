@@ -1,30 +1,44 @@
-import React, { useContext, useReducer } from 'react'
+import React, { Reducer, useContext } from 'react'
+import { useReducerAsync, AsyncActionHandlers } from 'use-reducer-async'
 
 interface State {
   correct: number
   wrong: number
   total: number
+  loading: boolean
 }
 
-type Dispatch = React.Dispatch<Action>
+type Dispatch = React.Dispatch<CallableAction>
 
 interface StatsProviderProps {
   children: React.ReactNode
   initialState?: State
 }
 
-export type Action =
+type InnerAction =
+  | { type: 'START_SUBMIT_STATS' }
+  | { type: 'FINISH_SUBMIT_STATS' }
+  | { type: 'ERROR_SUBMIT_STATS' }
+
+type OuterAction =
   | { type: 'incrementCorrect' }
   | { type: 'incrementWrong' }
   | { type: 'reset' }
+
+type Action = InnerAction | OuterAction
+
+type AsyncAction = { type: 'SUBMIT_STATS' }
+
+export type CallableAction = OuterAction | AsyncAction
 
 const defaultState: State = {
   correct: 0,
   wrong: 0,
   total: 0,
+  loading: false,
 }
 
-function reducer(state: State, action: Action): State {
+const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case 'incrementCorrect':
       return {
@@ -40,13 +54,48 @@ function reducer(state: State, action: Action): State {
       }
     case 'reset':
       return { ...defaultState }
+    case 'START_SUBMIT_STATS':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'FINISH_SUBMIT_STATS':
+      return {
+        ...state,
+        loading: false,
+      }
     default:
       throw new Error(`Unhandled action type}`)
   }
 }
 
-const StatsStateContext = React.createContext<State | undefined>(undefined)
-const StatsDispatchContext = React.createContext<Dispatch | undefined>(
+const asyncActionHandlers: AsyncActionHandlers<
+  Reducer<State, Action>,
+  AsyncAction
+> = {
+  SUBMIT_STATS: ({ dispatch, signal }) => async (_action) => {
+    dispatch({ type: 'START_SUBMIT_STATS' })
+
+    try {
+      // TODO: Calls persist stats asynchronously
+      await setTimeout(() => {
+        return true
+      }, 1000)
+      // const response = await fetch(`https://reqres.in/api/users/${action.id}?delay=1`, { signal });
+      // const data = await response.json();
+      // const firstName = data.data.first_name;
+      // if (typeof firstName !== 'string') throw new Error();
+      if (!signal.aborted) dispatch({ type: 'FINISH_SUBMIT_STATS' })
+    } catch (e) {
+      if (!signal.aborted) dispatch({ type: 'ERROR_SUBMIT_STATS' })
+    }
+  },
+}
+
+export const StatsStateContext = React.createContext<State | undefined>(
+  undefined
+)
+export const StatsDispatchContext = React.createContext<Dispatch | undefined>(
   undefined
 )
 
@@ -78,7 +127,11 @@ const StatsProvider: React.FC<StatsProviderProps> = ({
   children,
   initialState = defaultState,
 }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducerAsync<
+    Reducer<State, Action>,
+    AsyncAction,
+    CallableAction
+  >(reducer, initialState, asyncActionHandlers)
 
   return (
     <StatsStateContext.Provider value={state}>
