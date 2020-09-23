@@ -1,5 +1,6 @@
 import React, { Reducer, useContext } from 'react'
 import { useReducerAsync, AsyncActionHandlers } from 'use-reducer-async'
+import { db } from '../config/firebase'
 
 interface State {
   correct: number
@@ -64,8 +65,13 @@ const reducer: Reducer<State, Action> = (state, action) => {
         ...state,
         loading: false,
       }
+    case 'ERROR_SUBMIT_STATS':
+      return {
+        ...state,
+        loading: false,
+      }
     default:
-      throw new Error(`Unhandled action type}`)
+      throw new Error('Unhandled action type')
   }
 }
 
@@ -73,18 +79,17 @@ const asyncActionHandlers: AsyncActionHandlers<
   Reducer<State, Action>,
   AsyncAction
 > = {
-  SUBMIT_STATS: ({ dispatch, signal }) => async (_action) => {
+  SUBMIT_STATS: ({ dispatch, signal, getState }) => async (_action) => {
     dispatch({ type: 'START_SUBMIT_STATS' })
 
     try {
-      // TODO: Calls persist stats asynchronously
-      await setTimeout(() => {
-        return true
-      }, 1000)
-      // const response = await fetch(`https://reqres.in/api/users/${action.id}?delay=1`, { signal });
-      // const data = await response.json();
-      // const firstName = data.data.first_name;
-      // if (typeof firstName !== 'string') throw new Error();
+      const { correct, wrong, total } = getState()
+
+      await db.collection('results').add({
+        stats: { correct, wrong, total },
+        timestamp: +new Date(),
+        user: 'todo',
+      })
       if (!signal.aborted) dispatch({ type: 'FINISH_SUBMIT_STATS' })
     } catch (e) {
       if (!signal.aborted) dispatch({ type: 'ERROR_SUBMIT_STATS' })

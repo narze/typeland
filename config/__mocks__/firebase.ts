@@ -2,7 +2,7 @@ import firebasemock from 'firebase-mock'
 
 const auth = new firebasemock.MockAuthentication()
 export const mockdatabase = new firebasemock.MockFirebase()
-export const mockfirestore = new firebasemock.MockFirestore()
+const db = new firebasemock.MockFirestore()
 export const mockstorage = new firebasemock.MockStorage()
 export const mockmessaging = new firebasemock.MockMessaging()
 
@@ -17,7 +17,7 @@ export const mockFirebase = new firebasemock.MockFirebaseSdk(
   },
   // use null if your code does not use FIRESTORE
   () => {
-    return mockfirestore
+    return db
   },
   // use null if your code does not use STORAGE
   () => {
@@ -31,6 +31,6 @@ export const mockFirebase = new firebasemock.MockFirebaseSdk(
 
 mockFirebase.initApp = jest.fn()
 
-export { auth }
+export { auth, db }
 
 export default mockFirebase

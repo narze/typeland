@@ -7,6 +7,13 @@ import {
   StatsDispatchContext,
   StatsStateContext,
 } from '@/contexts/Stats'
+import { db } from '../../config/firebase'
+
+const mockAdd = jest.fn()
+
+db.collection = jest.fn().mockReturnValue({
+  add: mockAdd,
+})
 
 describe('reducer', () => {
   const state = {
@@ -163,6 +170,17 @@ test('can submit stats', async () => {
 
   fireEvent.click(getByText(/Submit Stats/))
   expect(getByText(/^loading: true/)).toBeInTheDocument()
+
+  expect(db.collection).toBeCalledWith('results')
+  expect(db.collection).toBeCalledTimes(1)
+
+  expect(mockAdd).toBeCalledWith(
+    expect.objectContaining({
+      stats: { correct: 1, wrong: 2, total: 3 },
+      timestamp: expect.anything(),
+      user: expect.anything(),
+    })
+  )
 
   // After FINISH_SUBMIT_STATS, loading will be false again
   expect(await findByText(/^loading: false/)).toBeInTheDocument()
