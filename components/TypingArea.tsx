@@ -45,6 +45,10 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
           dispatch({ type: 'incrementWrong' })
         }
       })
+
+      if (finished) {
+        dispatch({ type: 'SUBMIT_STATS' })
+      }
     }, [userWords.length, finished])
 
     const remainingWords = words.slice(userWords.length)
