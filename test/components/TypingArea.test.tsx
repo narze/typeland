@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from '../testUtils'
 import { TypingArea } from '@/components/TypingArea'
-import { StatsProvider } from '../../contexts/Stats'
-import * as Stats from '../../contexts/Stats'
+import { StatsProvider } from '@/contexts/Stats'
+import * as Stats from '@/contexts/Stats'
+import { AuthProvider } from '@/contexts/Auth'
 
 const providerValue = {
   initialState: {
@@ -28,7 +29,9 @@ const renderWithProvider = (
   { providerProps = {}, ...renderOptions } = {}
 ) => {
   return render(
-    <StatsProvider {...providerProps}>{ui}</StatsProvider>,
+    <AuthProvider>
+      <StatsProvider {...providerProps}>{ui}</StatsProvider>
+    </AuthProvider>,
     renderOptions
   )
 }

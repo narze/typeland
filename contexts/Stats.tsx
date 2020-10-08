@@ -28,7 +28,7 @@ type OuterAction =
 
 type Action = InnerAction | OuterAction
 
-type AsyncAction = { type: 'SUBMIT_STATS' }
+type AsyncAction = { type: 'SUBMIT_STATS'; payload: { uid: string } }
 
 export type CallableAction = OuterAction | AsyncAction
 
@@ -79,7 +79,7 @@ const asyncActionHandlers: AsyncActionHandlers<
   Reducer<State, Action>,
   AsyncAction
 > = {
-  SUBMIT_STATS: ({ dispatch, signal, getState }) => async (_action) => {
+  SUBMIT_STATS: ({ dispatch, signal, getState }) => async (action) => {
     dispatch({ type: 'START_SUBMIT_STATS' })
 
     try {
@@ -88,7 +88,7 @@ const asyncActionHandlers: AsyncActionHandlers<
       await db.collection('results').add({
         stats: { correct, wrong, total },
         timestamp: +new Date(),
-        user: 'todo',
+        user: action.payload.uid,
       })
       if (!signal.aborted) dispatch({ type: 'FINISH_SUBMIT_STATS' })
     } catch (e) {

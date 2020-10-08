@@ -154,7 +154,11 @@ test('can submit stats', async () => {
         <StatsDispatchContext.Consumer>
           {(dispatch) => (
             <>
-              <button onClick={() => dispatch({ type: 'SUBMIT_STATS' })}>
+              <button
+                onClick={() =>
+                  dispatch({ type: 'SUBMIT_STATS', payload: { uid: '1' } })
+                }
+              >
                 Submit Stats
               </button>
               <span>loading: {loading ? 'true' : 'false'}</span>
