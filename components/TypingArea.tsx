@@ -2,8 +2,9 @@
 import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { Word } from './Word'
-import React, { useEffect } from 'react'
-import { useStats } from '../contexts/Stats'
+import React, { useEffect, useState } from 'react'
+import { useStats } from '@/contexts/Stats'
+import { useAuth } from '@/contexts/Auth'
 
 const s = {
   typingArea: tw`
@@ -29,7 +30,9 @@ export interface TypingAreaProps {
 
 export const TypingArea: React.FC<TypingAreaProps> = React.memo(
   ({ words, userWords, showCaret, finished }) => {
+    const [submitted, setSubmitted] = useState(false)
     const [stats, dispatch] = useStats()
+    const [auth] = useAuth()
 
     useEffect(() => {
       const offset = stats.total
@@ -46,8 +49,18 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
         }
       })
 
-      if (finished) {
-        dispatch({ type: 'SUBMIT_STATS' })
+      if (userWords.length <= 1) {
+        setSubmitted(false)
+      }
+
+      if (finished && !submitted) {
+        setSubmitted(true)
+
+        if (auth.user) {
+          setTimeout(() => {
+            dispatch({ type: 'SUBMIT_STATS', payload: { uid: auth.user.uid } })
+          }, 200) // TODO: Delay submission for correct stats
+        }
       }
     }, [userWords.length, finished])
 
