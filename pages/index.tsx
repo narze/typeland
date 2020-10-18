@@ -78,8 +78,8 @@ const s = {
 }
 
 interface HomeProps {
-  email: string | null
-  uid: string | null
+  email?: string | null
+  uid?: string | null
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
