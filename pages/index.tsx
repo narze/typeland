@@ -2,12 +2,15 @@
 import { css, jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/contexts/Auth'
+import Link from 'next/link'
+import { GetServerSidePropsContext } from 'next'
+import nookies from 'nookies'
 import { TypingArea } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
 import { useStats } from '../contexts/Stats'
-import { useAuth } from '@/contexts/Auth'
-import Link from 'next/link'
 import { auth as firebaseAuth } from '../config/firebase'
+import { firebaseAdmin } from '../config/firebaseAdmin'
 
 const s = {
   container: tw`
@@ -74,7 +77,28 @@ const s = {
   `,
 }
 
-export const Home = (): JSX.Element => {
+interface HomeProps {
+  email: string | null
+  uid: string | null
+}
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  try {
+    const cookies = nookies.get(ctx)
+    const token = await firebaseAdmin.auth().verifyIdToken(cookies.token)
+    const { email } = token
+
+    return {
+      props: {
+        email,
+      } as HomeProps,
+    }
+  } catch (err) {
+    return { props: {} as HomeProps }
+  }
+}
+
+export const Home = (props: HomeProps): JSX.Element => {
   const [words, setWords] = useState([''])
   const [userTypeInput, setUserTypeInput] = useState([''])
   const [inputIsFocused, setInputIsFocused] = useState(true)
@@ -88,7 +112,7 @@ export const Home = (): JSX.Element => {
   const [promptRestart, setPromptRestart] = useState(false)
   const [stats, dispatch] = useStats()
   const [auth] = useAuth()
-
+  const [userEmail, setEmail] = useState(props.email)
   const DEFAULT_WORD_COUNT = 30
   const TIMER_LOOP_MS = 1000
 
@@ -237,19 +261,21 @@ export const Home = (): JSX.Element => {
     }
   }, [startTime, finishTime, wpm])
 
+  function onSignOut() {
+    setEmail(null)
+    firebaseAuth.signOut()
+  }
+
   return (
     <div
       css={s.container}
       onClick={() => document.getElementById('typingInput').focus()}
     >
       <div css={s.header}>
-        {auth.user ? (
+        {auth && userEmail ? (
           <>
-            <span>{auth.user.email}</span>
-            <button
-              css={tw`ml-4 cursor-pointer`}
-              onClick={() => firebaseAuth.signOut()}
-            >
+            <span>{userEmail}</span>
+            <button css={tw`ml-4 cursor-pointer`} onClick={() => onSignOut()}>
               Logout
             </button>
           </>

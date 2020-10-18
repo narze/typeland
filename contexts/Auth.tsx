@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react'
-import { auth as firebaseAuth } from '../config/firebase'
 import firebase from 'firebase'
+import nookies from 'nookies'
+import { auth as firebaseAuth } from '../config/firebase'
 
 interface State {
   user: firebase.User | null
@@ -72,14 +73,18 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => {
+    const unsubscribe = firebaseAuth.onIdTokenChanged(async (authUser) => {
       if (authUser) {
+        const token = await authUser.getIdToken()
+        nookies.set(undefined, 'token', token, {})
+
         //The user is logged in
         dispatch({
           type: 'setUser',
           user: authUser,
         })
       } else {
+        nookies.set(undefined, 'token', '', {})
         //The user is logged out
         dispatch({
           type: 'unsetUser',
