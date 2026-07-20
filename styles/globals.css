@@ -1,0 +1,16 @@
+/*
+ * Chakra UI v3 injects a global reset at runtime that would otherwise beat
+ * Tailwind's `@layer utilities` rules (unlayered / later-layer styles win over
+ * a cascade layer). Import the utilities OUTSIDE any layer so they win on
+ * specificity instead, while keeping theme + preflight layered so Chakra can
+ * still coexist with them.
+ */
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+
+html {
+  font-size: 140%;
+}

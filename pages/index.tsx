@@ -1,77 +1,26 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import tw from '@tailwindcssinjs/macro'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type JSX } from 'react'
 import { TypingArea } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
 import { useStats } from '../contexts/Stats'
 import { useAuth } from '@/contexts/Auth'
 import Link from 'next/link'
+import { signOut } from 'firebase/auth'
 import { auth as firebaseAuth } from '../config/firebase'
 
 const s = {
-  container: tw`
-    h-screen min-w-full
-    flex
-    items-center justify-center
-  `,
-  main: [
-    tw`
-      max-w-1/2
-    `,
-    css`
-      min-width: 640px;
-    `,
-  ],
-  title: tw`
-    text-4xl
-    text-blue-600
-    antialiased
-  `,
-  typingInput: tw`
-    h-0
-    w-0
-  `,
-  footer: tw`
-    fixed
-    bottom-0
-    pb-8
-    text-center
-  `,
-  header: tw`
-    fixed
-    top-0
-    right-8
-    pt-4
-    text-right
-  `,
-  githubLink: tw`
-    text-xs
-  `,
-  result: tw`
-    mt-4
-    text-center
-    text-xl
-  `,
-  restart: tw`
-    mt-2
-    text-center
-  `,
-  restartButton: tw`
-    py-2 px-4
-    bg-transparent hover:bg-blue-500
-    font-semibold
-    hover:text-white
-    border border-blue-500 hover:border-transparent
-    rounded
-  `,
-  restartHint: tw`
-    mt-1
-    text-xs
-  `,
-  liveWpm: tw`
-    text-base
-  `,
+  container: 'h-screen min-w-full flex items-center justify-center',
+  main: 'max-w-[50%] min-w-[640px]',
+  title: 'text-4xl text-blue-600 antialiased',
+  typingInput: 'h-0 w-0',
+  footer: 'fixed bottom-0 pb-8 text-center',
+  header: 'fixed top-0 right-8 pt-4 text-right',
+  githubLink: 'text-xs',
+  result: 'mt-4 text-center text-xl',
+  restart: 'mt-2 text-center',
+  restartButton:
+    'py-2 px-4 bg-transparent hover:bg-blue-500 font-semibold hover:text-white border border-blue-500 hover:border-transparent rounded',
+  restartHint: 'mt-1 text-xs',
+  liveWpm: 'text-base',
 }
 
 export const Home = (): JSX.Element => {
@@ -190,9 +139,8 @@ export const Home = (): JSX.Element => {
     }
 
     const newUserTypeInput = [...userTypeInput]
-    newUserTypeInput[newUserTypeInput.length - 1] = newUserTypeInput[
-      newUserTypeInput.length - 1
-    ].concat(key)
+    newUserTypeInput[newUserTypeInput.length - 1] =
+      newUserTypeInput[newUserTypeInput.length - 1].concat(key)
     setUserTypeInput(newUserTypeInput)
 
     if (userTypeInput.length == words.length) {
@@ -232,36 +180,34 @@ export const Home = (): JSX.Element => {
   useEffect(() => {
     if (startTime && finishTime && !wpm) {
       setWpm(
-        Math.round((stats.correct * 60) / ((finishTime - startTime) / 1000.0))
+        Math.round((stats.correct * 60) / ((finishTime - startTime) / 1000.0)),
       )
     }
   }, [startTime, finishTime, wpm])
 
   return (
     <div
-      css={s.container}
-      onClick={() => document.getElementById('typingInput').focus()}
+      className={s.container}
+      onClick={() => document.getElementById('typingInput')?.focus()}
     >
-      <div css={s.header}>
+      <div className={s.header}>
         {auth.user ? (
           <>
             <span>{auth.user.email}</span>
             <button
-              css={tw`ml-4 cursor-pointer`}
-              onClick={() => firebaseAuth.signOut()}
+              className="ml-4 cursor-pointer"
+              onClick={() => signOut(firebaseAuth)}
             >
               Logout
             </button>
           </>
         ) : (
-          <Link href="/login">
-            <a>Login</a>
-          </Link>
+          <Link href="/login">Login</Link>
         )}
       </div>
 
-      <main css={s.main}>
-        <h1 css={s.title}>Typeland</h1>
+      <main className={s.main}>
+        <h1 className={s.title}>Typeland</h1>
 
         <TypingArea
           words={words}
@@ -270,10 +216,10 @@ export const Home = (): JSX.Element => {
           finished={finished}
         />
 
-        {started && !finished && <div css={s.liveWpm}>{liveWpm} wpm</div>}
+        {started && !finished && <div className={s.liveWpm}>{liveWpm} wpm</div>}
 
         {started && (
-          <div css={s.liveWpm}>
+          <div className={s.liveWpm}>
             Stats (correct/wrong/total) : {stats.correct}/{stats.wrong}/
             {stats.total}
           </div>
@@ -281,12 +227,12 @@ export const Home = (): JSX.Element => {
 
         {finished && finishTime && (
           <>
-            <div css={s.result}>Good job! {wpm} wpm</div>
-            <div css={s.restart}>
-              <button css={s.restartButton} onClick={restart}>
+            <div className={s.result}>Good job! {wpm} wpm</div>
+            <div className={s.restart}>
+              <button className={s.restartButton} onClick={restart}>
                 Restart
               </button>
-              <div css={s.restartHint}>
+              <div className={s.restartHint}>
                 Click or press <code>Enter</code>
               </div>
             </div>
@@ -295,11 +241,11 @@ export const Home = (): JSX.Element => {
 
         {promptRestart && (
           <>
-            <div css={s.restart}>
-              <button css={s.restartButton} onClick={restart}>
+            <div className={s.restart}>
+              <button className={s.restartButton} onClick={restart}>
                 Restart
               </button>
-              <div css={s.restartHint}>
+              <div className={s.restartHint}>
                 Press <code>Enter</code> again to restart typing.
               </div>
             </div>
@@ -309,7 +255,7 @@ export const Home = (): JSX.Element => {
         <input
           id="typingInput"
           data-testid="typingInput"
-          css={s.typingInput}
+          className={s.typingInput}
           type="text"
           ref={(i) => i && i.focus()} // Autofocus
           onKeyDown={handleType}
@@ -323,9 +269,9 @@ export const Home = (): JSX.Element => {
         />
       </main>
 
-      <div css={s.footer}>
+      <div className={s.footer}>
         <a
-          css={s.githubLink}
+          className={s.githubLink}
           href="https://github.com/narze/typeland"
           target="_blank"
           rel="noreferrer"

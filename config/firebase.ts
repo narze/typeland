@@ -1,7 +1,8 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import 'firebase/storage'
+import { initializeApp, getApps, getApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore, Timestamp } from 'firebase/firestore'
+import { getStorage } from 'firebase/storage'
+
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -12,15 +13,14 @@ export const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
-}
-const app = firebase.app()
-const auth = firebase.auth()
-const db = firebase.firestore()
-const now = firebase.firestore.Timestamp.now()
-const storage = firebase.storage()
-export { auth, db, now, storage }
+
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
+const auth = getAuth(app)
+const db = getFirestore(app)
+const now = Timestamp.now()
+const storage = getStorage(app)
+
+export { app, auth, db, now, storage }
 
 // eslint-disable-next-line no-console
 console.log(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(')

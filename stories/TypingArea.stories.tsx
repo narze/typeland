@@ -1,46 +1,50 @@
-import React from 'react'
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0'
+import type { Meta, StoryObj } from '@storybook/nextjs'
 
-import { TypingArea, TypingAreaProps } from '../components/TypingArea'
+import { TypingArea } from '../components/TypingArea'
 import { randomWords } from '../utils/wordsDb'
 import { StatsProvider } from '../contexts/Stats'
+import { AuthProvider } from '../contexts/Auth'
 
-export default {
+const meta: Meta<typeof TypingArea> = {
   title: 'Typeland/TypingArea',
   component: TypingArea,
-} as Meta
-
-const Template: Story<TypingAreaProps> = (args) => {
-  return (
-    <StatsProvider>
-      <TypingArea {...args} />
-    </StatsProvider>
-  )
+  decorators: [
+    (Story) => (
+      <AuthProvider>
+        <StatsProvider>
+          <Story />
+        </StatsProvider>
+      </AuthProvider>
+    ),
+  ],
 }
 
-export const Default = Template.bind({})
+export default meta
 
-Default.args = {
-  words: ['Hello', 'World!'],
-  userWords: ['Hello', 'W'],
-  showCaret: true,
+type Story = StoryObj<typeof TypingArea>
+
+export const Default: Story = {
+  args: {
+    words: ['Hello', 'World!'],
+    userWords: ['Hello', 'W'],
+    showCaret: true,
+  },
 }
 
-export const WrongTyping = Template.bind({})
-
-WrongTyping.args = {
-  words: ['Hello', 'World!'],
-  userWords: ['Jello', 'War!'],
-  showCaret: true,
+export const WrongTyping: Story = {
+  args: {
+    words: ['Hello', 'World!'],
+    userWords: ['Jello', 'War!'],
+    showCaret: true,
+  },
 }
-
-export const ManyWords = Template.bind({})
 
 const manyWords = randomWords(100)
 
-ManyWords.args = {
-  words: manyWords,
-  userWords: manyWords,
-  showCaret: true,
+export const ManyWords: Story = {
+  args: {
+    words: manyWords,
+    userWords: manyWords,
+    showCaret: true,
+  },
 }

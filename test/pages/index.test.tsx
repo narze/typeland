@@ -18,20 +18,20 @@ const providerValue = {
 
 const renderWithProvider = (
   ui,
-  { providerProps = { value: providerValue }, ...renderOptions } = {}
+  { providerProps = { value: providerValue }, ...renderOptions } = {},
 ) => {
   return render(
     <AuthProvider>
       <StatsProvider {...providerProps}>{ui}</StatsProvider>
     </AuthProvider>,
-    renderOptions
+    renderOptions,
   )
 }
 
 beforeEach(() => {
   jest.clearAllMocks()
   mockedRandomWords.mockImplementationOnce((_length) =>
-    'the quick brown fox jumps over the lazy dog'.split(' ')
+    'the quick brown fox jumps over the lazy dog'.split(' '),
   )
 })
 
@@ -63,7 +63,7 @@ describe('Home page', () => {
   it('highlights text which is typed', () => {
     const { asFragment, getByTestId, getAllByTestId } = renderWithProvider(
       <Home />,
-      {}
+      {},
     )
 
     const typingInput = getByTestId('typingInput')
@@ -84,13 +84,10 @@ describe('Home page', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('can delete typed text with backspace', () => {
-    const {
-      asFragment,
-      getByTestId,
-      getAllByTestId,
-      queryByTestId,
-    } = renderWithProvider(<Home />, {})
+  it('can delete typed text with backspace', async () => {
+    const user = userEvent.setup()
+    const { asFragment, getByTestId, getAllByTestId, queryByTestId } =
+      renderWithProvider(<Home />, {})
 
     const typingInput = getByTestId('typingInput')
 
@@ -101,14 +98,14 @@ describe('Home page', () => {
     expect(getAllByTestId('correct')[0]).toHaveTextContent('t')
     expect(getAllByTestId('correct')[1]).toHaveTextContent('h')
 
-    userEvent.type(typingInput, '{backspace}')
+    await user.type(typingInput, '{Backspace}')
     expect(getByTestId('correct')).toHaveTextContent('t')
 
     fireEvent.keyDown(typingInput, { key: 'x' })
     expect(getByTestId('correct')).toHaveTextContent('t')
     expect(getByTestId('wrong')).toHaveTextContent('h')
 
-    userEvent.type(typingInput, '{backspace}')
+    await user.type(typingInput, '{Backspace}')
     expect(getByTestId('correct')).toHaveTextContent('t')
     expect(queryByTestId('wrong')).not.toBeInTheDocument()
 
@@ -120,19 +117,11 @@ describe('Home page', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('can delete whole incomplete word with option/ctrl/meta backspace', () => {
-    pending()
-  })
+  it.todo('can delete whole incomplete word with option/ctrl/meta backspace')
 
-  it('blocks all modifiers except shift', () => {
-    pending()
-  })
+  it.todo('blocks all modifiers except shift')
 
-  it('shows wpm when finished typing', () => {
-    pending()
-  })
+  it.todo('shows wpm when finished typing')
 
-  it('shows live wpm while typing', () => {
-    pending()
-  })
+  it.todo('shows live wpm while typing')
 })

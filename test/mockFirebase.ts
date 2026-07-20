@@ -1,16 +1,13 @@
-jest.mock('../config/firebase')
-
-import { auth } from '../config/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
 export function mockFirebaseAuth(): void {
-  const mockOnAuthStateChanged = auth.onAuthStateChanged as jest.Mock
+  const mockOnAuthStateChanged = onAuthStateChanged as jest.Mock
 
   beforeEach(() => {
-    mockOnAuthStateChanged
-      .mockImplementation((callback) => callback({ email: 'foo@bar.com' }))
-      .mockReturnValue(() => {
-        return 'Unsubscribed'
-      })
+    mockOnAuthStateChanged.mockImplementation((_auth, callback) => {
+      callback({ email: 'foo@bar.com' })
+      return () => 'Unsubscribed'
+    })
   })
 
   afterEach(() => {

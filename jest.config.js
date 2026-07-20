@@ -1,26 +1,25 @@
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
-const { compilerOptions } = require('./tsconfig')
+const nextJest = require('next/jest')
 
-module.exports = {
-  preset: 'ts-jest/presets/js-with-babel',
+const createJestConfig = nextJest({ dir: './' })
+
+/** @type {import('jest').Config} */
+const customJestConfig = {
+  testEnvironment: 'jsdom',
   roots: ['<rootDir>'],
-  moduleFileExtensions: ['js', 'ts', 'tsx', 'json'],
   testPathIgnorePatterns: [
     '<rootDir>[/\\\\](node_modules|.next|cypress|.history)[/\\\\]',
   ],
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
-  transform: {
-    '^.+\\.(ts|tsx)$': 'babel-jest',
+  moduleNameMapper: {
+    '^@/components/(.*)$': '<rootDir>/components/$1',
+    '^@/contexts/(.*)$': '<rootDir>/contexts/$1',
+    '^@/pages/(.*)$': '<rootDir>/pages/$1',
+    '^@/test/(.*)$': '<rootDir>/test/$1',
   },
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
-  moduleNameMapper: {
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
-    ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  },
-  snapshotSerializers: ['jest-emotion'],
   setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts'],
 }
+
+module.exports = createJestConfig(customJestConfig)

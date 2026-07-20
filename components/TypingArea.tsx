@@ -1,24 +1,12 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
-import tw from '@tailwindcssinjs/macro'
 import { Word } from './Word'
 import React, { useEffect, useState } from 'react'
 import { useStats } from '@/contexts/Stats'
 import { useAuth } from '@/contexts/Auth'
 
 const s = {
-  typingArea: tw`
-    text-xl
-    antialiased
-  `,
-  wordWrapper: tw`
-    my-1
-    flex flex-wrap
-    w-full
-  `,
-  word: tw`
-    mr-1
-  `,
+  typingArea: 'text-xl antialiased',
+  wordWrapper: 'my-1 flex flex-wrap w-full',
+  word: 'mr-1',
 }
 
 export interface TypingAreaProps {
@@ -67,8 +55,8 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
     const remainingWords = words.slice(userWords.length)
 
     return (
-      <div css={s.typingArea} data-testid="text">
-        <div css={s.wordWrapper}>
+      <div className={s.typingArea} data-testid="text">
+        <div className={s.wordWrapper}>
           {userWords.map((text, i) => {
             return (
               <React.Fragment key={i}>
@@ -84,7 +72,7 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
           {remainingWords.map((text, i) => {
             return (
               <React.Fragment key={i}>
-                <span css={s.word} data-testid="remainingWord">
+                <span className={s.word} data-testid="remainingWord">
                   {text}
                 </span>
               </React.Fragment>
@@ -93,5 +81,5 @@ export const TypingArea: React.FC<TypingAreaProps> = React.memo(
         </div>
       </div>
     )
-  }
+  },
 )

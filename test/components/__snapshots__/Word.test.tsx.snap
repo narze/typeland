@@ -1,68 +1,39 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`renders single word with caret 1`] = `
 <DocumentFragment>
-  .emotion-5 {
-  position: relative;
-  margin-right: 0.25rem;
-}
-
-.emotion-0 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-2 {
-  --text-opacity: 1;
-  color: #d2d6dc;
-  color: rgba(210,214,220,var(--text-opacity));
-}
-
-.emotion-4 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  left: 1px;
-  top: 4px;
-}
-
-<span
-    class="emotion-5"
+  <span
+    class="relative mr-1"
     data-testid="word"
   >
     <span
-      class="correct emotion-0"
+      class="text-green-600 correct"
       data-testid="correct"
     >
       d
     </span>
     <span
-      class="correct emotion-0"
+      class="text-green-600 correct"
       data-testid="correct"
     >
       o
     </span>
     <span
-      class="pending emotion-2"
+      class="text-gray-300 pending"
       data-testid="pending"
     >
       g
     </span>
     <span
-      class="pending emotion-2"
+      class="text-gray-300 pending"
       data-testid="pending"
     >
       e
     </span>
     <span
-      class="emotion-4"
+      class="absolute h-6 w-0.5 bg-blue-500 transition-all duration-100 ease-out"
       data-testid="caret"
+      style="left: 1px; top: 4px;"
     />
   </span>
 </DocumentFragment>
@@ -70,79 +41,44 @@ exports[`renders single word with caret 1`] = `
 
 exports[`renders template character on wrong typing 1`] = `
 <DocumentFragment>
-  .emotion-6 {
-  position: relative;
-  margin-right: 0.25rem;
-}
-
-.emotion-0 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-4 {
-  --text-opacity: 1;
-  color: #d2d6dc;
-  color: rgba(210,214,220,var(--text-opacity));
-}
-
-.emotion-5 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  left: 1px;
-  top: 4px;
-}
-
-.emotion-1 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-<span
-    class="emotion-6"
+  <span
+    class="relative mr-1"
     data-testid="word"
   >
     <span
-      class="correct emotion-0"
+      class="text-green-600 correct"
       data-testid="correct"
     >
       w
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       o
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       r
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       l
     </span>
     <span
-      class="pending emotion-4"
+      class="text-gray-300 pending"
       data-testid="pending"
     >
       d
     </span>
     <span
-      class="emotion-5"
+      class="absolute h-6 w-0.5 bg-blue-500 transition-all duration-100 ease-out"
       data-testid="caret"
+      style="left: 1px; top: 4px;"
     />
   </span>
 </DocumentFragment>
@@ -150,85 +86,56 @@ exports[`renders template character on wrong typing 1`] = `
 
 exports[`renders template character on wrong typing 2`] = `
 <DocumentFragment>
-  .emotion-8 {
-  position: relative;
-  margin-right: 0.25rem;
-}
-
-.emotion-0 {
-  --text-opacity: 1;
-  color: #057a55;
-  color: rgba(5,122,85,var(--text-opacity));
-}
-
-.emotion-7 {
-  --bg-opacity: 1;
-  position: absolute;
-  height: 1.5rem;
-  background-color: #3f83f8;
-  background-color: rgba(63,131,248,var(--bg-opacity));
-  -webkit-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-  width: 2px;
-  left: 1px;
-  top: 4px;
-}
-
-.emotion-1 {
-  --text-opacity: 1;
-  color: #f98080;
-  color: rgba(249,128,128,var(--text-opacity));
-}
-
-<span
-    class="emotion-8"
+  <span
+    class="relative mr-1"
     data-testid="word"
   >
     <span
-      class="correct emotion-0"
+      class="text-green-600 correct"
       data-testid="correct"
     >
       w
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       o
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       r
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       l
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       d
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       x
     </span>
     <span
-      class="wrong emotion-1"
+      class="text-red-400 wrong"
       data-testid="wrong"
     >
       x
     </span>
     <span
-      class="emotion-7"
+      class="absolute h-6 w-0.5 bg-blue-500 transition-all duration-100 ease-out"
       data-testid="caret"
+      style="left: 1px; top: 4px;"
     />
   </span>
 </DocumentFragment>

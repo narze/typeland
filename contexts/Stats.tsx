@@ -1,5 +1,6 @@
 import React, { Reducer, useContext } from 'react'
 import { useReducerAsync, AsyncActionHandlers } from 'use-reducer-async'
+import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../config/firebase'
 
 interface State {
@@ -22,9 +23,7 @@ type InnerAction =
   | { type: 'ERROR_SUBMIT_STATS' }
 
 type OuterAction =
-  | { type: 'incrementCorrect' }
-  | { type: 'incrementWrong' }
-  | { type: 'reset' }
+  { type: 'incrementCorrect' } | { type: 'incrementWrong' } | { type: 'reset' }
 
 type Action = InnerAction | OuterAction
 
@@ -79,29 +78,31 @@ const asyncActionHandlers: AsyncActionHandlers<
   Reducer<State, Action>,
   AsyncAction
 > = {
-  SUBMIT_STATS: ({ dispatch, signal, getState }) => async (action) => {
-    dispatch({ type: 'START_SUBMIT_STATS' })
+  SUBMIT_STATS:
+    ({ dispatch, signal, getState }) =>
+    async (action) => {
+      dispatch({ type: 'START_SUBMIT_STATS' })
 
-    try {
-      const { correct, wrong, total } = getState()
+      try {
+        const { correct, wrong, total } = getState()
 
-      await db.collection('results').add({
-        stats: { correct, wrong, total },
-        timestamp: +new Date(),
-        user: action.payload.uid,
-      })
-      if (!signal.aborted) dispatch({ type: 'FINISH_SUBMIT_STATS' })
-    } catch (e) {
-      if (!signal.aborted) dispatch({ type: 'ERROR_SUBMIT_STATS' })
-    }
-  },
+        await addDoc(collection(db, 'results'), {
+          stats: { correct, wrong, total },
+          timestamp: +new Date(),
+          user: action.payload.uid,
+        })
+        if (!signal.aborted) dispatch({ type: 'FINISH_SUBMIT_STATS' })
+      } catch {
+        if (!signal.aborted) dispatch({ type: 'ERROR_SUBMIT_STATS' })
+      }
+    },
 }
 
 export const StatsStateContext = React.createContext<State | undefined>(
-  undefined
+  undefined,
 )
 export const StatsDispatchContext = React.createContext<Dispatch | undefined>(
-  undefined
+  undefined,
 )
 
 StatsStateContext.displayName = 'Stats'

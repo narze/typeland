@@ -1,57 +1,34 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import tw from '@tailwindcssinjs/macro'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth'
 import { auth as firebaseAuth } from '../config/firebase'
 import { useAuth } from '@/contexts/Auth'
 import { useRouter } from 'next/router'
 
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  FormErrorMessage,
-  Button,
-} from '@chakra-ui/core'
+import { Field, Input, Button } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type JSX } from 'react'
 
 const s = {
-  container: tw`
-    h-screen min-w-full
-    flex
-    items-center justify-center
-  `,
-  main: [
-    tw`
-      max-w-1/2
-    `,
-    css`
-      min-width: 640px;
-    `,
-  ],
-  header: tw`
-    fixed
-    top-0
-    right-8
-    pt-4
-    text-right
-  `,
-  title: tw`
-    text-4xl
-    text-blue-600
-    antialiased
-  `,
+  container: 'h-screen min-w-full flex items-center justify-center',
+  main: 'max-w-[50%] min-w-[640px]',
+  header: 'fixed top-0 right-8 pt-4 text-right',
+  title: 'text-4xl text-blue-600 antialiased',
 }
 
 export const Login = (): JSX.Element => {
-  const { handleSubmit, errors, register, formState } = useForm()
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm()
   const [auth] = useAuth()
   const [signupForm, setSignupForm] = useState(false)
   const router = useRouter()
 
   const signUp = ({ email, password }) => {
-    return firebaseAuth
-      .createUserWithEmailAndPassword(email, password)
+    return createUserWithEmailAndPassword(firebaseAuth, email, password)
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response)
@@ -62,8 +39,7 @@ export const Login = (): JSX.Element => {
   }
 
   const login = ({ email, password }) => {
-    return firebaseAuth
-      .signInWithEmailAndPassword(email, password)
+    return signInWithEmailAndPassword(firebaseAuth, email, password)
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response)
@@ -99,53 +75,47 @@ export const Login = (): JSX.Element => {
 
   if (signupForm) {
     return (
-      <div css={s.container}>
-        <div css={s.header}>
-          <button css={tw`ml-4 cursor-pointer`} onClick={() => router.back()}>
+      <div className={s.container}>
+        <div className={s.header}>
+          <button className="ml-4 cursor-pointer" onClick={() => router.back()}>
             Back
           </button>
         </div>
 
-        <main css={s.main}>
-          <h1 css={s.title}>Sign Up</h1>
+        <main className={s.main}>
+          <h1 className={s.title}>Sign Up</h1>
 
           <form onSubmit={handleSubmit(signUp)}>
-            <FormControl isInvalid={errors.email}>
-              <FormLabel htmlFor="email">Email</FormLabel>
+            <Field.Root invalid={!!errors.email}>
+              <Field.Label htmlFor="email">Email</Field.Label>
               <Input
                 id="email"
-                name="email"
-                ref={register({ validate: validateEmail })}
+                {...register('email', { validate: validateEmail })}
               />
-              <FormErrorMessage>
-                {errors.email && errors.email.message}
-              </FormErrorMessage>
-            </FormControl>
+              <Field.ErrorText>
+                {errors.email && (errors.email.message as string)}
+              </Field.ErrorText>
+            </Field.Root>
 
-            <FormControl isInvalid={errors.password}>
-              <FormLabel htmlFor="password">Password</FormLabel>
+            <Field.Root invalid={!!errors.password}>
+              <Field.Label htmlFor="password">Password</Field.Label>
               <Input
                 id="password"
-                name="password"
                 type="password"
-                ref={register({ validate: validatePassword })}
+                {...register('password', { validate: validatePassword })}
               />
-              <FormErrorMessage>
-                {errors.password && errors.password.message}
-              </FormErrorMessage>
-            </FormControl>
+              <Field.ErrorText>
+                {errors.password && (errors.password.message as string)}
+              </Field.ErrorText>
+            </Field.Root>
 
-            <div css={tw`mt-4`}>
-              <Button
-                variantColor="teal"
-                isLoading={formState.isSubmitting}
-                type="submit"
-              >
+            <div className="mt-4">
+              <Button colorPalette="teal" loading={isSubmitting} type="submit">
                 Submit
               </Button>
 
               <Button
-                variant="link"
+                variant="ghost"
                 ml={4}
                 onClick={() => setSignupForm(false)}
               >
@@ -159,52 +129,46 @@ export const Login = (): JSX.Element => {
   }
 
   return (
-    <div css={s.container}>
-      <div css={s.header}>
-        <button css={tw`ml-4 cursor-pointer`} onClick={() => router.back()}>
+    <div className={s.container}>
+      <div className={s.header}>
+        <button className="ml-4 cursor-pointer" onClick={() => router.back()}>
           Back
         </button>
       </div>
 
-      <main css={s.main}>
-        <h1 css={s.title}>Login</h1>
+      <main className={s.main}>
+        <h1 className={s.title}>Login</h1>
 
         <form onSubmit={handleSubmit(login)}>
-          <FormControl isInvalid={errors.email}>
-            <FormLabel htmlFor="email">Email</FormLabel>
+          <Field.Root invalid={!!errors.email}>
+            <Field.Label htmlFor="email">Email</Field.Label>
             <Input
               id="email"
-              name="email"
-              ref={register({ validate: validateEmail })}
+              {...register('email', { validate: validateEmail })}
             />
-            <FormErrorMessage>
-              {errors.email && errors.email.message}
-            </FormErrorMessage>
-          </FormControl>
+            <Field.ErrorText>
+              {errors.email && (errors.email.message as string)}
+            </Field.ErrorText>
+          </Field.Root>
 
-          <FormControl isInvalid={errors.password}>
-            <FormLabel htmlFor="password">Password</FormLabel>
+          <Field.Root invalid={!!errors.password}>
+            <Field.Label htmlFor="password">Password</Field.Label>
             <Input
               id="password"
-              name="password"
               type="password"
-              ref={register({ validate: validatePassword })}
+              {...register('password', { validate: validatePassword })}
             />
-            <FormErrorMessage>
-              {errors.password && errors.password.message}
-            </FormErrorMessage>
-          </FormControl>
+            <Field.ErrorText>
+              {errors.password && (errors.password.message as string)}
+            </Field.ErrorText>
+          </Field.Root>
 
-          <div css={tw`mt-4`}>
-            <Button
-              variantColor="teal"
-              isLoading={formState.isSubmitting}
-              type="submit"
-            >
+          <div className="mt-4">
+            <Button colorPalette="teal" loading={isSubmitting} type="submit">
               Login
             </Button>
 
-            <Button variant="link" ml={4} onClick={() => setSignupForm(true)}>
+            <Button variant="ghost" ml={4} onClick={() => setSignupForm(true)}>
               Sign Up
             </Button>
           </div>

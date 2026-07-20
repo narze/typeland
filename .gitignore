@@ -33,8 +33,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# storybook
+/storybook-static
+
 # cypress
-cypress/integration/examples
+cypress/e2e/examples
 cypress/screenshots
 cypress/videos
 
+
+# typescript incremental build info
+*.tsbuildinfo

@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import '../styles/base.css'
+import '../styles/globals.css'
 import { AuthProvider } from '../contexts/Auth'
 import { StatsProvider } from '../contexts/Stats'
-import { ThemeProvider, theme } from '@chakra-ui/core'
-import React from 'react'
-import 'abortcontroller-polyfill/dist/polyfill-patch-fetch'
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
+import React, { type JSX } from 'react'
 
 export default function MyApp({
   Component,
@@ -21,9 +20,9 @@ export default function MyApp({
       </Head>
       <AuthProvider>
         <StatsProvider>
-          <ThemeProvider theme={theme}>
+          <ChakraProvider value={defaultSystem}>
             <Component {...pageProps} />
-          </ThemeProvider>
+          </ChakraProvider>
         </StatsProvider>
       </AuthProvider>
     </React.StrictMode>
