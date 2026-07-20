@@ -5,7 +5,7 @@ import {
   Action,
 } from '@/contexts/Auth'
 import { render } from '../testUtils'
-import firebase from 'firebase'
+import type { User } from 'firebase/auth'
 
 describe('reducer', () => {
   it('setUser sets user', () => {
@@ -15,7 +15,7 @@ describe('reducer', () => {
 
     const action: Action = {
       type: 'setUser',
-      user: { email: 'foo@bar.com' } as firebase.User,
+      user: { email: 'foo@bar.com' } as unknown as User,
     }
 
     expect(reducer(state, action)).toEqual({ user: { email: 'foo@bar.com' } })
@@ -36,18 +36,18 @@ describe('reducer', () => {
 
 const renderWithProvider = (
   ui,
-  { providerProps = {}, ...renderOptions } = {}
+  { providerProps = {}, ...renderOptions } = {},
 ) => {
   return render(
     <AuthProvider {...providerProps}>{ui}</AuthProvider>,
-    renderOptions
+    renderOptions,
   )
 }
 
 it('expose props', () => {
   const providerProps = {
     initialState: {
-      user: { email: 'foo@bar.com' } as firebase.User,
+      user: { email: 'foo@bar.com' } as unknown as User,
     },
   }
 
@@ -58,22 +58,14 @@ it('expose props', () => {
         return <></>
       }}
     </AuthStateConsumer>,
-    { providerProps }
+    { providerProps },
   )
 })
 
-it('handles login with correct credentials', () => {
-  pending()
-})
+it.todo('handles login with correct credentials')
 
-it('handles login with incorrect credentials', () => {
-  pending()
-})
+it.todo('handles login with incorrect credentials')
 
-it('handles sign up with correct credentials', () => {
-  pending()
-})
+it.todo('handles sign up with correct credentials')
 
-it('handles sign up with existing email', () => {
-  pending()
-})
+it.todo('handles sign up with existing email')

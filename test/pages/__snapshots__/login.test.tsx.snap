@@ -1,320 +1,88 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Login page renders sign up form 1`] = `
 <DocumentFragment>
-  .emotion-13 {
-  height: 100vh;
-  min-width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.emotion-1 {
-  position: fixed;
-  top: 0;
-  right: 2rem;
-  padding-top: 1rem;
-  text-align: right;
-}
-
-.emotion-0 {
-  margin-left: 1rem;
-  cursor: pointer;
-}
-
-.emotion-12 {
-  max-width: 50%;
-  min-width: 640px;
-}
-
-.emotion-2 {
-  --text-opacity: 1;
-  font-size: 2.25rem;
-  color: #1c64f2;
-  color: rgba(28,100,242,var(--text-opacity));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-3 {
-  font-size: 1rem;
-  padding-right: 12px;
-  padding-bottom: 4px;
-  opacity: 1;
-  font-weight: 500;
-  text-align: left;
-  vertical-align: middle;
-  display: inline-block;
-}
-
-.emotion-4 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  position: relative;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 2.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid;
-  border-color: inherit;
-  background-color: #fff;
-}
-
-.emotion-4:hover {
-  border-color: #CBD5E0;
-}
-
-.emotion-4:focus {
-  z-index: 1;
-  border-color: #3182ce;
-  box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-4:disabled,
-.emotion-4:disabled:focus,
-.emotion-4:disabled:hover,
-.emotion-4[aria-disabled=true],
-.emotion-4[aria-disabled=true]:focus,
-.emotion-4[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.emotion-4[aria-invalid=true] {
-  border-color: #e53e3e;
-  box-shadow: 0 0 0 1px #e53e3e;
-}
-
-.emotion-4[aria-readonly=true],
-.emotion-4[readonly] {
-  background-color: transparent;
-  box-shadow: none !important;
-  -webkit-user-select: all;
-  -moz-user-select: all;
-  -ms-user-select: all;
-  user-select: all;
-}
-
-.emotion-11 {
-  margin-top: 1rem;
-}
-
-.emotion-9 {
-  border-radius: 0.25rem;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: 1.2;
-  outline: none;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background-color: #319795;
-  color: #fff;
-}
-
-.emotion-9:hover {
-  background-color: #2C7A7B;
-}
-
-.emotion-9:focus {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-9:active,
-.emotion-9[data-active=true] {
-  background-color: #285E61;
-}
-
-.emotion-9:disabled,
-.emotion-9:disabled:focus,
-.emotion-9:disabled:hover,
-.emotion-9[aria-disabled=true],
-.emotion-9[aria-disabled=true]:focus,
-.emotion-9[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.emotion-10 {
-  border-radius: 0.25rem;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: normal;
-  outline: none;
-  height: auto;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding: 0;
-  color: #718096;
-  margin-left: 1rem;
-}
-
-.emotion-10:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-10:focus {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-10:active,
-.emotion-10[data-active=true] {
-  color: #2D3748;
-}
-
-.emotion-10:disabled,
-.emotion-10:disabled:focus,
-.emotion-10:disabled:hover,
-.emotion-10[aria-disabled=true],
-.emotion-10[aria-disabled=true]:focus,
-.emotion-10[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-<div
-    class="emotion-13"
+  <div
+    class="h-screen min-w-full flex items-center justify-center"
   >
     <div
-      class="emotion-1"
+      class="fixed top-0 right-8 pt-4 text-right"
     >
       <button
-        class="emotion-0"
+        class="ml-4 cursor-pointer"
       >
         Back
       </button>
     </div>
     <main
-      class="emotion-12"
+      class="max-w-[50%] min-w-[640px]"
     >
       <h1
-        class="emotion-2"
+        class="text-4xl text-blue-600 antialiased"
       >
         Login
       </h1>
       <form>
         <div
-          class="emotion-5"
+          class="chakra-field__root css-13f87cb"
+          data-part="root"
+          data-scope="field"
+          id="field::_r_0_"
           role="group"
         >
           <label
-            class="emotion-3"
+            class="chakra-field__label css-65zcwe"
+            data-part="label"
+            data-scope="field"
             for="email"
+            id="field::_r_0_::label"
           >
             Email
           </label>
           <input
-            class="emotion-4"
+            class="chakra-input css-ee9xfg"
+            data-part="input"
+            data-scope="field"
             id="email"
             name="email"
           />
         </div>
         <div
-          class="emotion-5"
+          class="chakra-field__root css-13f87cb"
+          data-part="root"
+          data-scope="field"
+          id="field::_r_1_"
           role="group"
         >
           <label
-            class="emotion-3"
+            class="chakra-field__label css-65zcwe"
+            data-part="label"
+            data-scope="field"
             for="password"
+            id="field::_r_1_::label"
           >
             Password
           </label>
           <input
-            class="emotion-4"
+            class="chakra-input css-ee9xfg"
+            data-part="input"
+            data-scope="field"
             id="password"
             name="password"
             type="password"
           />
         </div>
         <div
-          class="emotion-11"
+          class="mt-4"
         >
           <button
-            aria-disabled="false"
-            class="emotion-9"
+            class="chakra-button css-1wegdtv"
             type="submit"
           >
             Login
           </button>
           <button
-            class="emotion-10"
+            class="chakra-button css-13egqbt"
             type="button"
           >
             Sign Up
@@ -328,319 +96,87 @@ exports[`Login page renders sign up form 1`] = `
 
 exports[`Login page when clicking Sign up renders user email 1`] = `
 <DocumentFragment>
-  .emotion-13 {
-  height: 100vh;
-  min-width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.emotion-1 {
-  position: fixed;
-  top: 0;
-  right: 2rem;
-  padding-top: 1rem;
-  text-align: right;
-}
-
-.emotion-0 {
-  margin-left: 1rem;
-  cursor: pointer;
-}
-
-.emotion-12 {
-  max-width: 50%;
-  min-width: 640px;
-}
-
-.emotion-2 {
-  --text-opacity: 1;
-  font-size: 2.25rem;
-  color: #1c64f2;
-  color: rgba(28,100,242,var(--text-opacity));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-3 {
-  font-size: 1rem;
-  padding-right: 12px;
-  padding-bottom: 4px;
-  opacity: 1;
-  font-weight: 500;
-  text-align: left;
-  vertical-align: middle;
-  display: inline-block;
-}
-
-.emotion-4 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  position: relative;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 2.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid;
-  border-color: inherit;
-  background-color: #fff;
-}
-
-.emotion-4:hover {
-  border-color: #CBD5E0;
-}
-
-.emotion-4:focus {
-  z-index: 1;
-  border-color: #3182ce;
-  box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-4:disabled,
-.emotion-4:disabled:focus,
-.emotion-4:disabled:hover,
-.emotion-4[aria-disabled=true],
-.emotion-4[aria-disabled=true]:focus,
-.emotion-4[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.emotion-4[aria-invalid=true] {
-  border-color: #e53e3e;
-  box-shadow: 0 0 0 1px #e53e3e;
-}
-
-.emotion-4[aria-readonly=true],
-.emotion-4[readonly] {
-  background-color: transparent;
-  box-shadow: none !important;
-  -webkit-user-select: all;
-  -moz-user-select: all;
-  -ms-user-select: all;
-  user-select: all;
-}
-
-.emotion-11 {
-  margin-top: 1rem;
-}
-
-.emotion-9 {
-  border-radius: 0.25rem;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: 1.2;
-  outline: none;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background-color: #319795;
-  color: #fff;
-}
-
-.emotion-9:hover {
-  background-color: #2C7A7B;
-}
-
-.emotion-9:focus {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-9:active,
-.emotion-9[data-active=true] {
-  background-color: #285E61;
-}
-
-.emotion-9:disabled,
-.emotion-9:disabled:focus,
-.emotion-9:disabled:hover,
-.emotion-9[aria-disabled=true],
-.emotion-9[aria-disabled=true]:focus,
-.emotion-9[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.emotion-10 {
-  border-radius: 0.25rem;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: normal;
-  outline: none;
-  height: auto;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding: 0;
-  color: #718096;
-  margin-left: 1rem;
-}
-
-.emotion-10:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-10:focus {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-10:active,
-.emotion-10[data-active=true] {
-  color: #2D3748;
-}
-
-.emotion-10:disabled,
-.emotion-10:disabled:focus,
-.emotion-10:disabled:hover,
-.emotion-10[aria-disabled=true],
-.emotion-10[aria-disabled=true]:focus,
-.emotion-10[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-<div
-    class="emotion-13"
+  <div
+    class="h-screen min-w-full flex items-center justify-center"
   >
     <div
-      class="emotion-1"
+      class="fixed top-0 right-8 pt-4 text-right"
     >
       <button
-        class="emotion-0"
+        class="ml-4 cursor-pointer"
       >
         Back
       </button>
     </div>
     <main
-      class="emotion-12"
+      class="max-w-[50%] min-w-[640px]"
     >
       <h1
-        class="emotion-2"
+        class="text-4xl text-blue-600 antialiased"
       >
         Login
       </h1>
       <form>
         <div
-          class="emotion-5"
+          class="chakra-field__root css-13f87cb"
+          data-part="root"
+          data-scope="field"
+          id="field::_r_2_"
           role="group"
         >
           <label
-            class="emotion-3"
+            class="chakra-field__label css-65zcwe"
+            data-part="label"
+            data-scope="field"
             for="email"
+            id="field::_r_2_::label"
           >
             Email
           </label>
           <input
-            class="emotion-4"
+            class="chakra-input css-ee9xfg"
+            data-part="input"
+            data-scope="field"
             id="email"
             name="email"
           />
         </div>
         <div
-          class="emotion-5"
+          class="chakra-field__root css-13f87cb"
+          data-part="root"
+          data-scope="field"
+          id="field::_r_3_"
           role="group"
         >
           <label
-            class="emotion-3"
+            class="chakra-field__label css-65zcwe"
+            data-part="label"
+            data-scope="field"
             for="password"
+            id="field::_r_3_::label"
           >
             Password
           </label>
           <input
-            class="emotion-4"
+            class="chakra-input css-ee9xfg"
+            data-part="input"
+            data-scope="field"
             id="password"
             name="password"
             type="password"
           />
         </div>
         <div
-          class="emotion-11"
+          class="mt-4"
         >
           <button
-            aria-disabled="false"
-            class="emotion-9"
+            class="chakra-button css-1wegdtv"
             type="submit"
           >
             Login
           </button>
           <button
-            class="emotion-10"
+            class="chakra-button css-13egqbt"
             type="button"
           >
             Sign Up
@@ -654,319 +190,87 @@ exports[`Login page when clicking Sign up renders user email 1`] = `
 
 exports[`Login page when user is set in state (already logged in) redirects to home page 1`] = `
 <DocumentFragment>
-  .emotion-13 {
-  height: 100vh;
-  min-width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.emotion-1 {
-  position: fixed;
-  top: 0;
-  right: 2rem;
-  padding-top: 1rem;
-  text-align: right;
-}
-
-.emotion-0 {
-  margin-left: 1rem;
-  cursor: pointer;
-}
-
-.emotion-12 {
-  max-width: 50%;
-  min-width: 640px;
-}
-
-.emotion-2 {
-  --text-opacity: 1;
-  font-size: 2.25rem;
-  color: #1c64f2;
-  color: rgba(28,100,242,var(--text-opacity));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.emotion-3 {
-  font-size: 1rem;
-  padding-right: 12px;
-  padding-bottom: 4px;
-  opacity: 1;
-  font-weight: 500;
-  text-align: left;
-  vertical-align: middle;
-  display: inline-block;
-}
-
-.emotion-4 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  position: relative;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 2.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid;
-  border-color: inherit;
-  background-color: #fff;
-}
-
-.emotion-4:hover {
-  border-color: #CBD5E0;
-}
-
-.emotion-4:focus {
-  z-index: 1;
-  border-color: #3182ce;
-  box-shadow: 0 0 0 1px #3182ce;
-}
-
-.emotion-4:disabled,
-.emotion-4:disabled:focus,
-.emotion-4:disabled:hover,
-.emotion-4[aria-disabled=true],
-.emotion-4[aria-disabled=true]:focus,
-.emotion-4[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.emotion-4[aria-invalid=true] {
-  border-color: #e53e3e;
-  box-shadow: 0 0 0 1px #e53e3e;
-}
-
-.emotion-4[aria-readonly=true],
-.emotion-4[readonly] {
-  background-color: transparent;
-  box-shadow: none !important;
-  -webkit-user-select: all;
-  -moz-user-select: all;
-  -ms-user-select: all;
-  user-select: all;
-}
-
-.emotion-11 {
-  margin-top: 1rem;
-}
-
-.emotion-9 {
-  border-radius: 0.25rem;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: 1.2;
-  outline: none;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background-color: #319795;
-  color: #fff;
-}
-
-.emotion-9:hover {
-  background-color: #2C7A7B;
-}
-
-.emotion-9:focus {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-9:active,
-.emotion-9[data-active=true] {
-  background-color: #285E61;
-}
-
-.emotion-9:disabled,
-.emotion-9:disabled:focus,
-.emotion-9:disabled:hover,
-.emotion-9[aria-disabled=true],
-.emotion-9[aria-disabled=true]:focus,
-.emotion-9[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.emotion-10 {
-  border-radius: 0.25rem;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  white-space: nowrap;
-  vertical-align: middle;
-  line-height: normal;
-  outline: none;
-  height: auto;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding: 0;
-  color: #718096;
-  margin-left: 1rem;
-}
-
-.emotion-10:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-10:focus {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-}
-
-.emotion-10:active,
-.emotion-10[data-active=true] {
-  color: #2D3748;
-}
-
-.emotion-10:disabled,
-.emotion-10:disabled:focus,
-.emotion-10:disabled:hover,
-.emotion-10[aria-disabled=true],
-.emotion-10[aria-disabled=true]:focus,
-.emotion-10[aria-disabled=true]:hover {
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-<div
-    class="emotion-13"
+  <div
+    class="h-screen min-w-full flex items-center justify-center"
   >
     <div
-      class="emotion-1"
+      class="fixed top-0 right-8 pt-4 text-right"
     >
       <button
-        class="emotion-0"
+        class="ml-4 cursor-pointer"
       >
         Back
       </button>
     </div>
     <main
-      class="emotion-12"
+      class="max-w-[50%] min-w-[640px]"
     >
       <h1
-        class="emotion-2"
+        class="text-4xl text-blue-600 antialiased"
       >
         Login
       </h1>
       <form>
         <div
-          class="emotion-5"
+          class="chakra-field__root css-13f87cb"
+          data-part="root"
+          data-scope="field"
+          id="field::_r_4_"
           role="group"
         >
           <label
-            class="emotion-3"
+            class="chakra-field__label css-65zcwe"
+            data-part="label"
+            data-scope="field"
             for="email"
+            id="field::_r_4_::label"
           >
             Email
           </label>
           <input
-            class="emotion-4"
+            class="chakra-input css-ee9xfg"
+            data-part="input"
+            data-scope="field"
             id="email"
             name="email"
           />
         </div>
         <div
-          class="emotion-5"
+          class="chakra-field__root css-13f87cb"
+          data-part="root"
+          data-scope="field"
+          id="field::_r_5_"
           role="group"
         >
           <label
-            class="emotion-3"
+            class="chakra-field__label css-65zcwe"
+            data-part="label"
+            data-scope="field"
             for="password"
+            id="field::_r_5_::label"
           >
             Password
           </label>
           <input
-            class="emotion-4"
+            class="chakra-input css-ee9xfg"
+            data-part="input"
+            data-scope="field"
             id="password"
             name="password"
             type="password"
           />
         </div>
         <div
-          class="emotion-11"
+          class="mt-4"
         >
           <button
-            aria-disabled="false"
-            class="emotion-9"
+            class="chakra-button css-1wegdtv"
             type="submit"
           >
             Login
           </button>
           <button
-            class="emotion-10"
+            class="chakra-button css-13egqbt"
             type="button"
           >
             Sign Up

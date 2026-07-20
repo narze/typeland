@@ -1,8 +1,6 @@
 /// <reference types="next" />
-/// <reference types="next/types/global" />
-/// <reference types="@types/jest" />
+/// <reference types="next/image-types/global" />
+import './.next/types/routes.d.ts'
 
-interface Window {
-  Cypress: any
-  _seed: any
-}
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/pages/api-reference/config/typescript for more information.

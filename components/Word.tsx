@@ -1,33 +1,11 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import tw from '@tailwindcssinjs/macro'
 import React, { useRef, useEffect, useState } from 'react'
 
 const s = {
-  word: tw`
-    relative
-    mr-1
-  `,
-  correct: tw`
-    text-green-600
-  `,
-  wrong: tw`
-    text-red-400
-  `,
-  pending: tw`
-    text-gray-300
-  `,
-  caret: [
-    tw`
-      absolute
-      h-6
-      bg-blue-500
-    `,
-    css`
-      transition: all 0.1s ease-out;
-      width: 2px;
-    `,
-  ],
+  word: 'relative mr-1',
+  correct: 'text-green-600',
+  wrong: 'text-red-400',
+  pending: 'text-gray-300',
+  caret: 'absolute h-6 w-0.5 bg-blue-500 transition-all duration-100 ease-out',
 }
 
 export interface WordProps {
@@ -43,13 +21,6 @@ export const Word: React.FC<WordProps> = React.memo(
       left: -1,
       top: 4,
     })
-
-    const caretPosCss = () => {
-      return css`
-        left: ${caretPos.left + 1}px;
-        top: ${caretPos.top}px;
-      `
-    }
 
     useEffect(() => {
       if (!lastInputEl.current) {
@@ -72,9 +43,9 @@ export const Word: React.FC<WordProps> = React.memo(
     }, [userInput.length])
 
     return (
-      <span css={s.word} data-testid="word">
+      <span className={s.word} data-testid="word">
         {Array.from(
-          Array(Math.max(template.length, userInput.length)).keys()
+          Array(Math.max(template.length, userInput.length)).keys(),
         ).map((i) => {
           const ref = i == userInput.length - 1 ? lastInputEl : null
           const templateChar = template[i]
@@ -85,8 +56,7 @@ export const Word: React.FC<WordProps> = React.memo(
             charElement =
               templateChar == userInputChar ? (
                 <span
-                  css={s.correct}
-                  className="correct"
+                  className={`${s.correct} correct`}
                   data-testid="correct"
                   ref={ref}
                 >
@@ -94,8 +64,7 @@ export const Word: React.FC<WordProps> = React.memo(
                 </span>
               ) : (
                 <span
-                  css={s.wrong}
-                  className="wrong"
+                  className={`${s.wrong} wrong`}
                   data-testid="wrong"
                   ref={ref}
                 >
@@ -105,8 +74,7 @@ export const Word: React.FC<WordProps> = React.memo(
           } else if (userInputChar) {
             charElement = (
               <span
-                css={s.wrong}
-                className="wrong"
+                className={`${s.wrong} wrong`}
                 data-testid="wrong"
                 ref={ref}
               >
@@ -116,8 +84,7 @@ export const Word: React.FC<WordProps> = React.memo(
           } else {
             charElement = (
               <span
-                css={s.pending}
-                className="pending"
+                className={`${s.pending} pending`}
                 data-testid="pending"
                 ref={ref}
               >
@@ -130,9 +97,13 @@ export const Word: React.FC<WordProps> = React.memo(
         })}
 
         {showCaret && (
-          <span css={[s.caret, caretPosCss()]} data-testid="caret"></span>
+          <span
+            className={s.caret}
+            data-testid="caret"
+            style={{ left: caretPos.left + 1, top: caretPos.top }}
+          ></span>
         )}
       </span>
     )
-  }
+  },
 )

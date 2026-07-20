@@ -7,12 +7,17 @@ import {
   StatsDispatchContext,
   StatsStateContext,
 } from '@/contexts/Stats'
+import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../config/firebase'
 
-const mockAdd = jest.fn()
+const mockCollection = collection as jest.Mock
+const mockAddDoc = addDoc as jest.Mock
 
-db.collection = jest.fn().mockReturnValue({
-  add: mockAdd,
+beforeEach(() => {
+  mockCollection.mockClear()
+  mockAddDoc.mockClear()
+  mockCollection.mockReturnValue('results-collection')
+  mockAddDoc.mockResolvedValue(undefined)
 })
 
 describe('reducer', () => {
@@ -29,7 +34,7 @@ describe('reducer', () => {
     }
 
     expect(reducer(state, action)).toEqual(
-      expect.objectContaining({ correct: 2, wrong: 2, total: 4 })
+      expect.objectContaining({ correct: 2, wrong: 2, total: 4 }),
     )
   })
 
@@ -39,7 +44,7 @@ describe('reducer', () => {
     }
 
     expect(reducer(state, action)).toEqual(
-      expect.objectContaining({ correct: 1, wrong: 3, total: 4 })
+      expect.objectContaining({ correct: 1, wrong: 3, total: 4 }),
     )
   })
 
@@ -49,18 +54,18 @@ describe('reducer', () => {
     }
 
     expect(reducer(state, action)).toEqual(
-      expect.objectContaining({ correct: 0, wrong: 0, total: 0 })
+      expect.objectContaining({ correct: 0, wrong: 0, total: 0 }),
     )
   })
 })
 
 const renderWithProvider = (
   ui,
-  { providerProps = {}, ...renderOptions } = {}
+  { providerProps = {}, ...renderOptions } = {},
 ) => {
   return render(
     <StatsProvider {...providerProps}>{ui}</StatsProvider>,
-    renderOptions
+    renderOptions,
   )
 }
 
@@ -82,7 +87,7 @@ it('expose props', () => {
         return <></>
       }}
     </StatsStateContext.Consumer>,
-    { providerProps }
+    { providerProps },
   )
 })
 
@@ -116,23 +121,23 @@ test('can increment count & reset', () => {
         </StatsDispatchContext.Consumer>
       )}
     </StatsStateContext.Consumer>,
-    { providerProps }
+    { providerProps },
   )
 
   expect(getByText(/^correct:/).textContent).toBe('correct: 1')
   expect(getByText(/^total:/).textContent).toBe('total: 3')
 
-  getByText(/Increment Correct/).click()
+  fireEvent.click(getByText(/Increment Correct/))
   expect(getByText(/^correct:/).textContent).toBe('correct: 2')
   expect(getByText(/^wrong:/).textContent).toBe('wrong: 2')
   expect(getByText(/^total:/).textContent).toBe('total: 4')
 
-  getByText(/Increment Wrong/).click()
+  fireEvent.click(getByText(/Increment Wrong/))
   expect(getByText(/^correct:/).textContent).toBe('correct: 2')
   expect(getByText(/^wrong:/).textContent).toBe('wrong: 3')
   expect(getByText(/^total:/).textContent).toBe('total: 5')
 
-  getByText(/Reset/).click()
+  fireEvent.click(getByText(/Reset/))
   expect(getByText(/^correct:/).textContent).toBe('correct: 0')
   expect(getByText(/^wrong:/).textContent).toBe('wrong: 0')
   expect(getByText(/^total:/).textContent).toBe('total: 0')
@@ -167,7 +172,7 @@ test('can submit stats', async () => {
         </StatsDispatchContext.Consumer>
       )}
     </StatsStateContext.Consumer>,
-    { providerProps }
+    { providerProps },
   )
 
   expect(getByText(/^loading:/).textContent).toBe('loading: false')
@@ -175,15 +180,16 @@ test('can submit stats', async () => {
   fireEvent.click(getByText(/Submit Stats/))
   expect(getByText(/^loading: true/)).toBeInTheDocument()
 
-  expect(db.collection).toBeCalledWith('results')
-  expect(db.collection).toBeCalledTimes(1)
+  expect(mockCollection).toHaveBeenCalledWith(db, 'results')
+  expect(mockCollection).toHaveBeenCalledTimes(1)
 
-  expect(mockAdd).toBeCalledWith(
+  expect(mockAddDoc).toHaveBeenCalledWith(
+    'results-collection',
     expect.objectContaining({
       stats: { correct: 1, wrong: 2, total: 3 },
       timestamp: expect.anything(),
       user: expect.anything(),
-    })
+    }),
   )
 
   // After FINISH_SUBMIT_STATS, loading will be false again

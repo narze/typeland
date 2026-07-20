@@ -1,9 +1,9 @@
 import { render, RenderResult } from '@testing-library/react'
 import { ReactElement } from 'react'
-import { ThemeProvider, theme } from '@chakra-ui/core'
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 
 const Providers = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  return <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
 }
 
 const customRender = (ui: ReactElement, options = {}): RenderResult =>

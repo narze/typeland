@@ -1,9 +1,17 @@
 import React from 'react'
 import { render } from '../testUtils'
 import { TypingArea } from '@/components/TypingArea'
-import { StatsProvider } from '@/contexts/Stats'
-import * as Stats from '@/contexts/Stats'
+import { StatsProvider, useStats } from '@/contexts/Stats'
 import { AuthProvider } from '@/contexts/Auth'
+
+// SWC compiles ES module named exports to non-configurable getters, so
+// `jest.spyOn` can't replace them. Mock the module instead, keeping the rest
+// of it real.
+jest.mock('@/contexts/Stats', () => ({
+  __esModule: true,
+  ...jest.requireActual('@/contexts/Stats'),
+  useStats: jest.fn(),
+}))
 
 const providerValue = {
   initialState: {
@@ -15,9 +23,11 @@ const providerValue = {
 }
 
 const mockDispatch = jest.fn()
-const mockUseStats = jest
-  .spyOn(Stats, 'useStats')
-  .mockReturnValue([providerValue.initialState, mockDispatch])
+const mockUseStats = useStats as jest.Mock
+
+beforeEach(() => {
+  mockUseStats.mockReturnValue([providerValue.initialState, mockDispatch])
+})
 
 afterEach(() => {
   mockDispatch.mockClear()
@@ -26,13 +36,13 @@ afterEach(() => {
 
 const renderWithProvider = (
   ui,
-  { providerProps = {}, ...renderOptions } = {}
+  { providerProps = {}, ...renderOptions } = {},
 ) => {
   return render(
     <AuthProvider>
       <StatsProvider {...providerProps}>{ui}</StatsProvider>
     </AuthProvider>,
-    renderOptions
+    renderOptions,
   )
 }
 
@@ -45,7 +55,7 @@ it('renders typing area', () => {
 
   const { asFragment, getAllByTestId } = renderWithProvider(
     <TypingArea {...props} />,
-    {}
+    {},
   )
 
   expect(getAllByTestId('word').map((e) => e.textContent)).toEqual([
@@ -100,7 +110,7 @@ it('renders mid-word correctly', () => {
 
   const { asFragment, getAllByTestId } = renderWithProvider(
     <TypingArea {...props} />,
-    {}
+    {},
   )
 
   expect(getAllByTestId('word').map((e) => e.textContent)).toEqual([

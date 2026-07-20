@@ -1,36 +1,9 @@
-import firebasemock from 'firebase-mock'
-
-const auth = new firebasemock.MockAuthentication()
-export const mockdatabase = new firebasemock.MockFirebase()
-const db = new firebasemock.MockFirestore()
-export const mockstorage = new firebasemock.MockStorage()
-export const mockmessaging = new firebasemock.MockMessaging()
-
-export const mockFirebase = new firebasemock.MockFirebaseSdk(
-  // use null if your code does not use RTDB
-  (path) => {
-    return path ? mockdatabase.child(path) : mockdatabase
-  },
-  // use null if your code does not use AUTHENTICATION
-  () => {
-    return auth
-  },
-  // use null if your code does not use FIRESTORE
-  () => {
-    return db
-  },
-  // use null if your code does not use STORAGE
-  () => {
-    return mockstorage
-  },
-  // use null if your code does not use MESSAGING
-  () => {
-    return mockmessaging
-  }
-)
-
-mockFirebase.initApp = jest.fn()
-
-export { auth, db }
-
-export default mockFirebase
+// Manual mock for `config/firebase`. The real module initializes the Firebase
+// app and exports handles (`auth`, `db`, ...). In tests these are just opaque
+// objects handed to the (separately mocked) modular SDK functions.
+export const firebaseConfig = {}
+export const app = { name: '[DEFAULT]' }
+export const auth = {}
+export const db = {}
+export const now = 0
+export const storage = {}

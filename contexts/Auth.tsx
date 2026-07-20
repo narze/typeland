@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useReducer } from 'react'
 import { auth as firebaseAuth } from '../config/firebase'
-import firebase from 'firebase'
+import { onAuthStateChanged, User } from 'firebase/auth'
 
 interface State {
-  user: firebase.User | null
+  user: User | null
 }
 
 type Dispatch = React.Dispatch<Action>
@@ -17,9 +17,7 @@ const defaultState: State = {
   user: null,
 }
 
-export type Action =
-  | { type: 'setUser'; user: firebase.User }
-  | { type: 'unsetUser' }
+export type Action = { type: 'setUser'; user: User } | { type: 'unsetUser' }
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -72,7 +70,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (authUser) => {
       if (authUser) {
         //The user is logged in
         dispatch({

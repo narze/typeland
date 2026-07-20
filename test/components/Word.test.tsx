@@ -13,12 +13,12 @@ it('renders single word with caret', () => {
   expect(
     getAllByTestId('correct')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('do')
   expect(
     getAllByTestId('pending')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('ge')
 
   expect(getAllByTestId('caret').length).toBe(1)
@@ -37,17 +37,17 @@ it('renders template character on wrong typing', () => {
   expect(
     getAllByTestId('correct')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('w')
   expect(
     getAllByTestId('wrong')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('orl')
   expect(
     getAllByTestId('pending')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('d')
 
   expect(asFragment()).toMatchSnapshot()
@@ -64,12 +64,12 @@ it('renders template character on wrong typing', () => {
   expect(
     getAllByTestId('correct')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('w')
   expect(
     getAllByTestId('wrong')
       .map((e) => e.textContent)
-      .join('')
+      .join(''),
   ).toBe('orldxx')
 
   expect(asFragment()).toMatchSnapshot()

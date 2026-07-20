@@ -19,11 +19,11 @@ jest.mock('next/router', () => ({
 
 const renderWithAuthProvider = (
   ui,
-  { providerProps = {}, ...renderOptions } = {}
+  { providerProps = {}, ...renderOptions } = {},
 ) => {
   return render(
     <AuthProvider {...providerProps}>{ui}</AuthProvider>,
-    renderOptions
+    renderOptions,
   )
 }
 
@@ -53,8 +53,8 @@ describe('Login page', () => {
         providerProps,
       })
 
-      expect(mockRouterPush).toBeCalledTimes(1)
-      expect(mockRouterPush).toBeCalledWith('/')
+      expect(mockRouterPush).toHaveBeenCalledTimes(1)
+      expect(mockRouterPush).toHaveBeenCalledWith('/')
 
       expect(asFragment()).toMatchSnapshot()
 
